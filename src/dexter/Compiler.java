@@ -6,16 +6,19 @@ import dexter.frontend.CppFrontend;
  * Created by Maaz Ahmad on 6/26/19.
  */
 public class Compiler {
-    public static void run () {
-       // Run Cpp Frontend
-       if ( Preferences.Global.run_frontend )
-           CppFrontend.run();
+  public static void run () {
+    // Run Cpp Frontend
+    if ( Preferences.Global.run_frontend )
+      CppFrontend.run();
 
-        /*// Read DAG
-        Pipeline pipeline = loadDAG();
+    // Load intention code blocks
+
+
+    // Read DAG
+    //Pipeline pipeline = CppFrontend.loadDAG();
 
         // Solve each stage
-        for (Stage stage : pipeline.stages())
+        /*for (Stage stage : pipeline.stages())
         {
             // Clear previously defined functions and classes
             TypesFactory.reset();
