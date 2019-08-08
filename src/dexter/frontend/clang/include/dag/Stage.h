@@ -36,6 +36,7 @@ public:
   void setInputVars (std::set<ValueDecl *> in_vars);
   void setOutputVars (std::set<ValueDecl *> out_vars);
   void setOutputArrayVars (std::set<ValueDecl *> out_arr_vars);
+  void setOutputBufferVars (std::set<ValueDecl *> out_buf_vars);
   void setIndexVars (std::set<ValueDecl *> idx_vars);
   void setUDFs (std::set<FuncDecl *> udfs);
   void setVCs (Dexter::Program * p);
@@ -56,6 +57,7 @@ public:
   std::set<ValueDecl *> getInputVars ();
   std::set<ValueDecl *> getOutputVars ();
   std::set<ValueDecl *> getOutputArrayVars ();
+  std::set<ValueDecl *> getOutputBufferVars ();
   std::set<ValueDecl *> getIndexVars ();
   std::set<FuncDecl *> getUDFs ();
   Program * getVCs ();
@@ -82,6 +84,7 @@ protected:
   std::set<ValueDecl *> in_vars;
   std::set<ValueDecl *> out_vars;
   std::set<ValueDecl *> out_arr_vars;
+  std::set<ValueDecl *> out_buf_vars;
   std::set<ValueDecl *> idx_vars;
   std::set<FuncDecl *> udfs;
   Program * vcs;

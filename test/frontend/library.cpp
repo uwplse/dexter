@@ -20,7 +20,7 @@ void blur (Buffer<uint8_t> input, Buffer<uint8_t> output)
 			output(x, y) = (temp(x, y-1) + temp(x, y) + temp(x, y+1)) / 3;
 }
 
-void harrisCorners (Buffer<float> input, Buffer<float> output)
+/*void harrisCorners (Buffer<float> input, Buffer<float> output)
 {
 	Buffer<float> grayscale(input.width(), input.height());
 
@@ -140,5 +140,5 @@ void harrisCorners (Buffer<float> input, Buffer<float> output)
 	}
 }
 
-DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)
+DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)*/
 DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)

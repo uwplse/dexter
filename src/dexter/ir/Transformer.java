@@ -389,7 +389,7 @@ public class Transformer implements Visitor<Expr>
   @Override
   public Expr visit(Init o) {
     Expr n = transform(o);
-    return n == null ? o : n;
+    return n == null ? new Init(o.getExpr().accept(this)) : n;
   }
 
   public Expr transform (Scope e) { return null; }

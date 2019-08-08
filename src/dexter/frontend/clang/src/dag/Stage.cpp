@@ -118,6 +118,11 @@ void Dexter::Stage::setOutputArrayVars (std::set<ValueDecl *> out_arr)
   this->out_arr_vars = out_arr;
 }
 
+void Dexter::Stage::setOutputBufferVars (std::set<ValueDecl *> out_buf)
+{
+  this->out_buf_vars = out_buf;
+}
+
 void Dexter::Stage::setIndexVars (std::set<ValueDecl *> idx)
 {
   this->idx_vars = idx;
@@ -161,6 +166,11 @@ std::set<ValueDecl *> Dexter::Stage::getOutputVars ()
 std::set<ValueDecl *> Dexter::Stage::getOutputArrayVars ()
 {
   return this->out_arr_vars;
+}
+
+std::set<ValueDecl *> Dexter::Stage::getOutputBufferVars ()
+{
+  return this->out_buf_vars;
 }
 
 std::set<ValueDecl *> Dexter::Stage::getIndexVars ()

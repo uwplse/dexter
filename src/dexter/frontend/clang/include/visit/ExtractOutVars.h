@@ -33,6 +33,7 @@ protected:
   void Extract(Stmt *o);
   void Extract(clang::Expr* e);
   void ExtractArray(clang::Expr* e);
+  void ExtractBuffer(clang::Expr* e);
 
 public:
 
@@ -41,14 +42,18 @@ public:
   public:
   	void outputVar(ValueDecl * v) { output_vars.insert(v); }
     void outputArrVar(ValueDecl * v) { output_arr_vars.insert(v); }
+    void outputBufVar(ValueDecl * v) { output_buf_vars.insert(v); }
     void outputVars(std::set<ValueDecl *> vars) { this->output_vars.insert(vars.begin(), vars.end()); }
     void outputArrVars(std::set<ValueDecl *> vars) { this->output_arr_vars.insert(vars.begin(), vars.end()); }
+    void outputBufVars(std::set<ValueDecl *> vars) { this->output_buf_vars.insert(vars.begin(), vars.end()); }
     std::set<ValueDecl *> & outVars() { return output_vars; }
     std::set<ValueDecl *> & outArrVars() { return output_arr_vars; }
+    std::set<ValueDecl *> & outBufVars() { return output_buf_vars; }
 
   protected:
     std::set<ValueDecl *> output_vars;
     std::set<ValueDecl *> output_arr_vars;
+    std::set<ValueDecl *> output_buf_vars;
   };
 
 protected:

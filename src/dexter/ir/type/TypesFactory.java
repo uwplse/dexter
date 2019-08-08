@@ -53,7 +53,7 @@ public class TypesFactory
     }
     fis.close();
 
-    System.out.println("\nLoading DSL...");
+    System.out.println("Loading DSL...");
     System.out.println(p.classes().size() + " class definitions found");
     System.out.println(p.functions().size() + " function definitions found");
 

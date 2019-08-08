@@ -34,9 +34,10 @@ bool Dexter::ExtractOutVars::VisitFunctionDecl (FunctionDecl* f)
     // Pop scope
     std::set<ValueDecl *> vars = scopes.top()->outVars();
     std::set<ValueDecl *> arrVars = scopes.top()->outArrVars();
+    std::set<ValueDecl *> bufVars = scopes.top()->outBufVars();
     this->scopes.pop();
 
-    if (debug){
+    if (debug) {
       for (std::set<ValueDecl *>::const_iterator it = vars.begin(); it != vars.end(); ++it)
         llvm::outs() << (*it)->getNameAsString() << "\n";
 
@@ -44,11 +45,19 @@ bool Dexter::ExtractOutVars::VisitFunctionDecl (FunctionDecl* f)
 
       for (std::set<ValueDecl *>::const_iterator it = arrVars.begin(); it != arrVars.end(); ++it)
         llvm::outs() << (*it)->getNameAsString() << "\n";
+
+      llvm::outs() << "---------\n";
+
+      for (std::set<ValueDecl *>::const_iterator it = bufVars.begin(); it != bufVars.end(); ++it)
+        llvm::outs() << (*it)->getNameAsString() << "\n";
+
+      llvm::outs() << "##########\n";
     }
 
     // Save output variables for this scope
     (*stage)->setOutputVars(vars);
     (*stage)->setOutputArrayVars(arrVars);
+    (*stage)->setOutputBufferVars(bufVars);
   }
 
   return true;
@@ -128,7 +137,7 @@ void Dexter::ExtractOutVars::Extract (clang::Expr * e)
          std::string cls = mDecl->getParent()->getQualifiedNameAsString();
 
         if (cls == "Halide::Runtime::Buffer") {
-          Extract(cast<CXXOperatorCallExpr>(e)->getArg(0));
+          ExtractBuffer(cast<CXXOperatorCallExpr>(e)->getArg(0));
           return;
         }
       }
@@ -168,5 +177,20 @@ void Dexter::ExtractOutVars::ExtractArray(clang::Expr * e)
   {
     llvm::outs() << Util::print(e) << "\n";
     Util::error(e, "NYI. Extract array handling for: ");
+  }
+}
+
+void Dexter::ExtractOutVars::ExtractBuffer(clang::Expr * e)
+{
+  if (isa<DeclRefExpr>(e))
+  {
+    this->scopes.top()->outputVar((ValueDecl *) cast<DeclRefExpr>(e)->getFoundDecl());
+    this->scopes.top()->outputBufVar((ValueDecl *) cast<DeclRefExpr>(e)->getFoundDecl());
+  }
+
+  else
+  {
+    llvm::outs() << Util::print(e) << "\n";
+    Util::error(e, "NYI. Extract buffer handling for: ");
   }
 }

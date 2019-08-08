@@ -158,7 +158,7 @@ public class CLIParser
       System.out.println("Using DSL file: " + this.dsl.getAbsolutePath());
 
     System.out.println("Input file-path: " + this.source.getAbsolutePath());
-    System.out.println("Output file-path: " + this.out.getAbsolutePath());
+    System.out.println("Output file-path: " + this.out.getAbsolutePath() + "\n");
   }
 
   private static String getFileExtension (File file) {

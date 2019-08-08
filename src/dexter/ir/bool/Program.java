@@ -32,6 +32,9 @@ public class Program extends Expr
 
   public void prepend(Program dsl)
   {
+    if (dsl == null)
+      return;
+
     classes.addAll(dsl.classes);
     List<FuncDecl> fns = new ArrayList<>();
     for (FuncDecl fn : dsl.functions)

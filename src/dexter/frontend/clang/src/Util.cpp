@@ -48,7 +48,7 @@ void Dexter::Util::initJVM (const std::string &dxJarPath)
     exit(1);
   }
   else
-    llvm::outs() << "created jvm: " << jvm << " e " << env << "\n";
+    llvm::outs() << "created jvm: " << jvm << " e " << env << "\n\n";
 }
 
 void Dexter::Util::ASSERT (bool cond, std::string msg)

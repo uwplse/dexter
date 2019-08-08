@@ -66,6 +66,24 @@ void Dexter::ExtractIndexVars::Extract (Stmt *o, std::set<ValueDecl *> & idx_var
     Extract(cast<ArraySubscriptExpr>(s)->getBase(), idx_vars, ignore);
     Extract(cast<ArraySubscriptExpr>(s)->getIdx(), idx_vars, false);
   }
+  else if (isa<CXXOperatorCallExpr>(s))
+  {
+    if (cast<CXXOperatorCallExpr>(s)->getOperator() == OO_Call)
+    {
+      FunctionDecl* opDecl = cast<CXXOperatorCallExpr>(s)->getDirectCallee();
+      if (isa<CXXMethodDecl>(opDecl))
+      {
+         CXXMethodDecl* mDecl = cast<CXXMethodDecl>(opDecl);
+         std::string cls = mDecl->getParent()->getQualifiedNameAsString();
+
+        if (cls == "Halide::Runtime::Buffer") {
+          for (unsigned int i=1; i<cast<CXXOperatorCallExpr>(s)->getNumArgs(); ++i)
+            Extract(cast<CXXOperatorCallExpr>(s)->getArg(i), idx_vars, false);
+          return;
+        }
+      }
+    }
+  }
   else if (isa<DeclRefExpr>(s))
   {
     if (!ignore)

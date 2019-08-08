@@ -1,0 +1,7 @@
+pc(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> true
+
+inv0(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> true
+
+inv1(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> true
+
+let(input:HBuffer, temp:HBuffer, temp_init:HBuffer, x:int, x_init:int, y:int, y_init:int) in (((((inv1(input, temp, y, x, temp_init, y_init, x_init) && (x < input.width)) --> inv1(input, HBuffer_Set(temp, x, y, cast_int32_uint8((((cast_uint8_int32(HBuffer_Get(input, (x - 1), y)) + cast_uint8_int32(HBuffer_Get(input, x, y))) + cast_uint8_int32(HBuffer_Get(input, (x + 1), y))) / 3))), y, (x + 1), temp_init, y_init, x_init)) && ((inv1(input, temp, y, x, temp_init, y_init, x_init) && !((x < input.width))) --> inv0(input, temp, (y + 1), x, temp_init, y_init, x_init))) && (((inv0(input, temp, y, x, temp_init, y_init, x_init) && (y < input.height)) --> inv1(input, temp, y, 0, temp_init, y_init, 0)) && ((inv0(input, temp, y, x, temp_init, y_init, x_init) && !((y < input.height))) --> pc(input, temp, y, x, temp_init, y_init, x_init)))) && inv0(input, temp, 0, x, temp, 0, x))

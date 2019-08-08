@@ -154,12 +154,14 @@ std::string Dexter::GenerateOutputs::GetJsonAnalysis (Pipeline * pipeline)
     std::set<ValueDecl *> inVars = stage->getInputVars();
     std::set<ValueDecl *> outVars = stage->getOutputVars();
     std::set<ValueDecl *> outArrVars = stage->getOutputArrayVars();
+    std::set<ValueDecl *> outBufVars = stage->getOutputBufferVars();
 
     std::map<std::string, std::set<ValueDecl *>> localVarsMap;
     std::map<std::string, std::set<ValueDecl *>> idxVarsMap;
     std::map<std::string, std::set<ValueDecl *>> inVarsMap;
     std::map<std::string, std::set<ValueDecl *>> outVarsMap;
     std::map<std::string, std::set<ValueDecl *>> outArrVarsMap;
+    std::map<std::string, std::set<ValueDecl *>> outBufVarsMap;
 
     std::set<ValueDecl  *>::iterator it;
 
@@ -211,12 +213,9 @@ std::string Dexter::GenerateOutputs::GetJsonAnalysis (Pipeline * pipeline)
       outVarsMap[var_type].insert(*it);
     }
 
-    // Generate output vars map
+    // Generate output array vars map
     for (it = outArrVars.begin(); it != outArrVars.end(); ++it)
     {
-      if (lVars.find(*it) != lVars.end())
-        continue;
-
       QualType t = (*it)->getType();
       std::string var_type = toString(Dexter::ClangToIRParser::toIRType(t));
 
@@ -224,6 +223,18 @@ std::string Dexter::GenerateOutputs::GetJsonAnalysis (Pipeline * pipeline)
         outArrVarsMap[var_type] = std::set<ValueDecl *>();
 
       outArrVarsMap[var_type].insert(*it);
+    }
+
+    // Generate output array vars map
+    for (it = outBufVars.begin(); it != outBufVars.end(); ++it)
+    {
+      QualType t = (*it)->getType();
+      std::string var_type = toString(Dexter::ClangToIRParser::toIRType(t));
+
+      if (outBufVarsMap.find(var_type) == outBufVarsMap.end())
+        outBufVarsMap[var_type] = std::set<ValueDecl *>();
+
+      outBufVarsMap[var_type].insert(*it);
     }
 
     if (stage->isEmpty())
@@ -259,7 +270,8 @@ std::string Dexter::GenerateOutputs::GetJsonAnalysis (Pipeline * pipeline)
     stage_json += "\"analysis\" : {\"Variables\":{" +
                             VarsJson(inVarsMap, "Input", outVars, lVars) + (outVarsMap.empty() ? "" : ", ") +
                             VarsJson(outVarsMap, "Output", outVars, lVars) + (outArrVarsMap.empty() ? "" : ", ") +
-                            VarsJson(outArrVarsMap, "OutputArr", outVars, lVars) + (idxVarsMap.empty() ? "" : ", ") +
+                            VarsJson(outArrVarsMap, "OutputArr", outVars, lVars) + (outBufVarsMap.empty() ? "" : ", ") +
+                            VarsJson(outBufVarsMap, "OutputBuf", outVars, lVars) + (idxVarsMap.empty() ? "" : ", ") +
                             VarsJson(idxVarsMap, "Index", outVars, lVars) + (localVarsMap.empty() ? "" : ", ") +
                             VarsJson(localVarsMap, "Local", outVars, lVars) +
                         "}, \"Constants\":{" +
@@ -301,7 +313,7 @@ std::string Dexter::GenerateOutputs::VarsJson (std::map<std::string, std::set<Va
       std::string var_type = (*it2)->getType().getCanonicalType().getAsString();
       std::string var_name = (*it2)->getNameAsString();
 
-      if (name == "Input" && outVars.find(*it2) != outVars.end() && lVars.find(*it2) == lVars.end())
+      if (name == "Input" && outVars.find(*it2) != outVars.end())
           var_name = var_name + "_init";
 
       json += "[\"" + var_name + "\", \"" + var_type + "\"], ";

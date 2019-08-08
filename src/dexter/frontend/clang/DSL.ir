@@ -1,9 +1,29 @@
+index2D (x: int, y: int, width: int) : int ->
+	y * width + x
+
 // Halide Buffer support
 class HBuffer (
 	data: array(1, int),
 	width: int,
 	height: int
 )
+
+HBuffer_Set (buf: HBuffer, x:int, y:int, val: int) : HBuffer ->
+	HBuffer(
+		store(
+			buf.data,
+			val,
+			index2D(x, y, buf.width)
+		),
+		buf.width,
+		buf.height
+	)
+
+HBuffer_Get (buf: HBuffer, x:int, y:int) : int ->
+	select(
+		buf.data,
+		y * buf.width + x
+	)
 
 // Functions to model various casts
 //  - Type Promotions
