@@ -44,7 +44,7 @@ bool Dexter::GenerateOutputs::VisitFunctionDecl (FunctionDecl* f)
       continue;
 
     std::string stage_filename = dirName + f->getNameAsString() + "_stage_" +
-      std::to_string((*stage)->getId()) +".prl";
+      std::to_string((*stage)->getId()) +".ir";
 
     Dexter::Program * p = (*stage)->getVCs();
 
@@ -57,7 +57,7 @@ bool Dexter::GenerateOutputs::VisitFunctionDecl (FunctionDecl* f)
       continue;
 
     stage_filename = dirName + f->getNameAsString() + "_stage_" +
-          std::to_string((*stage)->getId()) +"_udfs.prl";
+          std::to_string((*stage)->getId()) +"_udfs.ir";
 
     myfile.open (filename);
     std::string udfs = GetUDFFile((*stage)->getUDFs());

@@ -35,7 +35,13 @@ public class Program extends Expr
     if (dsl == null)
       return;
 
-    classes.addAll(dsl.classes);
+    List<ClassDecl> cls = new ArrayList<>();
+    for (ClassDecl c : dsl.classes)
+      if (!classes.contains(c))
+        cls.add(c);
+    cls.addAll(classes);
+    classes = new ArrayList<>(cls);
+
     List<FuncDecl> fns = new ArrayList<>();
     for (FuncDecl fn : dsl.functions)
       if (!functions.contains(fn))

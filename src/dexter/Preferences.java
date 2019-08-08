@@ -14,6 +14,16 @@ public class Preferences {
 
   public static class Sketch {
     public static class ROI {
+      public static boolean lightverif = false;
+      public static boolean minisat = false;
+    }
+
+    public static class Term {
+      public static boolean lightverif = true;
+      public static boolean minisat = true;
+    }
+
+    public static class Expr {
       public static boolean lightverif = true;
       public static boolean minisat = false;
     }
@@ -31,7 +41,7 @@ public class Preferences {
     public static int inbits_bnd = 2;
     public static int cbits_bnd = 1;
     public static int int_range = 35;
-    public static int arr_sz_bnd = 50;
+    public static int arr_sz_bnd = 70;
 
   }
 

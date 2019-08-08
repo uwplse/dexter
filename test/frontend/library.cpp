@@ -11,12 +11,12 @@ void blur (Buffer<uint8_t> input, Buffer<uint8_t> output)
 {
 	Buffer<uint8_t> temp(input.width(), input.height());
 	
-	for (int y = 0; y < input.height(); y++)
-		for (int x = 0; x < input.width(); x++)
+	for (int y = 0; y < temp.height(); y++)
+		for (int x = 0; x < temp.width(); x++)
 			temp(x, y) = (input(x-1, y) + input(x, y) + input(x+1, y)) / 3;
 	
-	for (int y = 0; y < input.height(); y++)
-		for (int x = 0; x < input.width(); x++)
+	for (int y = 0; y < output.height(); y++)
+		for (int x = 0; x < output.width(); x++)
 			output(x, y) = (temp(x, y-1) + temp(x, y) + temp(x, y+1)) / 3;
 }
 

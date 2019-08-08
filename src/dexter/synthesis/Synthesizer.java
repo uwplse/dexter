@@ -2,10 +2,7 @@ package dexter.synthesis;
 
 import dexter.Files;
 import dexter.Preferences;
-import dexter.dag.Stage;
-import dexter.frontend.CodeBlock;
 import dexter.ir.bool.Program;
-import dexter.ir.bool.VarExpr;
 import dexter.ir.codegen.SkPrinter;
 import dexter.misc.ChooseIDInitializer;
 
@@ -22,25 +19,31 @@ import static java.lang.System.out;
  * Created by Maaz Ahmad on 8/7/19.
  */
 public class Synthesizer {
-  public static Program solve(CodeBlock cb, Stage stage, VarExpr buffer, Program p) throws IOException, InterruptedException {
+  public static Program solve(Program p, String irFilePath, String skFilePath) throws IOException, InterruptedException {
     p.accept(new ChooseIDInitializer());
 
-    Files.writeFile(Files.roiFilePath(cb.name(), stage.id(), buffer.name()), p.toString());
-    Files.writeFile(Files.roiSketchFilePath(cb.name(), stage.id(), buffer.name()), p.accept(new SkPrinter()));
+    Files.writeFile(irFilePath, p.toString());
+    Files.writeFile(skFilePath, p.accept(new SkPrinter()));
 
     // Run sketch
-    int err_code = runSketch(Files.roiSketchFilePath(cb.name(), stage.id(), buffer.name()));
+    int err_code = runSketch(skFilePath);
 
     if (err_code == 0) {
-      out.println("/==================== Template Successfully Synthesized =====================/\n");
+      out.println("(Successful)");
     }
     else {
-      out.println("/======================== TEMPLATE SYNTHESIS FAILED =========================/");
+      out.println("(Failed)");
       System.exit(1);
     }
 
     // Patch output
-    //p = (Program) p.accept(new Patcher(p.functions()));
+    if (!Preferences.Sketch.expr_codegen) {
+      p = (Program) p.accept(new Patcher(p.functions()));
+
+      File skParse = new File("metalift_skParse.txt");
+      skParse.delete();
+    }
+
     return p;
   }
 
@@ -89,9 +92,12 @@ public class Synthesizer {
     command.add("--bnd-int-range"); command.add(Integer.toString(Preferences.Sketch.int_range));
     command.add("--bnd-arr-size"); command.add(Integer.toString(Preferences.Sketch.arr_sz_bnd));
 
-    command.add("--fe-custom-codegen"); command.add((Preferences.Sketch.expr_codegen ? "bin/dexterExprCodegen.jar" : "bin/metalift.jar"));
+    command.add("--fe-custom-codegen"); command.add((Preferences.Sketch.expr_codegen ? "out/artifacts/dexter_jar/dexterExprCodegen.jar" : "out/artifacts/dexter_jar/dexter.jar"));
 
     command.add(filepath);
+
+    if (Preferences.Global.debug)
+      System.out.println(String.join(" ", command));
 
     pb = new ProcessBuilder(command);
 

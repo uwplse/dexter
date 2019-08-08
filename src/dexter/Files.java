@@ -29,11 +29,11 @@ public class Files {
 
   private static String clauseFilePath;
   private static String roiFilePath;
-  private static String pointsFilePath;
-  private static String exprsFilePath;
+  private static String termFilePath;
+  private static String exprFilePath;
 
   private static String roiSketchFilePath;
-  private static String pointsSketchFilePath;
+  private static String termSketchFilePath;
   private static String exprSketchFilePath;
 
   private static String summaryFilePath;
@@ -54,19 +54,19 @@ public class Files {
     binDir = tmpDir + "%s_stage_%d_bin/";
 
     analysisFilePath = tmpDir + "%s.json";
-    vcFilePath = tmpDir + "%s_stage_%d.prl";
-    udfsFilePath = tmpDir + "%s_stage_%d_udfs.prl";
+    vcFilePath = tmpDir + "%s_stage_%d.ir";
+    udfsFilePath = tmpDir + "%s_stage_%d_udfs.ir";
 
-    clauseFilePath = binDir + "%s_stage_%d_%s_clause.prl";
-    roiFilePath = binDir + "%s_stage_%d_%s_roi.prl";
-//    pointsFilePath = binDir + benchmarkName + "_stage_sid_varname_points_pid.prl";
-//    exprsFilePath = binDir + benchmarkName + "_stage_sid_varname_expr.prl";
+    clauseFilePath = binDir + "%s_clause.ir";
+    roiFilePath = binDir + "%s_roi.ir";
+    termFilePath = binDir + "%s_term_%d.ir";
+    exprFilePath = binDir + "%s_expr.ir";
 
-    roiSketchFilePath = binDir + "%s_stage_%d_%s_roi.sk";
-//    pointsSketchFilePath = binDir + benchmarkName + "_stage_sid_varname_points_pid.sk";
-//    exprSketchFilePath = binDir + benchmarkName + "_stage_sid_varname_expr.sk";
+    roiSketchFilePath = binDir + "%s_roi.sk";
+    termSketchFilePath = binDir + "%s_term_%d.sk";
+    exprSketchFilePath = binDir + "%s_expr.sk";
 
-    summaryFilePath = binDir + "summary.prl";
+    summaryFilePath = binDir + "summary.ir";
 //    z3FilePath = binDir + benchmarkName + "_stage_sid.z3";
   }
 
@@ -84,10 +84,14 @@ public class Files {
   public static String udfsFilePath(String bn, int sid) { return String.format(udfsFilePath, bn, sid); }
 
   public static String summaryFilePath(String bn, int sid) { return String.format(summaryFilePath, bn, sid); }
-  public static String clauseFilePath(String bn, int sid, String var) { return String.format(clauseFilePath, bn, sid, bn, sid, var); }
-  public static String roiFilePath(String bn, int sid, String var) { return String.format(roiFilePath, bn, sid, bn, sid, var); }
+  public static String clauseFilePath(String bn, int sid, String var) { return String.format(clauseFilePath, bn, sid, var); }
+  public static String roiFilePath(String bn, int sid, String var) { return String.format(roiFilePath, bn, sid, var); }
+  public static String termFilePath(String bn, int sid, String var, int tid) { return String.format(termFilePath, bn, sid, var, tid); }
+  public static String exprFilePath(String bn, int sid, String var) { return String.format(exprFilePath, bn, sid, var); }
 
-  public static String roiSketchFilePath(String bn, int sid, String var) { return String.format(roiSketchFilePath, bn, sid, bn, sid, var); }
+  public static String roiSketchFilePath(String bn, int sid, String var) { return String.format(roiSketchFilePath, bn, sid, var); }
+  public static String termSketchFilePath(String bn, int sid, String var, int tid) { return String.format(termSketchFilePath, bn, sid, var, tid); }
+  public static String exprSketchFilePath(String bn, int sid, String var) { return String.format(exprSketchFilePath, bn, sid, var); }
 
   // File getters
   public static File cppFrontendDir() { return new File(cppFrontendDirPath()); }
@@ -107,45 +111,21 @@ public class Files {
   public static File summaryFile(String bn, int sid) { return new File(summaryFilePath(bn, sid)); }
   public static File clauseFile(String bm, int sid, String var) { return new File(clauseFilePath(bm, sid, var)); }
   public static File roiFile(String bm, int sid, String var) { return new File(roiFilePath(bm, sid, var)); }
+  public static File termFile(String bm, int sid, String var, int tid) { return new File(termFilePath(bm, sid, var, tid)); }
+  public static File exprFile(String bm, int sid, String var) { return new File(exprFilePath(bm, sid, var)); }
 
   public static File roiSketchFile(String bm, int sid, String var) { return new File(roiSketchFilePath(bm, sid, var)); }
+  public static File termSketchFile(String bm, int sid, String var, int tid) { return new File(termSketchFilePath(bm, sid, var, tid)); }
+  public static File exprSketchFile(String bn, int sid, String var) { return new File(exprSketchFilePath(bn, sid, var)); }
 
 
-  // Old
-  public static String pointsFile(int id, String var, int pid) {
-    return pointsFilePath
-        .replace("sid", Integer.toString(id))
-        .replace("varname", var)
-        .replace("pid", Integer.toString(pid));
-  }
-
-  public static String pointsSketchFile(int id, String var, int pid) {
-    return pointsSketchFilePath
-        .replace("sid", Integer.toString(id))
-        .replace("varname", var)
-        .replace("pid", Integer.toString(pid));
-  }
-
-  public static String exprsFile(int id, String var) {
-    return exprsFilePath
-        .replace("sid", Integer.toString(id))
-        .replace("varname", var);
-  }
-
-  public static String exprSketchFile(int id, String var) {
-    return exprSketchFilePath
-        .replace("sid", Integer.toString(id))
-        .replace("varname", var);
-  }
-
-  public static String z3File(int id) {
-    return z3FilePath.replace("sid", Integer.toString(id));
-  }
-
+  // Misc
   public static String grammarFilePath (Grammar.Name name) {
     switch (name) {
       case ROIGrammar:
-        return "src/dexter/grammar/ROIGrammar.prl";
+        return "src/dexter/grammar/ROIGrammar.ir";
+      case TermGrammar:
+        return "src/dexter/grammar/TermGrammar.ir";
       default:
         throw new RuntimeException("Grammar not found.");
     }
@@ -173,5 +153,10 @@ public class Files {
     PrintWriter out = new PrintWriter(filepath);
     out.write(content);
     out.close();
+  }
+
+  // Old
+  public static String z3File(int id) {
+    return z3FilePath.replace("sid", Integer.toString(id));
   }
 }

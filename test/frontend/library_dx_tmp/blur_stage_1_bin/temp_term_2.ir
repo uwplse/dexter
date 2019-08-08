@@ -1,0 +1,96 @@
+class HBuffer(data:array(1,int), width:int, height:int)
+inv1_buf_asn_2d_int_terms_gen(x:int, y:int, temp_init:HBuffer, input:HBuffer) : int -> choose(HBuffer_Get(choose(temp_init, input), rad_gen(x), rad_gen(y)))
+
+inv1_buf_asn_1d_int_terms_gen(x:int, y:int, temp_init:HBuffer, input:HBuffer) : int -> choose(HBuffer_Get(choose(temp_init, input), rad_gen(x), rad_gen(y)))
+
+inv0_buf_asn_2d_int_terms_gen(x:int, y:int, temp_init:HBuffer, input:HBuffer) : int -> choose(HBuffer_Get(choose(temp_init, input), rad_gen(x), rad_gen(y)))
+
+pc_buf_asn_2d_int_terms_gen(x:int, y:int, temp_init:HBuffer, input:HBuffer) : int -> choose(HBuffer_Get(choose(temp_init, input), rad_gen(x), rad_gen(y)))
+
+idx_2d_gen(x:int, y:int, width:int) : int -> index2D(rad_gen(x), rad_gen(y), width)
+
+rad_gen(val:int) : int -> choose(val, (val + choose(1)), (val - choose(1)))
+
+index2D(x:int, y:int, width:int) : int -> ((y * width) + x)
+
+HBuffer_Set(buf:HBuffer, x:int, y:int, val:int) : HBuffer -> HBuffer(store(buf.data, val, index2D(x, y, buf.width)), buf.width, buf.height)
+
+cast_uint8_uint16(val:int) : int -> val
+
+cast_uint8_uint32(val:int) : int -> val
+
+cast_uint8_int16(val:int) : int -> val
+
+cast_uint8_int32(val:int) : int -> val
+
+cast_uint16_uint32(val:int) : int -> val
+
+cast_uint16_int32(val:int) : int -> val
+
+cast_uint16_int64(val:int) : int -> val
+
+cast_int8_int16(val:int) : int -> val
+
+cast_int8_int32(val:int) : int -> val
+
+cast_int16_int32(val:int) : int -> val
+
+cast_int32_int16(val:int) : int -> val
+
+std_min(v1:int, v2:int) : int -> (if (v1 > v2) then v2 else v1)
+
+std_minf(v1:float, v2:float) : float -> (if (v1 > v2) then v2 else v1)
+
+std_max(v1:int, v2:int) : int -> (if (v1 > v2) then v1 else v2)
+
+std_maxf(v1:float, v2:float) : float -> (if (v1 > v2) then v1 else v2)
+
+std_abs(v:int) : int -> (if (v >= 0) then v else -(v))
+
+std_absf(v:float) : float -> (if (v >= 0.0) then v else -(v))
+
+cast_int64_int32(val:int) : int
+
+cast_uint16_float(val:int) : float
+
+cast_int32_float(val:int) : float
+
+cast_double_int64(val:float) : int
+
+cast_double_uint8(val:float) : int
+
+cast_double_int16(val:float) : int
+
+cast_double_int32(val:float) : int
+
+cast_int32_double(val:int) : float
+
+cast_uint32_float(val:int) : float
+
+cast_float_int32(val:float) : int
+
+cast_uint8_float(val:int) : float
+
+HBuffer_Get(buf:HBuffer, x:int, y:int) : int -> select(buf.data, ((y * buf.width) + x))
+
+inv1_buf_asn_2d(lb_y:int, ub_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer, temp_init:HBuffer, input:HBuffer) : bool -> forall(idx_y, lb_y, ub_y, forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = int_expr(inv1_buf_asn_2d_int_terms_gen(idx_x, idx_y, temp_init, input)))))
+
+inv0_buf_asn_2d(lb_y:int, ub_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer, temp_init:HBuffer, input:HBuffer) : bool -> forall(idx_y, lb_y, ub_y, forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = int_expr(inv0_buf_asn_2d_int_terms_gen(idx_x, idx_y, temp_init, input)))))
+
+pc_buf_asn_2d(lb_y:int, ub_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer, temp_init:HBuffer, input:HBuffer) : bool -> forall(idx_y, lb_y, ub_y, forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = int_expr(pc_buf_asn_2d_int_terms_gen(idx_x, idx_y, temp_init, input)))))
+
+idn_2d(lb_y:int, ub_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer) : bool -> forall(idx_y, lb_y, ub_y, forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = HBuffer_Get(out_init, idx_x, idx_y))))
+
+inv1_buf_asn_1d(idx_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer, temp_init:HBuffer, input:HBuffer) : bool -> forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = int_expr(inv1_buf_asn_1d_int_terms_gen(idx_x, idx_y, temp_init, input))))
+
+idn_1d(idx_y:int, lb_x:int, ub_x:int, out:HBuffer, out_init:HBuffer) : bool -> forall(idx_x, lb_x, ub_x, (HBuffer_Get(out, idx_x, idx_y) = HBuffer_Get(out_init, idx_x, idx_y)))
+
+int_expr(val:int) : int -> val
+
+pc(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> (true && pc_buf_asn_2d(0, temp.height, 0, temp.width, temp, temp_init, temp_init, input))
+
+inv0(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> (true && (inv0_buf_asn_2d(0, y, 0, temp.width, temp, temp_init, temp_init, input) && idn_2d(y, temp.height, 0, temp.width, temp, temp_init)))
+
+inv1(input:HBuffer, temp:HBuffer, y:int, x:int, temp_init:HBuffer, y_init:int, x_init:int) : bool -> (true && (((inv1_buf_asn_2d(0, y, 0, temp.width, temp, temp_init, temp_init, input) && idn_2d((y + 1), temp.height, 0, temp.width, temp, temp_init)) && inv1_buf_asn_1d(y, 0, x, temp, temp_init, temp_init, input)) && idn_1d(y, x, temp.width, temp, temp_init)))
+
+let(input:HBuffer, temp:HBuffer, temp_init:HBuffer, x:int, x_init:int, y:int, y_init:int) in (((((inv1(input, temp, y, x, temp_init, y_init, x_init) && (x < temp.width)) --> inv1(input, HBuffer_Set(temp, x, y, int_expr(HBuffer_Get(input, (x + 1), y))), y, (x + 1), temp_init, y_init, x_init)) && ((inv1(input, temp, y, x, temp_init, y_init, x_init) && !((x < temp.width))) --> inv0(input, temp, (y + 1), x, temp_init, y_init, x_init))) && (((inv0(input, temp, y, x, temp_init, y_init, x_init) && (y < temp.height)) --> inv1(input, temp, y, 0, temp_init, y_init, 0)) && ((inv0(input, temp, y, x, temp_init, y_init, x_init) && !((y < temp.height))) --> pc(input, temp, y, x, temp_init, y_init, x_init)))) && inv0(input, temp, 0, x, temp, 0, x)) assume ((temp.width = input.width) && (temp.height = input.height))

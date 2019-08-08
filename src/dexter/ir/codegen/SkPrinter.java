@@ -18,6 +18,7 @@ import dexter.ir.tuple.TupleExpr;
 import dexter.ir.type.*;
 import org.antlr.v4.runtime.misc.Pair;
 import scala.Tuple2;
+import scala.annotation.meta.field;
 
 import java.util.*;
 
@@ -494,6 +495,27 @@ public class SkPrinter implements Visitor<String>
       StringBuffer sb = new StringBuffer();
       sb.append(indent() + toSkType(classT) + " " + n + " = new " + toSkType(classT) + "();\n");
 
+      if (classT.name().equals("HBuffer")) {
+        if (v.name().endsWith("_init")) {
+          for (VarExpr field : classT.fields()) {
+            String target = id();
+            String serializedFieldName = (field.name().equals("data") ? src + "_" + field.name() : src.substring(0, src.length()-4) + field.name());
+            Type fieldT = field.type();
+
+            if (TypesFactory.isClassT(fieldT))
+              sb.append(deserializeFromHarness(new VarExpr(target, field.type()), serializedFieldName, enclosedArray));
+            else if (TypesFactory.isListT(fieldT))
+              sb.append(deserializeFromHarness(new VarExpr(target, field.type()), serializedFieldName, enclosedArray));
+            else
+              sb.append(indent() + toSkType(fieldT) + " " + target + " = " + serializedFieldName + enclosedArray + ";\n");
+
+            sb.append(indent() + n + "." + field.name() + " = " + target + ";\n");
+          }
+
+          return sb.toString();
+        }
+      }
+
       for (VarExpr field : classT.fields())
       {
         String target = id();
@@ -585,8 +607,16 @@ public class SkPrinter implements Visitor<String>
     {
       List<String> s = new ArrayList<>();
 
-      for (VarExpr field : ((ClassT)v.type()).fields())
-        s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
+      if (((ClassT) v.type()).name().equals("HBuffer"))
+        if (v.name().endsWith("_init"))
+          for (VarExpr field : ((ClassT)v.type()).fields())
+          {  s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray)); break; }
+        else
+          for (VarExpr field : ((ClassT)v.type()).fields())
+            s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
+      else
+        for (VarExpr field : ((ClassT)v.type()).fields())
+          s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
 
       return String.join(", ", s);
     }
@@ -810,10 +840,10 @@ public class SkPrinter implements Visitor<String>
     sb.append("include \"src/dexter/synthesis/grammar.skh\";\n\n");
 
     // Ultimately, I suppose this should come from some config file or user param.
-    sb.append("int ARRAY_LEN = 50;\n");
+    sb.append("int ARRAY_LEN = 70;\n");
 
     // All array select and stores are padding with offset
-    sb.append("int OFFSET = 0;\n\n"); // 20 for filter
+    sb.append("int OFFSET = 30;\n\n");
 
     for (ClassDecl c : p.classes())
       sb.append(c.accept(this));
@@ -1272,7 +1302,7 @@ public class SkPrinter implements Visitor<String>
           indent() + "return r");
     else
       sb.append(skArrayType + " r = " + e.array().accept(this) + ";\n" +
-          indent() +"r" + printExprList(e.index(), "[", "][", "]", false) + " = " + e.value().accept(this) + ";\n" +
+          indent() +"r" + printExprList(indexes, "[", "][", "]", false) + " = " + e.value().accept(this) + ";\n" +
           indent() +"return r");
 
     return sb.toString();

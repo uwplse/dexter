@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head>
+  <title>Pipeline | blur</title>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css">
+
+  <style type="text/css">
+    #dag {
+      position:fixed;
+      padding:0;
+      margin:0;
+
+      top:0;
+      left:0;
+
+      width: 100%;
+      height: 100%;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+  <body>
+    <div id="dag"></div>
+
+    <script type="text/javascript">
+      // create an array with nodes
+      var nodes = new vis.DataSet([{'shape': 'box', 'label': 'No-op', 'id': 3, 'title': 'Stage 3'}, {'shape': 'box', 'label': 'int y = 0;\n\nwhile (y < output.height())\n    {\n        for (int x = 0; x < output.width(); x++) \n            output(x, y) = (temp(x, y - 1) + temp(x, y) + temp(x, y + 1)) / 3;\n        y++;\n    }\n\n', 'id': 2, 'title': 'Stage 2'}, {'shape': 'box', 'label': 'Buffer<uint8_t> temp(input.width(), input.height());\n\nint y = 0;\n\nwhile (y < temp.height())\n    {\n        for (int x = 0; x < temp.width(); x++) \n            temp(x, y) = (input(x - 1, y) + input(x, y) + input(x + 1, y)) / 3;\n        y++;\n    }\n\n', 'id': 1, 'title': 'Stage 1'}]);
+
+      // create an array with edges
+      var edges = new vis.DataSet([{'to': -1, 'from': 3}, {'to': 3, 'from': 2}, {'to': 2, 'from': 1}]);
+
+      // create a network
+      var container = document.getElementById('dag');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
+        layout: {
+          hierarchical: {
+            direction: 'UD', 
+            sortMethod: 'directed',
+            levelSeparation: 250
+          }
+        }, 
+        nodes: {
+          font: {
+            size: 16, 
+            align: 'left', 
+            face: 'courier'
+          }, 
+          color: {
+            background: '#ffffe6'
+          },
+          fixed: {
+            x:false,
+            y:false
+          }
+        }, 
+        edges: {
+          arrows: {
+            to:     {enabled: true, scaleFactor:1, type:'arrow'},
+            middle: {enabled: false, scaleFactor:1, type:'arrow'},
+            from:   {enabled: false, scaleFactor:1, type:'arrow'}
+          }
+        },
+        physics: false
+      };
+      var network = new vis.Network(container, data, options);
+    </script>
+  </body>
+</html>
