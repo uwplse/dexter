@@ -8,285 +8,118 @@ grammar.skh:80: Making final N
 [SATBackend] After prog.accept(partialEval)
 [SATBackend] OFILE = null
 [SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file null
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
 searching for file ../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
 searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file ../sketch-backend/bindings/cegis
 searching for file /home/maaz/.sketch/cegis
-searching for file null
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
 searching for file /usr/local/sbin/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/.sketch/cegis
 searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /home/maaz/.sketch/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /home/maaz/.sketch/cegis
 searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/bin/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/cegis
 searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
 searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/sbin/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
 searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
 searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
 searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/bin/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
 searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/cegis
 searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
 searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
 searching for file /sbin/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
 searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/cegis
 searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/src/SketchSolver/cegis
 searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /bin/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
 searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/cegis
 searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/src/SketchSolver/cegis
 searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/games/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
 searching for file /usr/games/src/SketchSolver/cegis
 searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/games/../sketch-backend/bindings/cegis
 searching for file /usr/local/games/cegis
+searching for file /usr/games/cegis
 searching for file /usr/local/games/src/SketchSolver/cegis
 searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/src/SketchSolver/cegis
 searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /snap/bin/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
 searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /usr/local/games/cegis
 searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
 searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 5 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-4 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
-searching for file null
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /home/maaz/.sketch/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
 searching for file /snap/bin/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 searching for file /snap/bin/src/SketchSolver/cegis
 searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
 searching for file /snap/bin/../sketch-backend/bindings/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
 [SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 1 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-0 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 2 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-1 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
+[SATBackend] OFILE = null
+[SATBackend] OFILE = null
+[SATBackend] OFILE = null
+[SATBackend] OFILE = null
+searching for file null
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/local/bin/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file cegis/src/SketchSolver/cegis
 searching for file cegis/src/SketchSolver/cegis
 searching for file ../sketch-backend/src/SketchSolver/cegis
 searching for file ../sketch-backend/bindings/cegis
 searching for file /home/maaz/.sketch/cegis-1.7.5
 searching for file /home/maaz/.sketch/cegis
 searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/games/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /home/maaz/.sketch/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /snap/bin/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /snap/bin/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 8 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-7 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
 searching for file /usr/local/sbin/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
@@ -327,49 +160,19 @@ searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/c
 searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
 [SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 3 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-2 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 4 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-3 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
-searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /home/maaz/.sketch/cegis
 searching for file /usr/local/sbin/cegis
-searching for file /bin/cegis
-searching for file /snap/bin/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/games/src/SketchSolver/cegis
 searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/bin/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /snap/bin/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 6 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-5 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 2 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-1 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
 searching for file /usr/local/bin/src/SketchSolver/cegis
 searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/bin/../sketch-backend/bindings/cegis
@@ -405,7 +208,204 @@ searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 4 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-3 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /home/maaz/.sketch/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /usr/local/sbin/cegis
+[SATBackend] OFILE = null
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 6 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-5 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /sbin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /bin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/games/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /usr/local/games/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /snap/bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 5 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-4 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
 [SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 7 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-6 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
+[SATBackend] OFILE = null
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /home/maaz/.sketch/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 8 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/output_expr.sk/solution0-7 --minvarHole /home/maaz/.sketch/tmp/output_expr.sk/input0.tmp 
 [SATBackend] Solver exit value: 0
 [SATBackend] === parallel trial w/ degree -1 (0) start ===
 Overriding inputs with 2
@@ -939,14 +939,14 @@ Number of minvar nodes = 1
 BEG CHECK
  * After optims it became = 3331 was 27527
 Assert at output_expr.sk:286 (0)
-Simulation found a cex by random testing:  0.011 ms 
+Simulation found a cex by random testing:  0.013 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.048
+********  0	ftime= 0	ctime= 0.059
 !% 0100|00|01|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|10|00|11|00011010|10|00|10|00|01|00|00|10|10|00|00|10|00|00|00|11|00|10|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|10|01|10|00|00|00|00|00|01|00|00|00|00|00|00|10|00|00|00|00|01|00|00|00|00|01|10|00|00|00|00|00|01|0000|10|00|00|10|00|01|01|00|00|00|01|11|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|10|00|00|00|10|00|00|10|00|01|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|01|00|01|00|00|00000100010100
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 3353 was 27527
-* TIME TO ADD INPUT :  0.045 ms 
+* TIME TO ADD INPUT :  0.059 ms 
 DECISIONS START = 0
 f# %assign: 1 clauses: 6012 learn: 61 restart: 1 decision: 487 propagated: 18607
 END FIND
@@ -954,14 +954,14 @@ END FIND
 BEG CHECK
  * After optims it became = 3275 was 27527
 Assert at output_expr.sk:286 (0)
-Simulation found a cex by random testing:  0.002 ms 
+Simulation found a cex by random testing:  0.003 ms 
 END CHECK
-********  1	ftime= 0.048	ctime= 0.036
+********  1	ftime= 0.063	ctime= 0.048
 !% 1000|00|01|00|01|11|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|10|00|00|00|00|00|00|01|00|00|00|01|00|00|00|00|00|11|00010000|00|01|00|00|00|10|00|00|00|10|10|00|00|11|00|00|00|10|11|00|00|10|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|11|00|00|11|0001|00|00|00|00|00|01|00|11|01|11|10|01|00|10|00|00|00|00|11|01|00|10|01|00|00|01|01|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|01|00|10|00|00|00|10|00|01|00|00|00|00|00|00|00|01|00|00|01|00|11|00|00|00|00010000100000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 284 was 27527
-* TIME TO ADD INPUT :  0.031 ms 
+* TIME TO ADD INPUT :  0.04 ms 
 DECISIONS START = 487
 f# %assign: 1 clauses: 6030 learn: 61 restart: 2 decision: 628 propagated: 20528
 END FIND
@@ -999,18 +999,18 @@ TTT Setting cutoff=40000
 c# %assign: 10 clauses: 4 learn: 0 restart: 0 decision: 0 propagated: 2
  reduced size from 2036 to 1996
  * Simulation optimized it to = 1996
-Simulation didn't find a cex:  0.115 ms 
+Simulation didn't find a cex:  0.162 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 6 clauses: 12122 learn: 74 restart: 1 decision: 2475 propagated: 23729
 END CHECK
-********  2	ftime= 0.031	ctime= 0.158
+********  2	ftime= 0.041	ctime= 0.212
 !% 1000|00|00|00|00|01|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|11|00|00|00|00|00|00|00|00|00|01|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00111101|01|00|00|10|01|00|00|10|00|00|10|00|00|00|01|00|00|01|00|00|00|00|00|00|00|00|01|01|00|00|00|10|00|10|00|00|11|00|00|10|00|00|00|10|00|00|00|10|00|00|01|00|00|00|00|00|00|00|00|00|00|00|10|00|00|10|00|01|0000|01|00|00|00|00|00|01|01|00|00|00|00|00|01|00|00|00|00|00|00|00|00|10|00|00|00|00|10|00|11|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|10|00|10|00|00|00|00|00|00|00|00|10|00|00|00|00|10|00|00|01100001000100
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 6118 was 27527
-* TIME TO ADD INPUT :  0.056 ms 
+* TIME TO ADD INPUT :  0.072 ms 
 DECISIONS START = 628
 f# %assign: 0 clauses: 16368 learn: 62 restart: 3 decision: 806 propagated: 24760
 END FIND
@@ -1018,14 +1018,14 @@ END FIND
 BEG CHECK
  * After optims it became = 3356 was 27527
 Assert at output_expr.sk:286 (0)
-Simulation found a cex by random testing:  0.015 ms 
+Simulation found a cex by random testing:  0.024 ms 
 END CHECK
-********  3	ftime= 0.057	ctime= 0.047
+********  3	ftime= 0.074	ctime= 0.072
 !% 0100|01|00|01|00|00|11|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|10|01|00|00|00|00|00|00|00|01|10|00|00|00|00|10|00|01|10|10|00|00|01|00|10|00|00|01|00|00|00|00|10|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00100010|00|00|00|01|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|01|00|01|00|00|00|01|10|10|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|01|00|00|01|00|00|00|00|00|00|0010|00|00|00|00|01|10|11|00|00|10|01|00|00|01|00|01|10|00|10|00|00|00|10|01|00|00|00|00|00|00|00|01|00|10|00|00|00|00|10|00|00|00|00|00|00|00|10|01|00|00|00|00|00|00|00|10|01|00|01|00|11|00|00|00|01|00|00|00|01011100100001
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 291 was 27527
-* TIME TO ADD INPUT :  0.036 ms 
+* TIME TO ADD INPUT :  0.064 ms 
 DECISIONS START = 806
 f# %assign: 0 clauses: 17891 learn: 62 restart: 4 decision: 942 propagated: 29377
 END FIND
@@ -1033,14 +1033,14 @@ END FIND
 BEG CHECK
  * After optims it became = 3345 was 27527
 Assert at output_expr.sk:286 (0)
-Simulation found a cex by random testing:  0.014 ms 
+Simulation found a cex by random testing:  0.015 ms 
 END CHECK
-********  4	ftime= 0.038	ctime= 0.047
+********  4	ftime= 0.066	ctime= 999.055
 !% 1010|00|01|01|10|00|01|00|00|01|10|11|00|11|00|00|11|00|00|00|00|00|00|10|10|00|00|00|00|00|00|01|10|00|00|10|00|00|00|00|00|00|00|00|00|00|10|10|00|00|00|10|00|00|00|11|00|01|00|00|00|00|00|00|00|01|00|00|00|01100010|01|01|00|11|00|11|00|00|01|00|00|00|01|00|00|00|00|00|10|00|00|00|00|00|00|00|11|00|00|00|01|00|00|00|00|00|00|00|00|01|00|00|00|10|00|00|00|00|00|10|01|00|00|00|10|00|00|00|01|10|00|00|10|01|10|00|00|00|0010|00|00|00|00|01|00|01|00|00|00|00|00|00|00|00|00|11|00|00|01|00|00|00|00|00|00|10|00|00|01|11|00|00|10|00|00|00|00|00|00|00|10|00|01|00|00|00|00|10|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00100000001000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 1422 was 27527
-* TIME TO ADD INPUT :  0.038 ms 
+* TIME TO ADD INPUT :  0.054 ms 
 DECISIONS START = 942
 f# %assign: 1 clauses: 22852 learn: 63 restart: 5 decision: 1247 propagated: 40576
 END FIND
@@ -1114,13 +1114,13 @@ TTT Setting cutoff=40000
 c# %assign: 7 clauses: 40 learn: 0 restart: 0 decision: 0 propagated: 2
  reduced size from 2002 to 1982
  * Simulation optimized it to = 1982
-Simulation didn't find a cex:  999.246 ms 
+Simulation didn't find a cex:  0.387 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 49 clauses: 10474 learn: 681 restart: 7 decision: 6712 propagated: 1395904
 END CHECK
-********  5	ftime= 0.04	ctime= 999.536
+********  5	ftime= 0.057	ctime= 0.744
 *********INSIDE minimizeHoleValue, mhsize=1 current value of H__BND0=1, 
 TTT Setting cutoff=40000
 BEG FIND
@@ -1128,10 +1128,10 @@ DECISIONS START = 1247
 f# %assign: 1 clauses: 22853 learn: 63 restart: 6 decision: 1247 propagated: 40695
 END FIND
  *GOT THE CORRECT ANSWER IN 6 iterations.
- *FIND TIME 0.214 CHECK TIME 999.872 TOTAL TIME 1000.09
+ *FIND TIME 0.301 CHECK TIME 1000.19 TOTAL TIME 1000.49
 VALUES H__0: 8, H__1: 4, H__10: 19, H__11: 26, H__16: 1, H__17: 2, H__18: 27, H__19: 18, H__2: 15, H__24: 9, H__25: 4, H__26: 0, H__27: 3, H__3: 6, H__32: 3, H__33: 1, H__34: 0, H__35: 0, H__40: 0, H__41: 1, H__42: 0, H__43: 0, H__48: 1, H__49: 0, H__50: 0, H__51: 0, H__56: 0, H__57: 5, H__8: 4, H__9: 28, H__BND0: 1, 
 RESULT = 2  
-**ROUND 0 : 24.6656 Round time:  1999.49 ms 
+**ROUND 0 : 24.6656 Round time:  2000.06 ms 
 RNDDEG = 80
 return 0
 POST-SUMMRY , 743, 135, 2668, 2039, 2521, 2670, 335, 1495, 2672, 2183
@@ -1492,9 +1492,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3529 was 6578
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.003 ms 
+Simulation found a cex by random testing:  0.005 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.012
+********  0	ftime= 0	ctime= 0.029
 !% 0100|00|00|00|00|10|00|10|00|01|01|00|00|00|01|10|00|00|00|00|00|10|00|01|00|01|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|01|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00000101|00|01|00|00|11|01|00|01|00|10|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|01|10|00|10|00|00|01|01|00|00|10|00|00|00|00|00|00|00|00|01|00|00|00|00|00|01|00|00|00|00|00|00|10|00|00|00|01|00|01|00|0000|10|00|00|00|01|00|00|00|00|00|00|10|00|01|00|00|00|00|10|00|00|00|01|00|10|00|01|00|00|00|00|01|00|00|00|00|01|11|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|11|00|01|00|00|01|00|01|00|00|00|00|01001010001100
 BEG FIND
 Level 1  intsize = 2
@@ -1502,17 +1502,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.33= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.007 ms 
+* TIME TO ADD INPUT :  0.01 ms 
 f# %assign: 57 clauses: 14 learn: 0 restart: 0 decision: 0 propagated: 16
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.007 ms 
-* CHECK TIME:  0.012 ms 
+* FIND TIME:  0.01 ms 
+* CHECK TIME:  0.029 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.007 CHECK TIME 0.012 TOTAL TIME 0.019
+ *FIND TIME 0.01 CHECK TIME 0.029 TOTAL TIME 0.04
 RESULT = 1  
-**ROUND 1 : 90.2269 Round time:  0.283 ms 
+**ROUND 1 : 90.2269 Round time:  999.374 ms 
 RNDDEG = 5
 SUMMRY , 35, 51, 743, 881, 1245, 1631, 1925, 2025, 2253, 2383, 2519, 2805, 2667, 11, 153, 1337, 2497, 2669, 27, 835, 207, 1411, 2670, 319, 2059, 1515, 2547, 2673, 977, 381, 1601, 2179
  charness = 0
@@ -1995,9 +1995,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3537 was 18204
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.002 ms 
+Simulation found a cex by random testing:  0.005 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.026
+********  0	ftime= 0	ctime= 0.058
 !% 0110|00|01|00|00|10|00|00|00|00|00|00|00|01|01|00|00|00|10|00|00|00|01|00|00|00|10|01|00|00|00|00|00|00|01|00|11|00|00|00|00|00|01|10|00|00|00|01|00|00|00|00|10|01|00|00|00|00|01|00|10|00|00|00|00|00|00|00|00|00000111|10|00|00|00|01|00|00|00|10|00|00|01|00|00|00|00|00|01|10|00|00|01|00|01|00|00|00|00|00|00|01|00|00|00|00|00|00|00|10|01|00|01|11|01|00|00|00|00|00|11|00|00|11|00|00|00|01|01|01|10|00|00|00|00|00|00|00|00|0100|00|00|00|10|00|00|01|10|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|01|00|00|00|00|00|10|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11000011100000
 BEG FIND
 Level 1  intsize = 2
@@ -2005,17 +2005,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.170= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.02 ms 
+* TIME TO ADD INPUT :  0.043 ms 
 f# %assign: 2 clauses: 959 learn: 0 restart: 0 decision: 0 propagated: 15
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.02 ms 
-* CHECK TIME:  0.026 ms 
+* FIND TIME:  0.043 ms 
+* CHECK TIME:  0.058 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.02 CHECK TIME 0.026 TOTAL TIME 0.046
+ *FIND TIME 0.043 CHECK TIME 0.058 TOTAL TIME 0.101
 RESULT = 1  
-**ROUND 2 : 36.1614 Round time:  999.414 ms 
+**ROUND 2 : 36.1614 Round time:  0.605 ms 
 RNDDEG = 80
 SUMMRY , 9, 2505, 2667, 2669, 831, 241, 2015, 1423, 2671, 37, 285, 2541, 47, 951, 2573
  charness = 0
@@ -2274,9 +2274,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3543 was 6336
 Assert at output_expr.sk:162 (1)
-Simulation found a cex by random testing:  0.002 ms 
+Simulation found a cex by random testing:  0.003 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.011
+********  0	ftime= 0	ctime= 0.013
 !% 0100|11|11|01|10|10|10|01|01|10|11|00|01|11|01|00|00|00|00|00|10|00|00|01|00|00|10|00|00|00|00|10|10|00|00|00|00|01|00|00|01|01|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|10|10|00|00|00|00|00|00|00|10|00|01100001|10|00|00|01|01|00|00|01|00|01|00|00|00|10|00|10|00|10|01|01|00|00|00|00|00|01|00|00|10|00|00|10|00|00|01|00|00|00|00|00|00|00|00|01|00|10|00|00|00|00|00|01|10|00|10|10|00|00|01|01|00|00|00|00|10|10|00|00|0000|00|01|01|00|11|01|01|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|01|00|00|10|00|00|11|00|00|01|00|00|10|00|00|00|00|00|00|00|11|01|00|00|00|11|10|00|00|00|00|00|00|10|00|00|10|00|00|00|00|00010001101001
 BEG FIND
 Level 1  intsize = 2
@@ -2284,17 +2284,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.30= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.007 ms 
+* TIME TO ADD INPUT :  0.006 ms 
 f# %assign: 25 clauses: 38 learn: 0 restart: 0 decision: 0 propagated: 16
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.007 ms 
-* CHECK TIME:  0.011 ms 
+* FIND TIME:  0.006 ms 
+* CHECK TIME:  0.013 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.007 CHECK TIME 0.011 TOTAL TIME 0.018
+ *FIND TIME 0.006 CHECK TIME 0.013 TOTAL TIME 0.02
 RESULT = 1  
-**ROUND 3 : 85.3749 Round time:  0.281 ms 
+**ROUND 3 : 85.3749 Round time:  999.44 ms 
 RNDDEG = 5
 SUMMRY , 73, 739, 1143, 1243, 1375, 1889, 2085, 2577, 2666, 2674, 2819, 1931, 189, 13, 1425, 2045, 237, 843, 2529, 27, 2669, 1491, 311, 885, 2551, 39, 2670, 1599, 387, 997, 45, 2673
  charness = 0
@@ -2306,7 +2306,7 @@ ATTEMPT 4
 Received: , 37, 0, 2683, 2685, 2687, 2689, 2691, 2692, 2695, 2697, 2699, 2701, 2703, 2705, 2707, 2709, 2711, 2713, 2715, 2717, 2719, 2721, 2723, 2725, 2727, 2729, 2731, 2733, 2735, 2737, 2739, 2741, 2743, 2745, 2747, 2749, 2751, 2753, 2755, 100639
 Sending: 
 , 37, 0, 2683, 2685, 2687, 2689, 2691, 2692, 2695, 2697, 2699, 2701, 2703, 2705, 2707, 2709, 2711, 2713, 2715, 2717, 2719, 2721, 2723, 2725, 2727, 2729, 2731, 2733, 2735, 2737, 2739, 2741, 2743, 2745, 2747, 2749, 2751, 2753, 2755, 100639
-cur=80 next=160 scorecur=37 scorenext=0
+cur=80 next=160 scorecur=33 scorenext=0
 Switch because next is better
 * before  EVERYTHING: sketch__WrapperNospec::SPEC nodes = 12	 sketch__Wrapper::SKETCH nodes = 80
  INBITS = 2
@@ -2806,9 +2806,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3592 was 27517
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.002 ms 
+Simulation found a cex by random testing:  0.005 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.036
+********  0	ftime= 0	ctime= 0.064
 !% 0110|01|01|00|01|10|10|10|11|00|00|00|00|00|01|00|11|00|00|01|00|00|00|01|00|00|10|00|00|00|11|00|00|00|00|00|00|00|00|00|01|00|00|00|10|00|00|10|00|10|00|00|00|00|00|00|00|00|01|00|00|00|01|00|00|00|00|10|00|00110000|00|01|00|00|00|00|00|10|10|00|00|00|00|00|10|00|00|00|00|01|00|10|00|00|11|10|00|00|00|00|00|00|10|00|00|10|00|00|01|11|00|00|00|00|00|00|10|00|00|00|00|01|01|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|1000|10|10|11|00|00|00|00|01|00|01|00|00|11|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|10|00|00|00|00|00|11|00|00|00|00|00|10|10|00|00|00|01|01|01|01|00|00|00|00|00|00|01|00|00|00110000101000
 BEG FIND
 Level 1  intsize = 2
@@ -2816,17 +2816,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.253= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.028 ms 
+* TIME TO ADD INPUT :  0.059 ms 
 f# %assign: 2 clauses: 1732 learn: 0 restart: 0 decision: 0 propagated: 20
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.028 ms 
-* CHECK TIME:  0.036 ms 
+* FIND TIME:  0.059 ms 
+* CHECK TIME:  0.064 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.028 CHECK TIME 0.036 TOTAL TIME 0.064
+ *FIND TIME 0.059 CHECK TIME 0.064 TOTAL TIME 0.124
 RESULT = 1  
-**ROUND 4 : 19.5259 Round time:  0.494 ms 
+**ROUND 4 : 19.5259 Round time:  0.692 ms 
 RNDDEG = 160
 SUMMRY , 2499, 2669, 2525, 2671, 2059, 1499, 2673, 977
  charness = 0
@@ -3366,9 +3366,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3523 was 21525
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.002 ms 
+Simulation found a cex by random testing:  0.005 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.028
+********  0	ftime= 0	ctime= 0.054
 !% 1010|01|00|00|11|00|00|01|10|00|01|00|00|00|01|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|11|00|00|00|00|00|01|00|00|00|00|00|00|10|00|00|01|00|00|10|00|00|00|00|00|11|00|00|00|01|00|00|00|00|00|00010001|01|00|00|00|00|00|00|00|00|00|00|00|00|00|01|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|11|01|00|00|01|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|00|10|01|00|00|00|00|10|10|00|01|00|00|00|0010|00|01|11|10|00|00|01|10|10|00|00|01|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|01|00|00|01|00|00|11|00|00010101010100
 BEG FIND
 Level 1  intsize = 2
@@ -3376,17 +3376,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.179= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.021 ms 
+* TIME TO ADD INPUT :  0.022 ms 
 f# %assign: 2 clauses: 574 learn: 0 restart: 0 decision: 0 propagated: 16
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.021 ms 
-* CHECK TIME:  0.028 ms 
+* FIND TIME:  0.022 ms 
+* CHECK TIME:  0.054 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.021 CHECK TIME 0.028 TOTAL TIME 0.049
+ *FIND TIME 0.022 CHECK TIME 0.054 TOTAL TIME 0.076
 RESULT = 1  
-**ROUND 5 : 29.9231 Round time:  999.445 ms 
+**ROUND 5 : 29.9231 Round time:  999.557 ms 
 RNDDEG = 80
 SUMMRY , 2667, 141, 1335, 2669, 1419, 2523, 2065, 1509, 2673, 1007, 2569
  charness = 0
@@ -3876,7 +3876,7 @@ BEG CHECK
 Assert at output_expr.sk:162 (1)
 Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.041
+********  0	ftime= 0	ctime= 0.042
 !% 1000|01|00|00|01|11|10|00|11|00|10|00|10|00|00|00|10|00|00|00|00|00|00|00|00|00|10|01|00|10|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|01|00|00|00|10|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|01|00100011|01|10|00|00|00|10|01|00|01|00|00|00|00|00|00|10|01|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|01|00|00|00|00|10|00|00|00|00|01|00|00|00|00|00|00|10|00|00|10|01|00|00|01|00|10|00|00|00|01|00|00|00|00|0000|10|00|01|10|00|00|00|00|00|00|00|01|00|00|00|00|01|00|01|00|00|00|01|00|01|00|00|00|00|00|00|10|00|00|00|00|10|00|11|00|00|10|00|00|10|00|00|00|00|00|00|00|00|00|10|10|00|00|00|00|11|00|00|00|00|00|00|11|00100101000100
 BEG FIND
 Level 1  intsize = 2
@@ -3884,17 +3884,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.311= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.031 ms 
+* TIME TO ADD INPUT :  0.033 ms 
 f# %assign: 2 clauses: 2221 learn: 0 restart: 0 decision: 0 propagated: 25
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.031 ms 
-* CHECK TIME:  0.041 ms 
+* FIND TIME:  0.033 ms 
+* CHECK TIME:  0.042 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.031 CHECK TIME 0.041 TOTAL TIME 0.072
+ *FIND TIME 0.033 CHECK TIME 0.042 TOTAL TIME 0.075
 RESULT = 1  
-**ROUND 6 : 17.041 Round time:  0.533 ms 
+**ROUND 6 : 17.041 Round time:  999.584 ms 
 RNDDEG = 160
 SUMMRY , 2666, 2669, 799, 2523, 967, 1581
  charness = 0
@@ -4350,9 +4350,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3526 was 25268
 Assert at output_expr.sk:162 (1)
-Simulation found a cex by random testing:  0.001 ms 
+Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.03
+********  0	ftime= 0	ctime= 0.033
 !% 1000|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|10|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|01|00|00|00|00|00|00|10|01|00|00|10|00|00|00|00|00|00|00|00|01|01|00|00|00|11|00|00|00|01|10|01001000|10|00|00|00|00|00|00|01|00|10|00|00|00|00|00|00|00|00|01|10|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|11|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|01|0000|00|01|01|00|00|00|00|00|11|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|01|10|10|00|00|11|00|00|10|00|10|00|00|10|10|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00010001000100
 BEG FIND
 Level 1  intsize = 2
@@ -4366,11 +4366,11 @@ f# %assign: 1 clauses: 2746 learn: 0 restart: 0 decision: 0 propagated: 20
 END FIND
 ******** FAILED ********
 * FIND TIME:  0.026 ms 
-* CHECK TIME:  0.03 ms 
+* CHECK TIME:  0.033 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.026 CHECK TIME 0.03 TOTAL TIME 0.057
+ *FIND TIME 0.026 CHECK TIME 0.033 TOTAL TIME 0.059
 RESULT = 1  
-**ROUND 7 : 28.1314 Round time:  999.466 ms 
+**ROUND 7 : 28.1314 Round time:  0.504 ms 
 RNDDEG = 80
 SUMMRY , 1513, 2783, 2667, 13, 745, 2668, 821, 213, 2670, 2672, 47, 2573
  charness = 0
@@ -4864,7 +4864,7 @@ BEG CHECK
 Assert at grammar.skh:55 (0)
 Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.038
+********  0	ftime= 0	ctime= 0.039
 !% 0100|00|00|11|00|00|00|10|10|00|00|01|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|10|00|00|00|10|10|00|00|11|01|00|00|00|00|00|00|00|01|00|10|00|00|00|00|00|00|00|01|10|00|00|00|00|00|00|00|01000110|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|00|00|01|00|00|00|01|00|00|11|00|01|00|00|00|00|00|00|00|00|01|00|00|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|10|00|00|00|1000|00|00|00|00|01|10|00|00|10|00|00|00|10|11|00|00|00|00|00|00|10|01|01|01|01|00|00|11|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|01|00|01|00|00|00|00|00|00|00|00|00|00|10|00|00|01|00|00|00|00|11|10|00|00|11100110000100
 BEG FIND
 Level 1  intsize = 2
@@ -4872,17 +4872,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.312= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.029 ms 
+* TIME TO ADD INPUT :  0.035 ms 
 f# %assign: 1 clauses: 2954 learn: 0 restart: 0 decision: 0 propagated: 18
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.029 ms 
-* CHECK TIME:  0.038 ms 
+* FIND TIME:  0.035 ms 
+* CHECK TIME:  0.039 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.029 CHECK TIME 0.038 TOTAL TIME 0.067
+ *FIND TIME 0.035 CHECK TIME 0.039 TOTAL TIME 0.074
 RESULT = 1  
-**ROUND 8 : 21.893 Round time:  0.539 ms 
+**ROUND 8 : 21.893 Round time:  999.552 ms 
 RNDDEG = 160
 SUMMRY , 679, 2667, 155, 2669, 2671, 321, 1489, 2541, 2673
  charness = 0
@@ -4894,7 +4894,7 @@ ATTEMPT 9
 Received: , 37, 0, 2683, 2685, 2687, 2689, 2691, 2692, 2695, 2697, 2699, 2701, 2703, 2705, 2707, 2709, 2711, 2713, 2715, 2717, 2719, 2721, 2723, 2725, 2727, 2729, 2731, 2733, 2735, 2737, 2739, 2741, 2743, 2745, 2747, 2749, 2751, 2753, 2755, 100639
 Sending: 
 , 37, 0, 2683, 2685, 2687, 2689, 2691, 2692, 2695, 2697, 2699, 2701, 2703, 2705, 2707, 2709, 2711, 2713, 2715, 2717, 2719, 2721, 2723, 2725, 2727, 2729, 2731, 2733, 2735, 2737, 2739, 2741, 2743, 2745, 2747, 2749, 2751, 2753, 2755, 100639
-cur=160 next=2560 scorecur=18 scorenext=0
+cur=160 next=2560 scorecur=23 scorenext=0
 Switch because next is better
 * before  EVERYTHING: sketch__WrapperNospec::SPEC nodes = 12	 sketch__Wrapper::SKETCH nodes = 80
  INBITS = 2
@@ -5388,7 +5388,7 @@ BEG CHECK
 Assert at output_expr.sk:162 (1)
 Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.051
+********  0	ftime= 0	ctime= 0.052
 !% 1100|10|11|10|11|00|10|11|00|00|00|00|00|00|01|01|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|10|00|00|10|11|10|00|00|00|01|00|00|00|00|10|00|00|00|01|00|01|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00000000|00|00|00|10|00|10|01|10|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|01|00|00|01|00|11|00|00|00|00|00|00|00|00|10|00|01|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11|01|00|00|01|00|10|00|00|00|00|0001|00|00|00|00|00|01|00|00|10|00|00|10|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|10|00|00|00|00|01|00|00|00|00|01|00|00|00|00|00|01|01|00|00100001010000
 BEG FIND
 Level 1  intsize = 2
@@ -5402,11 +5402,11 @@ f# %assign: 0 clauses: 8085 learn: 0 restart: 0 decision: 0 propagated: 25
 END FIND
 ******** FAILED ********
 * FIND TIME:  0.04 ms 
-* CHECK TIME:  0.051 ms 
+* CHECK TIME:  0.052 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.04 CHECK TIME 0.051 TOTAL TIME 0.091
+ *FIND TIME 0.04 CHECK TIME 0.052 TOTAL TIME 0.093
 RESULT = 1  
-**ROUND 9 : 14.2684 Round time:  999.594 ms 
+**ROUND 9 : 14.2684 Round time:  0.612 ms 
 RNDDEG = 160
 SUMMRY , 2667, 15, 301, 2543, 1565
  charness = 0
@@ -5911,7 +5911,7 @@ BEG CHECK
 Assert at grammar.skh:55 (0)
 Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.057
+********  0	ftime= 0	ctime= 0.061
 !% 1010|00|00|00|10|10|00|00|10|00|01|01|00|00|00|00|00|01|00|00|00|11|00|00|00|00|00|00|00|00|00|11|01|00|00|00|00|00|00|00|00|00|00|00|00|11|01|10|00|00|00|00|00|01|10|00|00|01|11|00|00|00|00|00|00|00|00|00|00|00100000|00|11|10|00|00|10|10|01|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|00|01|00|00|11|00|00|00|00|00|01|00|10|01|00|00|10|00|00|00|10|00|00|00|00|01|00|01|00|00|00|00|00|10|00|10|00|01|00|00|11|00|0010|00|00|01|00|01|01|00|10|00|00|00|00|00|00|00|00|00|00|01|10|11|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|11|00|10|00|00|00|00|00|10|00|00|01|00|00|00|00|00|00|11|00|00|00|00|00|01|00|10|00|00|00|00|00000001100110
 BEG FIND
 Level 1  intsize = 2
@@ -5919,17 +5919,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.444= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.041 ms 
+* TIME TO ADD INPUT :  0.043 ms 
 f# %assign: 0 clauses: 6298 learn: 0 restart: 0 decision: 0 propagated: 19
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.041 ms 
-* CHECK TIME:  0.057 ms 
+* FIND TIME:  0.043 ms 
+* CHECK TIME:  0.061 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.041 CHECK TIME 0.057 TOTAL TIME 0.098
+ *FIND TIME 0.043 CHECK TIME 0.061 TOTAL TIME 0.104
 RESULT = 1  
-**ROUND 10 : 7.62462 Round time:  999.647 ms 
+**ROUND 10 : 7.62462 Round time:  999.663 ms 
 RNDDEG = 2560
 SUMMRY , 2003, 2672
  charness = 0
@@ -6446,9 +6446,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3527 was 31214
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.003 ms 
+Simulation found a cex by random testing:  0.005 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.042
+********  0	ftime= 0	ctime= 0.068
 !% 1000|00|10|10|10|01|00|00|00|00|00|01|01|10|00|00|00|00|00|10|01|00|00|01|01|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|10|00|00|10|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|01|00|01|10|00|00|01|10|00|00|00010000|00|00|00|10|00|00|00|00|11|01|00|00|11|00|01|00|00|11|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|10|10|00|00|00|00|00|00|00|11|00|01|10|10|10|00|00|00|00|00|10|00|00|00|01|00|01|00|0000|00|11|00|00|00|01|01|00|01|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|01|00|00|00|10|01|00|00|00|00|00|00|01|00|11|00|00|00|00|00|11|00|00|00|00|00|00|10|11|00|00|00|00|00010000000001
 BEG FIND
 Level 1  intsize = 2
@@ -6456,17 +6456,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.344= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.032 ms 
+* TIME TO ADD INPUT :  0.074 ms 
 f# %assign: 1 clauses: 2238 learn: 0 restart: 0 decision: 0 propagated: 19
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.032 ms 
-* CHECK TIME:  0.042 ms 
+* FIND TIME:  0.074 ms 
+* CHECK TIME:  0.068 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.032 CHECK TIME 0.042 TOTAL TIME 0.074
+ *FIND TIME 0.074 CHECK TIME 0.068 TOTAL TIME 0.143
 RESULT = 1  
-**ROUND 11 : 17.7341 Round time:  0.546 ms 
+**ROUND 11 : 17.7341 Round time:  999.892 ms 
 RNDDEG = 160
 SUMMRY , 2803, 2497, 2668, 23, 1985, 1487
  charness = 0
@@ -6990,9 +6990,9 @@ Number of minvar nodes = 0
 BEG CHECK
  * After optims it became = 3586 was 47700
 Assert at grammar.skh:54 (0)
-Simulation found a cex by random testing:  0.003 ms 
+Simulation found a cex by random testing:  0.004 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.066
+********  0	ftime= 0	ctime= 0.099
 !% 0110|10|00|01|00|01|00|00|01|11|00|00|00|00|00|00|00|01|00|00|00|00|10|11|00|10|11|00|00|10|10|00|00|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|10|00|00|01|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|01|10010000|00|10|00|10|10|00|10|10|00|00|00|10|00|00|00|00|00|00|10|00|11|00|01|00|00|00|00|00|00|00|01|00|01|00|00|01|00|00|00|00|00|00|00|00|10|11|10|00|00|00|10|00|00|00|00|00|10|00|00|00|00|01|00|01|00|00|00|00|0010|10|00|00|00|01|00|00|11|01|00|00|00|00|11|00|00|00|01|00|01|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|00|00|00|00|01|00|11|01|00|00|00|00|00|00|00|00|00|00|10|01|00|10000000001000
 BEG FIND
 Level 1  intsize = 2
@@ -7000,17 +7000,17 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 Problem became UNSAT.508= ASSERT (0) : Assert at output_expr.sk:162 (1)
-* TIME TO ADD INPUT :  0.097 ms 
+* TIME TO ADD INPUT :  0.153 ms 
 f# %assign: 0 clauses: 120420 learn: 0 restart: 0 decision: 0 propagated: 33
   UNSATISFIABLE ASSERTION Assert at output_expr.sk:162 (1)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.097 ms 
-* CHECK TIME:  0.066 ms 
+* FIND TIME:  0.153 ms 
+* CHECK TIME:  0.099 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.097 CHECK TIME 0.066 TOTAL TIME 0.163
+ *FIND TIME 0.153 CHECK TIME 0.099 TOTAL TIME 0.253
 RESULT = 1  
-**ROUND 12 : 3.46574 Round time:  999.769 ms 
+**ROUND 12 : 3.46574 Round time:  1000.2 ms 
 RNDDEG = 2560
 SUMMRY 
  charness = 0
@@ -7021,21 +7021,21 @@ ALLRESET
 return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  7999.71
-Model building time (ms): 0.069
-Solution time (ms):       7999.64
-Max virtual mem (bytes):  136372224
-Max resident mem (bytes): 48340992
-Max private mem (bytes):  131211264
+Total elapsed time (ms):  10000
+Model building time (ms): 0.104
+Solution time (ms):       9999.91
+Max virtual mem (bytes):  143187968
+Max resident mem (bytes): 54824960
+Max private mem (bytes):  138117120
 ALL CORRECT
 
 [SATBackend] Stats for last run:
       [solution stats]
       successful? ---------------------> true
-      elapsed time (s) ----------------> 7.761
+      elapsed time (s) ----------------> 10.092
       model building time (s) ---------> 0.0
-      solution time (s) ---------------> 7.999
-      max memory usage (MiB) ----------> 130.05469
+      solution time (s) ---------------> 9.999
+      max memory usage (MiB) ----------> 136.55469
       [SAT-specific solution stats]
       initial number of nodes ---------> 80
       number of nodes after opts ------> 27527
@@ -7053,25 +7053,25 @@ ALL CORRECT
 [SATBackend] destroying java.lang.UNIXProcess@b59d31
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (1) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (3) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (5) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (1) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (6) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (7) done, but aborted ===
+[SATBackend] === parallel trial w/ degree -1 (2) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (4) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (2) done, but aborted ===
+[SATBackend] === parallel trial w/ degree -1 (7) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (3) done, but aborted ===
 Class dexter.Preferences$Global is not a code generator
 Class dexter.CLIParser is not a code generator
 Class dexter.Preferences$Sketch$Term is not a code generator
@@ -7260,4 +7260,4 @@ idxR: [4, 28, 19, 26, 0, 0, 0, 0]
 op: [3, 1, 0, 0, 0, 0, 0, 0]
 opc: [1, 0, 0, 0, 0, 0, 0, 0]
 [SKETCH] DONE
-Total time = 8755
+Total time = 11364

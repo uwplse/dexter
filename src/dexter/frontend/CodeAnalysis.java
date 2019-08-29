@@ -84,6 +84,8 @@ public class CodeAnalysis {
   public Set<VarExpr> getScopeVars() { return scope_vars_set; }
   public String getCppType(String varName) { return this.cTypes.get(varName); }
 
+  public Map<String, String> cppTypes() { return this.cTypes; }
+
   public int numBounds () { return loopBounds.size(); }
 
   public void filterOutputArrVars(VarExpr v) {

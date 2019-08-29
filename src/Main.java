@@ -9,7 +9,7 @@ import java.io.IOException;
  * Created by Maaz Ahmad on 6/25/19.
  */
 public class Main {
-  public static void main (String[] args) throws IOException, InterruptedException {
+  public static void main (String[] args) throws Exception {
     CLIParser parser = new CLIParser();
 
     try {

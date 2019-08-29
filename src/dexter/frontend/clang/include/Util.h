@@ -26,7 +26,7 @@ public:
   static JavaVM * jvm;
   static JNIEnv * env;
 
-  static void initJVM (const std::string & mljarPath);
+  static void initJVM (const std::string & dxjarPath);
   static void shutdownJVM ();
 
   static void print (Dexter::Expr * e);

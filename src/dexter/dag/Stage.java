@@ -2,6 +2,7 @@ package dexter.dag;
 
 import dexter.frontend.CodeAnalysis;
 import dexter.ir.Expr;
+import dexter.ir.bool.Program;
 import dexter.ir.bool.VarExpr;
 
 import java.util.Set;
@@ -19,6 +20,8 @@ public class Stage {
 
   CodeAnalysis _analysis;
 
+  Program _summary;
+
   public Stage(int id, boolean f, boolean cl, boolean ie, Expr c, int cid, int aid, int nid, CodeAnalysis a)
   {
     this._id = id;
@@ -30,7 +33,10 @@ public class Stage {
     this._altrStageId = aid;
     this._nextStageId = nid;
     this._analysis = a;
+    this._summary = null;
   }
+
+  public void summary (Program s) { this._summary = s; }
 
   public int id() { return _id; }
 
@@ -71,4 +77,6 @@ public class Stage {
   }
 
   public Expr cond() { return _cond; }
+
+  public Program summary () { return this._summary; }
 }

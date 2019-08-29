@@ -10,26 +10,56 @@ grammar.skh:80: Making final N
 [SATBackend] OFILE = null
 [SATBackend] OFILE = null
 [SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
-[SATBackend] OFILE = null
+searching for file null
 searching for file null
 searching for file null
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file cegis/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file cegis/src/SketchSolver/cegis
 searching for file ../sketch-backend/src/SketchSolver/cegis
 searching for file ../sketch-backend/bindings/cegis
+searching for file cegis/src/SketchSolver/cegis
 searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file ../sketch-backend/src/SketchSolver/cegis
 searching for file /home/maaz/.sketch/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
 searching for file /usr/local/sbin/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /usr/local/bin/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /usr/local/sbin/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/cegis
+[SATBackend] OFILE = null
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 searching for file /usr/local/bin/cegis
@@ -43,359 +73,329 @@ searching for file /usr/sbin/../sketch-backend/bindings/cegis
 searching for file /usr/bin/cegis
 searching for file /usr/bin/src/SketchSolver/cegis
 searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 searching for file /sbin/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /bin/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /sbin/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/games/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /sbin/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /sbin/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/src/SketchSolver/cegis
 searching for file /sbin/src/SketchSolver/cegis
 searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
 searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /bin/cegis
-searching for file null
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file null
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file cegis/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file cegis/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file cegis/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/games/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
 searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file ../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file ../sketch-backend/bindings/cegis
+searching for file /bin/src/SketchSolver/cegis
 searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+[SATBackend] OFILE = null
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /bin/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+[SATBackend] OFILE = null
+searching for file /snap/bin/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+[SATBackend] OFILE = null
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file null
+searching for file null
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/games/cegis
 searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/bin/cegis
-searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file /usr/local/bin/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/games/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file /usr/games/src/SketchSolver/cegis
 searching for file cegis/src/SketchSolver/cegis
 searching for file /home/maaz/.sketch/cegis
 searching for file ../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/.sketch/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/local/sbin/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
 searching for file ../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
 searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/cegis
 searching for file /home/maaz/.sketch/cegis-1.7.5
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/local/bin/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 searching for file /home/maaz/.sketch/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/cegis
-searching for file /sbin/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
 searching for file /usr/local/sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
 searching for file /usr/local/bin/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/cegis
-searching for file /sbin/cegis
-searching for file /usr/sbin/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /sbin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/cegis
-searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /usr/bin/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
 [SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 1 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-0 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/cegis
-searching for file /sbin/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/cegis
-searching for file /usr/local/bin/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/src/SketchSolver/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/bin/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /bin/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /usr/games/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /bin/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /usr/local/games/cegis
 searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/.sketch/cegis-1.7.5
 searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/bin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/sbin/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/src/SketchSolver/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /snap/bin/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /usr/sbin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /usr/games/cegis
-searching for file /snap/bin/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/bin/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/bin/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /usr/bin/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 7 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-6 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 8 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-7 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-searching for file /snap/bin/cegis
-searching for file /sbin/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /sbin/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 3 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-2 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /sbin/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /bin/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /bin/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /usr/local/games/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /bin/../sketch-backend/bindings/cegis
-searching for file /snap/bin/cegis
-searching for file /usr/games/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-searching for file /usr/games/src/SketchSolver/cegis
-searching for file /snap/bin/src/SketchSolver/cegis
-searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
-searching for file /snap/bin/../sketch-backend/bindings/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
-searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
-resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 4 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-3 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 2 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-1 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
-searching for file /usr/games/../sketch-backend/bindings/cegis
-searching for file /usr/local/games/cegis
-searching for file /usr/local/games/src/SketchSolver/cegis
-searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
 [SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 5 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-4 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /snap/bin/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 3 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-2 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+searching for file /snap/bin/cegis
+searching for file /home/maaz/.sketch/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 2 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-1 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+searching for file /usr/local/bin/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/bindings/cegis
+searching for file /snap/bin/cegis
+searching for file /snap/bin/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /snap/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 6 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-5 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
+searching for file /usr/sbin/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 4 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-3 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/games/cegis
+searching for file /usr/games/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/games/../sketch-backend/bindings/cegis
+searching for file /usr/local/games/cegis
+searching for file /usr/local/games/src/SketchSolver/cegis
+searching for file /usr/local/games/../sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 7 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-6 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
 searching for file /usr/local/games/../sketch-backend/bindings/cegis
 searching for file /snap/bin/cegis
 searching for file /snap/bin/src/SketchSolver/cegis
@@ -405,7 +405,7 @@ searching for file /home/maaz/Software/sketch/sketch-frontend/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/src/SketchSolver/cegis
 searching for file /home/maaz/Software/sketch/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 6 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-5 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
+[SATBackend] Launching: /home/maaz/Software/sketch/sketch-backend/src/SketchSolver/cegis --bnd-inbits 2 --boundmode CALLNAME --verbosity 6 --print-version -simiters 1500 -synth MINI --assumebcheck --bnd-inline-amnt 5 --bndwrand 35 -lightverif -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 --seed 8 -randassign --nprocs 8 -o /home/maaz/.sketch/tmp/temp_term_2.sk/solution0-7 /home/maaz/.sketch/tmp/temp_term_2.sk/input0.tmp 
 [SATBackend] Solver exit value: 0
 [SATBackend] === parallel trial w/ degree -1 (0) start ===
 Overriding inputs with 2
@@ -532,14 +532,14 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 36 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2378 to 2285
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.042 ms 
+Simulation found a cex by random testing:  0.051 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.048
+********  0	ftime= 0	ctime= 0.055
 !% 00|10|00|00|00|00|00|00|10|00|00|10|00|00|10|00|00|00|00|00|00|00|00|00|00|00|10|00|01|00|00|10|00|00|00|01|00|00|00|00|00|10|10|00|00|00|00|10|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|00|11|00|01|00|00|00100000|00|00|00|01|01|11|11|01|10|11|11|00|00|11|00|00|00|10|00|01|00|00|00|01|00|10|00|01|10|01|00|00|00|00|00|01|00|00|00|00|00|00|00|10|00|00|00|00|01|01|11|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00100000|01|01|10|00|00|00|00|00|11|00|00|00|00|01|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|01|01|00|00|00|00|10|00|00|00|11|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|0000010000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 575 was 4039
-* TIME TO ADD INPUT :  0.008 ms 
+* TIME TO ADD INPUT :  0.005 ms 
 DECISIONS START = 0
 f# %assign: 30 clauses: 33 learn: 0 restart: 1 decision: 24 propagated: 80
 END FIND
@@ -571,14 +571,14 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2220 to 2093
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.081 ms 
+Simulation found a cex by random testing:  0.069 ms 
 END CHECK
-********  1	ftime= 0.008	ctime= 0.085
+********  1	ftime= 0.005	ctime= 0.073
 !% 00|10|11|00|00|00|01|00|10|10|00|00|00|00|00|00|00|00|11|10|00|10|01|00|10|00|00|01|00|00|00|01|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|10|00|00|00|00|01|00|00|00|01|10010011|00|00|10|01|00|00|00|10|10|00|10|01|00|01|01|01|00|00|00|01|00|00|01|00|00|00|01|11|10|01|00|01|00|10|00|00|00|00|10|00|01|00|00|00|00|00|10|00|01|00|10|01|11|00|00|00|00|11|00|10|00|00|00|00|00|00|00|01|00010010|01|00|01|10|00|10|00|00|01|00|01|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|10|00|01|00|00|10|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|0001100010
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 462 was 4039
-* TIME TO ADD INPUT :  0.013 ms 
+* TIME TO ADD INPUT :  0.005 ms 
 DECISIONS START = 24
 f# %assign: 48 clauses: 147 learn: 0 restart: 2 decision: 55 propagated: 227
 END FIND
@@ -588,7 +588,7 @@ BEG CHECK
 Assert at temp_term_2.sk:314 (0)
 Simulation found a cex by random testing:  0.002 ms 
 END CHECK
-********  2	ftime= 0.013	ctime= 0.008
+********  2	ftime= 0.005	ctime= 0.007
 !% 00|01|00|00|00|00|00|00|00|11|01|00|00|00|10|00|00|00|00|00|00|10|00|00|01|00|10|10|00|00|00|10|00|11|00|00|00|10|00|00|00|00|00|00|00|01|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00010001|10|00|00|00|00|00|00|00|00|00|00|01|01|00|01|00|00|00|00|01|10|00|01|00|01|00|11|01|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|10|11|00|01|00|00|10|00|00|00|00|00|00010001|10|01|10|10|00|00|00|00|00|10|01|00|11|10|00|00|00|00|00|00|10|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|01|00|00|10|00|00|00|00|10|00|00|00|00|10|00|11|00|00|00|00|00|00|00|00|00|00|1100000000
 BEG FIND
 Level 1  intsize = 2
@@ -596,18 +596,18 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
 Problem became UNSAT.575= ASSERT 574 : Assert at temp_term_2.sk:314 (0)
-* TIME TO ADD INPUT :  0.005 ms 
+* TIME TO ADD INPUT :  0.004 ms 
 f# %assign: 48 clauses: 147 learn: 0 restart: 2 decision: 55 propagated: 227
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.005 ms 0.026 ms
-* CHECK TIME:  0.008 ms 0.141 ms
+* FIND TIME:  0.004 ms 0.014 ms
+* CHECK TIME:  0.007 ms 0.135 ms
  *FAILED IN 3 iterations.
- *FIND TIME 0.026 CHECK TIME 0.141 TOTAL TIME 0.167
+ *FIND TIME 0.014 CHECK TIME 0.135 TOTAL TIME 0.149
 VALUES H__59: 0, H__69: 1, H__70: 0, H__72: 0, H__73: 0, H__74: 0, H__75: 0, H__76: 0, H__78: 0, H__80: 0, H__82: 1, H__84: 2, H__86: 2, H__87: 1, H__90: 1, H__92: 0, 
 RESULT = 1  
-**ROUND 0 : 2.77259 Round time:  0.206 ms 
+**ROUND 0 : 2.77259 Round time:  0.188 ms 
 RNDDEG = 80
 SUMMRY , 4, 35, 32, 63
  charness = 0
@@ -715,9 +715,9 @@ TTT Setting cutoff=40000
 c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2758 to 2476
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.027 ms 
+Simulation found a cex by random testing:  0.014 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.03
+********  0	ftime= 0	ctime= 0.018
 !% 00|00|10|00|10|00|11|00|00|01|10|00|00|00|00|00|00|00|00|10|00|10|00|00|01|00|00|00|00|01|00|10|01|10|10|00|00|00|10|00|00|00|00|00|00|01|00|01|00|10|00|00|00|00|00|10|00|00|00|00|00|00|10|00|10|00|00|00|00|00010010|10|00|10|01|00|00|00|01|00|00|00|01|00|11|00|10|00|10|00|00|00|00|00|00|10|10|00|00|00|00|00|01|00|00|10|01|10|00|10|00|00|00|00|00|00|01|00|00|00|00|00|00|00|10|00|10|00|00|11|00|00|00|00|10|00|00|00|00|00010000|01|01|00|00|11|00|01|00|00|01|00|00|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|11|00|00|11|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|10|10|00|00|00|00|0000010000
 BEG FIND
 Level 1  intsize = 2
@@ -725,18 +725,18 @@ Level 1  intsize = 2
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
 Problem became UNSAT.566= ASSERT 565 : Assert at temp_term_2.sk:314 (0)
-* TIME TO ADD INPUT :  0.005 ms 
+* TIME TO ADD INPUT :  0.003 ms 
 f# %assign: 4 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 1
   UNSATISFIABLE ASSERTION Assert at temp_term_2.sk:314 (0)
 END FIND
 ******** FAILED ********
-* FIND TIME:  0.005 ms 
-* CHECK TIME:  0.03 ms 
+* FIND TIME:  0.003 ms 
+* CHECK TIME:  0.018 ms 
  *FAILED IN 1 iterations.
- *FIND TIME 0.005 CHECK TIME 0.03 TOTAL TIME 0.035
+ *FIND TIME 0.003 CHECK TIME 0.018 TOTAL TIME 0.021
 VALUES H__59: 0, H__69: 0, H__70: 0, H__72: 0, H__73: 2, H__74: 0, H__75: 0, H__76: 0, H__78: 0, H__80: 0, H__82: 2, H__84: 0, H__86: 0, H__87: 1, H__90: 1, H__92: 0, 
 RESULT = 1  
-**ROUND 1 : 4.85203 Round time:  0.069 ms 
+**ROUND 1 : 4.85203 Round time:  0.049 ms 
 RNDDEG = 5
 SUMMRY , 97, 6, 13, 25, 91, 41, 60, 81, 4, 35, 32
  charness = 0
@@ -834,9 +834,9 @@ TTT Setting cutoff=40000
 c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2519 to 2374
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.028 ms 
+Simulation found a cex by random testing:  999.03 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.033
+********  0	ftime= 0	ctime= 999.035
 !% 01|00|00|00|01|01|11|00|00|00|00|00|00|00|11|10|00|00|00|01|00|00|00|00|00|11|00|00|00|00|01|01|00|00|00|00|00|00|00|00|10|00|00|01|00|00|00|00|10|10|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|11|00|00010010|00|00|00|01|00|00|01|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|11|00|00|01|01|00|10|10|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|10|00|00|10|00|00|11|00010000|01|10|00|00|00|10|11|01|01|11|00|00|01|00|00|00|00|10|00|00|01|01|00|00|10|00|00|00|01|10|00|00|00|00|01|00|00|00|00|10|00|01|10|00|00|00|00|10|00|10|00|00|00|00|00|00|00|00|10|00|00|00|00|00|11|00|10|00|1000011010
 BEG FIND
 Level 1  intsize = 2
@@ -852,14 +852,14 @@ TTT Setting cutoff=40000
 c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2810 to 2515
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.024 ms 
+Simulation found a cex by random testing:  0.023 ms 
 END CHECK
 ********  1	ftime= 0.005	ctime= 0.028
 !% 00|00|00|10|00|00|00|10|00|10|00|10|00|00|11|00|00|00|00|00|00|00|00|00|00|10|00|00|10|01|00|11|00|10|00|00|00|00|10|00|00|00|01|00|00|00|00|00|01|01|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00100000|00|01|00|01|00|00|01|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|10|00|00|00|10|00|10|00|00|00|01|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|10|01|00|00|00|01|00|00|00|00|00|01|00100000|00|00|10|00|00|00|10|10|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|10|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|01|00|00|10|00|00|00|00|01|00|00|00|00|10|10|00|10|00|00|00|10|00|10|0000000000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 573 was 3919
-* TIME TO ADD INPUT :  0.004 ms 
+* TIME TO ADD INPUT :  0.006 ms 
 DECISIONS START = 30
 f# %assign: 24 clauses: 273 learn: 0 restart: 2 decision: 58 propagated: 304
 END FIND
@@ -873,9 +873,9 @@ TTT Setting cutoff=40000
 c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2513 to 2368
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.029 ms 
+Simulation found a cex by random testing:  0.028 ms 
 END CHECK
-********  2	ftime= 0.005	ctime= 0.033
+********  2	ftime= 0.006	ctime= 0.033
 !% 00|00|00|01|00|11|11|00|10|00|00|00|11|00|10|00|10|00|00|01|01|11|00|00|00|01|00|00|00|00|00|00|00|00|00|10|00|00|00|01|00|00|00|01|01|10|00|00|00|01|00|00|00|00|00|00|00|11|00|00|00|00|10|00|01|00|10|00|00|00100000|01|00|01|00|11|00|00|10|00|00|00|00|11|00|00|00|00|10|00|00|01|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|11|00|11|00|00|10|00|00|00|01|01|00|01|01|00|00|00|00|00|00|00|00|00|01|00|00|00|01|10|00|00100001|01|00|01|00|00|11|00|00|00|01|00|00|00|00|00|00|00|10|00|01|00|00|10|10|10|00|01|00|01|01|00|00|10|00|00|00|00|00|11|01|00|01|00|00|00|00|10|01|00|00|00|00|00|10|10|10|00|00|00|00|00|00|00|00|10|00|00|11|1010000000
 BEG FIND
 Level 1  intsize = 2
@@ -908,7 +908,7 @@ c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
 Assert at temp_term_2.sk:314 (0)
 Simulation found a cex by random testing:  0.018 ms 
 END CHECK
-********  4	ftime= 0.005	ctime= 0.022
+********  4	ftime= 0.005	ctime= 0.024
 !% 00|00|10|11|00|00|00|10|01|01|00|00|00|00|00|00|01|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|01|00|10|11|00|00|00|01|01|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|10|01|00|00|00|11|00|01|01|00010100|00|00|00|01|10|00|00|00|11|00|00|10|00|00|00|00|00|00|00|01|00|00|00|00|10|00|10|01|11|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|10|10|00|00|00|01|00|00|00|00|00|00|10|10|00|01010111|01|01|00|01|00|01|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|11|00|01|00|00|00|01|00|00|00|00|00|00|00|10|10|01|00|00|00|00|00|01|00|00|10|00|01|00|00|00|00|10|00|00|00|00|00|00|00|0000010100
 BEG FIND
 Level 1  intsize = 2
@@ -933,14 +933,14 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 36 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2267 to 2238
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  999.053 ms 
+Simulation found a cex by random testing:  0.069 ms 
 END CHECK
-********  5	ftime= 0.005	ctime= 999.057
+********  5	ftime= 0.005	ctime= 0.075
 !% 00|00|00|00|10|00|00|11|10|00|00|00|00|00|01|01|00|00|00|00|00|00|01|00|00|10|10|00|00|00|01|00|00|00|00|10|10|00|01|00|00|00|00|01|00|00|00|11|10|00|00|10|00|00|00|00|00|10|00|00|00|01|00|01|00|00|00|00|00|00100000|00|01|01|10|00|00|10|00|00|00|00|00|00|00|00|01|00|00|00|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|10|01|00|00|00|00|00|00|10|00|00|10100000|01|00|11|11|00|00|00|10|01|00|00|11|01|00|01|00|00|10|10|00|00|11|00|00|00|00|01|00|11|00|00|10|00|01|00|01|00|01|00|00|00|00|00|00|00|10|00|10|00|00|00|01|00|00|10|00|11|00|00|10|00|00|00|00|00|00|00|00|0001010010
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 455 was 3919
-* TIME TO ADD INPUT :  0.005 ms 
+* TIME TO ADD INPUT :  0.008 ms 
 DECISIONS START = 144
 f# %assign: 28 clauses: 638 learn: 5 restart: 6 decision: 167 propagated: 1106
 END FIND
@@ -957,9 +957,9 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 36 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2397 to 2278
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.044 ms 
+Simulation found a cex by random testing:  0.059 ms 
 END CHECK
-********  6	ftime= 0.005	ctime= 0.049
+********  6	ftime= 0.008	ctime= 0.085
 !% 01|00|01|10|11|01|00|00|01|00|00|01|00|00|00|00|00|10|00|01|10|00|00|00|00|00|00|00|00|10|00|00|00|00|00|01|01|00|01|00|01|00|01|01|00|00|00|00|10|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|10|00100010|00|00|00|00|11|10|10|00|00|00|00|00|00|10|00|10|10|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|10|00|00|01|00|00|00|00|00|10|00|10|00|00|00100011|11|00|10|00|00|01|00|10|10|00|00|00|00|00|00|00|00|01|01|00|01|00|00|00|00|01|01|00|00|00|01|00|01|00|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|10|00|00|00|11|00|00|00|00|00|00|01|00|00|00|00|00|0011000001
 BEG FIND
 Level 1  intsize = 2
@@ -999,14 +999,14 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2201 to 2074
 Assert at temp_term_2.sk:314 (0)
-Simulation found a cex by random testing:  0.074 ms 
+Simulation found a cex by random testing:  0.132 ms 
 END CHECK
-********  7	ftime= 0.005	ctime= 0.08
+********  7	ftime= 0.005	ctime= 0.144
 !% 00|00|00|00|01|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|01|00|00|00|10|00|10|00|10|00|11|00|00|00|00|00|00|00|00|00|11|00|00|00|00|00|10|01|00|00|00|00|00|11|00|00|00|00|00|00|01|00|00|00|00|00|00100100|01|00|00|01|01|01|01|10|00|00|10|11|00|00|10|00|00|00|01|00|00|00|10|00|00|01|00|00|00|10|00|00|00|00|01|10|00|10|10|00|00|00|01|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|11|00|00|00|00|00|00|00|00|00|00100101|00|10|10|00|00|01|01|10|00|01|00|00|00|00|00|01|00|00|00|10|00|00|00|10|00|01|00|00|00|00|00|00|00|00|00|00|01|00|00|01|00|00|00|00|00|10|00|11|00|00|00|00|00|00|00|00|00|00|00|01|10|00|00|00|00|00|11|00|0000000100
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 645 was 3919
-* TIME TO ADD INPUT :  0.005 ms 
+* TIME TO ADD INPUT :  0.006 ms 
 DECISIONS START = 187
 f# %assign: 25 clauses: 876 learn: 6 restart: 8 decision: 207 propagated: 1708
 END FIND
@@ -1038,18 +1038,18 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2120 to 1995
  * Simulation optimized it to = 1995
-Simulation didn't find a cex:  0.091 ms 
+Simulation didn't find a cex:  0.182 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 3 clauses: 13363 learn: 129 restart: 2 decision: 3338 propagated: 82739
 END CHECK
-********  8	ftime= 0.005	ctime= 0.115
+********  8	ftime= 0.006	ctime= 0.23
 !% 00|00|00|01|01|00|00|00|01|00|01|10|00|00|00|00|00|00|00|10|00|00|00|00|10|00|00|00|00|10|00|00|00|00|00|00|11|10|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00101000|00|10|00|10|00|10|01|00|10|10|00|10|01|00|00|00|00|01|10|00|00|00|00|01|00|00|00|01|00|00|00|10|01|01|11|00|01|01|00|00|00|00|00|01|00|10|00|01|00|01|00|00|00|00|00|00|10|00|00|00|00|00|00|00|01|00|00|00|00101000|00|00|10|10|00|00|01|01|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|01|00|00|00|10|01|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|10|00|00|1011001000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 500 was 3919
-* TIME TO ADD INPUT :  0.006 ms 
+* TIME TO ADD INPUT :  0.009 ms 
 DECISIONS START = 207
 f# %assign: 25 clauses: 918 learn: 6 restart: 9 decision: 222 propagated: 2000
 END FIND
@@ -1078,18 +1078,18 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2077 to 1952
  * Simulation optimized it to = 1952
-Simulation didn't find a cex:  0.092 ms 
+Simulation didn't find a cex:  0.122 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 4 clauses: 11737 learn: 81 restart: 1 decision: 4420 propagated: 12787
 END CHECK
-********  9	ftime= 0.006	ctime= 0.106
+********  9	ftime= 0.01	ctime= 0.148
 !% 00|00|10|00|01|10|10|00|00|01|01|00|00|10|01|00|10|00|10|00|01|01|01|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|01|00|01|00|01|00|00|11|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|01|00|01|00|00100100|00|00|10|00|01|01|01|11|00|00|00|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|10|10|00|00|00|00|00|11|00|00|00|00|01|01|00|00|00|00|00|10|00|00|10|00|00|00|00|10|00|00|00|00|00|10|00|00|00|10|00|00|00|00100100|10|00|00|01|00|10|00|00|01|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|11|00|00|00|01|00|00|00|10|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|01|0000001000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 615 was 3919
-* TIME TO ADD INPUT :  0.006 ms 
+* TIME TO ADD INPUT :  0.008 ms 
 DECISIONS START = 222
 f# %assign: 25 clauses: 945 learn: 6 restart: 10 decision: 235 propagated: 2297
 END FIND
@@ -1121,18 +1121,18 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2007 to 1967
  * Simulation optimized it to = 1967
-Simulation didn't find a cex:  0.107 ms 
+Simulation didn't find a cex:  999.144 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 4 clauses: 11136 learn: 81 restart: 1 decision: 4043 propagated: 12595
 END CHECK
-********  10	ftime= 0.006	ctime= 0.122
+********  10	ftime= 0.008	ctime= 999.166
 !% 00|00|10|00|00|00|00|10|00|10|01|10|00|00|00|00|00|00|10|00|01|00|01|00|00|10|10|00|00|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|10|00|10|01|00|00|00|01|00|00|11|00|00|00|00|00|00|00|00|01100100|00|01|01|00|01|00|00|10|01|10|00|01|00|10|00|01|00|00|00|00|00|00|00|00|01|00|00|00|10|01|00|00|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|01|00|11|00|01|00|11|00|00|00|00|00|00|00|00|00|00100101|00|00|00|10|10|00|00|00|00|00|11|01|00|00|01|00|00|00|00|00|00|00|00|10|00|10|01|00|00|00|00|11|01|00|11|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|00|10|01|00|00|00|00|0000001000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 615 was 3919
-* TIME TO ADD INPUT :  0.006 ms 
+* TIME TO ADD INPUT :  0.007 ms 
 DECISIONS START = 235
 f# %assign: 24 clauses: 969 learn: 6 restart: 11 decision: 247 propagated: 2601
 END FIND
@@ -1164,18 +1164,18 @@ TTT Setting cutoff=40000
 c# %assign: 13 clauses: 35 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2013 to 1998
  * Simulation optimized it to = 1998
-Simulation didn't find a cex:  0.111 ms 
+Simulation didn't find a cex:  0.139 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 3 clauses: 13233 learn: 209 restart: 2 decision: 4930 propagated: 82305
 END CHECK
-********  11	ftime= 0.006	ctime= 0.135
+********  11	ftime= 0.007	ctime= 0.173
 !% 10|10|10|10|11|00|00|01|01|01|10|01|00|00|00|00|00|00|00|00|00|00|01|00|00|00|00|10|00|00|10|00|10|11|11|00|00|10|00|00|00|00|00|00|00|00|10|01|00|00|01|00|00|00|00|10|00|00|00|00|00|00|00|00|00|00|00|00|00|00010100|00|10|01|00|01|00|00|10|00|01|10|00|00|00|00|00|00|00|10|00|11|00|00|00|00|10|00|00|00|00|10|00|00|01|00|00|11|01|00|00|00|00|01|00|00|00|00|00|00|00|00|00|01|01|00|00|00|00|00|00|00|00|00|00|00|00|00|00|10010100|10|10|10|10|01|00|01|10|01|01|01|00|00|00|00|00|01|00|10|00|00|00|00|00|00|01|00|00|00|00|00|00|00|00|00|01|00|00|00|01|00|00|00|00|00|10|00|00|00|00|00|00|10|00|00|00|00|00|00|00|00|10|10|00|00|00|00|00|0010001000
 BEG FIND
 Level 1  intsize = 2
  * After optims it became = 654 was 3919
-* TIME TO ADD INPUT :  0.006 ms 
+* TIME TO ADD INPUT :  0.009 ms 
 DECISIONS START = 247
 f# %assign: 23 clauses: 1091 learn: 7 restart: 12 decision: 263 propagated: 3018
 END FIND
@@ -1204,37 +1204,37 @@ TTT Setting cutoff=40000
 c# %assign: 11 clauses: 37 learn: 0 restart: 0 decision: 0 propagated: 4
  reduced size from 2034 to 1909
  * Simulation optimized it to = 1909
-Simulation didn't find a cex:  0.089 ms 
+Simulation didn't find a cex:  0.205 ms 
 After all optim
 TTT Setting cutoff=40000
 DECISIONS START = 0
 c# %assign: 65 clauses: 10571 learn: 191 restart: 3 decision: 3765 propagated: 142913
 END CHECK
-********  12	ftime= 0.007	ctime= 0.122
+********  12	ftime= 0.009	ctime= 0.284
  *GOT THE CORRECT ANSWER IN 13 iterations.
- *FIND TIME 0.065 CHECK TIME 999.91 TOTAL TIME 999.978
+ *FIND TIME 0.079 CHECK TIME 1999.43 TOTAL TIME 1999.51
 VALUES H__59: 0, H__69: 1, H__70: 0, H__72: 1, H__73: 1, H__74: 0, H__75: 1, H__76: 1, H__78: 0, H__80: 1, H__82: 0, H__84: 1, H__86: 0, H__87: 1, H__90: 0, H__92: 0, 
 RESULT = 2  
-**ROUND 2 : 1.38629 Round time:  1000.01 ms 
+**ROUND 2 : 1.38629 Round time:  1999.54 ms 
 RNDDEG = 80
 return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  1000.3
+Total elapsed time (ms):  1999.8
 Model building time (ms): 0.012
-Solution time (ms):       1000.29
-Max virtual mem (bytes):  100458496
-Max resident mem (bytes): 12193792
-Max private mem (bytes):  95404032
+Solution time (ms):       1999.78
+Max virtual mem (bytes):  100450304
+Max resident mem (bytes): 12181504
+Max private mem (bytes):  95408128
 ALL CORRECT
 
 [SATBackend] Stats for last run:
       [solution stats]
       successful? ---------------------> true
-      elapsed time (s) ----------------> 1.339
+      elapsed time (s) ----------------> 1.856
       model building time (s) ---------> 0.0
-      solution time (s) ---------------> 1.0
-      max memory usage (MiB) ----------> 95.80469
+      solution time (s) ---------------> 1.999
+      max memory usage (MiB) ----------> 95.796875
       [SAT-specific solution stats]
       initial number of nodes ---------> 14
       number of nodes after opts ------> 4039
@@ -1252,25 +1252,25 @@ ALL CORRECT
 [SATBackend] destroying java.lang.UNIXProcess@71d15f18
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (2) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (3) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (7) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (4) done, but aborted ===
-[SATBackend] Solver exit value: 3
-[SATBackend] The sketch cannot be resolved.
-[SATBackend] === parallel trial w/ degree -1 (6) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (5) done, but aborted ===
 [SATBackend] Solver exit value: 3
 [SATBackend] The sketch cannot be resolved.
 [SATBackend] === parallel trial w/ degree -1 (1) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (7) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (6) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (2) done, but aborted ===
+[SATBackend] Solver exit value: 3
+[SATBackend] The sketch cannot be resolved.
+[SATBackend] === parallel trial w/ degree -1 (3) done, but aborted ===
 Class dexter.Preferences$Global is not a code generator
 Class dexter.CLIParser is not a code generator
 Class dexter.Preferences$Sketch$Term is not a code generator
@@ -1293,6 +1293,7 @@ Class dexter.modifier.TermSubstitutor is not a code generator
 Class dexter.modifier.SymbolicConstsRemover is not a code generator
 Class dexter.modifier.VCWritesUpdator$ContainsStore is not a code generator
 Class dexter.modifier.StencilExprSetter is not a code generator
+Class dexter.modifier.PostfixFnNamesWithID is not a code generator
 Class dexter.modifier.SymbolicConstArgsGenerator is not a code generator
 Class dexter.ir.semantics.VarChecker is not a code generator
 Class dexter.ir.semantics.TypeChecker is not a code generator
@@ -1489,4 +1490,4 @@ Generating code with dexter.synthesis.OutputParser
 #: 9_7 val: 0
 #: 9_8 val: 0
 [SKETCH] DONE
-Total time = 2066
+Total time = 2663

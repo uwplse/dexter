@@ -3,13 +3,13 @@
 #include "HalideBuffer.h"
 #include "Dexter.h"
 
-template<typename T>
-using Buffer = Halide::Runtime::Buffer<T>;
+template<typename T, int D>
+using Buffer = Halide::Runtime::Buffer<T,D>;
 
 // 9.94 ms per megapixel on Intel x86
-void blur (Buffer<uint8_t> input, Buffer<uint8_t> output) 
+void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output) 
 {
-	Buffer<uint8_t> temp(input.width(), input.height());
+	Buffer<uint8_t, 2> temp(input.width(), input.height());
 	
 	for (int y = 0; y < temp.height(); y++)
 		for (int x = 0; x < temp.width(); x++)

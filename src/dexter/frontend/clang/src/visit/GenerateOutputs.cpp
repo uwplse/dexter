@@ -317,6 +317,11 @@ std::string Dexter::GenerateOutputs::VarsJson (std::map<std::string, std::set<Va
           var_name = var_name + "_init";
 
       json += "[\"" + var_name + "\", \"" + var_type + "\"], ";
+
+      if (name == "Local" && outVars.find(*it2) != outVars.end()) {
+        var_name = var_name + "_init";
+        json += "[\"" + var_name + "\", \"" + var_type + "\"], ";
+      }
     }
     json = json.substr(0, json.length()-2) + "], ";
   }

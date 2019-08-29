@@ -150,10 +150,10 @@ void Dexter::ExtractUDFs::GenerateUDF (FunctionDecl * fnDecl)
       return;
 
     // Translate function body to IR
-    FuncDecl * mlDecl = ClangToIRParser::parse(fnDecl);
+    FuncDecl * irDecl = ClangToIRParser::parse(fnDecl);
 
     // Save UDF
-    this->udfs.insert(mlDecl);
+    this->udfs.insert(irDecl);
 
     // Add function type to TypesFactory
     TypesFactory::functionT(fn_name, rType, paramsT);
@@ -165,7 +165,7 @@ void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * 
   // Get method and class names
   std::string m_name = mDecl->getNameAsString();
   std::string cls_name = mDecl->getParent()->getNameAsString();
-  std::string ml_name = cls_name + "_" + m_name;
+  std::string ir_name = cls_name + "_" + m_name;
 
   // Get return type
   QualType returnT = mDecl->getReturnType();
@@ -191,7 +191,7 @@ void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * 
   }
 
   // Type already exists?
-  if (TypesFactory::isFunctionT(ml_name, retTML, paramsT))
+  if (TypesFactory::isFunctionT(ir_name, retTML, paramsT))
     return;
 
   // Auto-model type
@@ -205,13 +205,13 @@ void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * 
   if (mDecl->isConst())
   {
     // Translate function body to ML
-    FuncDecl * mlDecl = ClangToIRParser::parse(cls_name, mDecl);
+    FuncDecl * irDecl = ClangToIRParser::parse(cls_name, mDecl);
 
     // Save UDF
-    this->udfs.insert(mlDecl);
+    this->udfs.insert(irDecl);
 
     // Add function type to TypesFactory
-    TypesFactory::functionT(ml_name, retTML, paramsT);
+    TypesFactory::functionT(ir_name, retTML, paramsT);
   }
   else
     Util::error(mDecl, "NYI: Dynamic modelling of non-const methods: ");

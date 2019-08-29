@@ -3,6 +3,7 @@ package dexter;
 import dexter.analysis.ExtractLiveFunctionSet;
 import dexter.analysis.ExtractStencilExpr;
 import dexter.analysis.VCAnalyzer;
+import dexter.codegen.halide.CodeGen;
 import dexter.dag.Pipeline;
 import dexter.dag.Stage;
 import dexter.frontend.CodeAnalysis;
@@ -35,7 +36,7 @@ import java.util.stream.Collectors;
  */
 public class Compiler {
 
-  public static void run () throws IOException, InterruptedException {
+  public static void run () throws Exception {
     // Run Cpp Frontend
     if (Preferences.Global.run_frontend)
       CppFrontend.run();
@@ -99,7 +100,15 @@ public class Compiler {
           // Restore outvars set
           stage.analysis().restoreOutputBuffers();
         }
+
+        // Stitch clauses together to generate stage summary
+        stage.summary(generateSummary(clauses));
       }
+
+      // Use synthesized summary to generate Halide Code
+      String halideCode = CodeGen.asHalideGenerator(cb);
+
+      System.out.println(halideCode);
     }
   }
 
@@ -348,6 +357,35 @@ public class Compiler {
     Files.writeFile(Files.clauseFilePath(cb.name(), stage.id(), buffer.name()), p.toString());
 
     return p;
+  }
+
+  private static Program generateSummary(List<Program> clauses) {
+    assert clauses.size() > 0;
+
+    Program s = clauses.get(0);
+
+    s = (Program) s.accept(new PostfixFnNamesWithID(s.functions(), 0));
+
+    for (int i=1; i<clauses.size(); i++)
+    {
+      Program clause = clauses.get(i);
+      clause = (Program) clause.accept(new PostfixFnNamesWithID(clause.functions(), i));
+
+      for (FuncDecl s_fn : s.functions())
+        for (FuncDecl c_fn : clause.functions())
+          if (s_fn.name().equals("pc") && c_fn.name().equals("pc"))
+            s_fn.body(new BinaryExpr(s_fn.body(), BinaryExpr.Op.AND, c_fn.body()));
+
+      for (FuncDecl fn : clause.functions())
+        if (!fn.name().equals("pc") && s.functions().stream().filter(fnD -> fnD.name().equals(fn.name())).count() == 0)
+          s.functions().add(fn);
+    }
+
+    for (FuncDecl fn : s.functions())
+      if (fn.name().equals("index2D"))
+        fn.body(new BinaryExpr(new BinaryExpr(new VarExpr("y", TypesFactory.Int), BinaryExpr.Op.MULT, new VarExpr("width", TypesFactory.Int)), BinaryExpr.Op.PLUS, new VarExpr("x", TypesFactory.Int)));
+
+    return s;
   }
 
   // Util functions
