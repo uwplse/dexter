@@ -1,6 +1,3 @@
-index2D (x: int, y: int, width: int) : int ->
-	y * width + x
-
 // Halide Buffer support
 class HBuffer (
 	data: array(1, int),
@@ -13,7 +10,7 @@ HBuffer_Set (buf: HBuffer, x:int, y:int, val: int) : HBuffer ->
 		store(
 			buf.data,
 			val,
-			index2D(x, y, buf.width)
+			y * buf.width + x
 		),
 		buf.width,
 		buf.height

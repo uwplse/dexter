@@ -10,7 +10,6 @@
 
 #include "clang/AST/AST.h"
 
-#include "Dexter.h"
 #include "dag/Pipeline.h"
 
 #include <map>
@@ -18,6 +17,10 @@
 using namespace clang;
 
 namespace Dexter {
+
+namespace Target {
+  enum TargetLang {Halide};
+}
 
 class NodeExt
 {

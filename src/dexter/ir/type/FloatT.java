@@ -11,4 +11,6 @@ public class FloatT implements Type {
   public String toString() {
     return "float";
   }
+
+  @Override public void print() { System.out.println(toString()); }
 }

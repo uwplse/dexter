@@ -24,7 +24,7 @@ JavaVM * Dexter::Util::jvm;
     <string>BundledApp</string>
    </array>
  */
-void Dexter::Util::initJVM (const std::string &dxJarPath)
+void Dexter::Util::initJVM (const std::string &dxJarPath, int verbosity)
 {
   JavaVMOption options[1]; // A list of options to build a JVM from C++
   JavaVMInitArgs vm_args; // Arguments for the JVM (see below)
@@ -34,7 +34,8 @@ void Dexter::Util::initJVM (const std::string &dxJarPath)
   std::vector<char> cstr(s.c_str(), s.c_str() + s.size() + 1);
   options[0].optionString = cstr.data();
 
-  llvm::outs() << "Dexter jar path: " << options[0].optionString << "\n";
+  if (verbosity > 0)
+    llvm::outs() << "Dexter jar path: " << options[0].optionString << "\n";
 
   //memset(&vm_args, 0, sizeof(vm_args));
   vm_args.version = JNI_VERSION_1_8;
@@ -47,7 +48,7 @@ void Dexter::Util::initJVM (const std::string &dxJarPath)
     llvm::errs() << "Unable to create JVM\n";
     exit(1);
   }
-  else
+  else if (verbosity > 0)
     llvm::outs() << "created jvm: " << jvm << " e " << env << "\n\n";
 }
 
@@ -103,11 +104,27 @@ void Dexter::Util::print (Dexter::Expr * e)
   return;
 }
 
+void Dexter::Util::print (Dexter::Type t)
+{
+  jclass c = env->FindClass("dexter/ir/type/Type");
+  jmethodID m = env->GetMethodID(c, "print", "()V");
+  env->CallVoidMethod(t.obj(), m);
+  return;
+}
+
 std::string Dexter::Util::toString (Dexter::Expr * e)
 {
   jclass c = env->FindClass("dexter/ir/Expr");
   jmethodID m = env->GetMethodID(c, "toString", "()Ljava/lang/String;");
   jstring str = (jstring)env->CallObjectMethod(e->obj(), m);
+  return env->GetStringUTFChars(str, JNI_FALSE);
+}
+
+std::string Dexter::Util::toString (Dexter::Type t)
+{
+  jclass c = env->FindClass("dexter/ir/type/Type");
+  jmethodID m = env->GetMethodID(c, "toString", "()Ljava/lang/String;");
+  jstring str = (jstring)env->CallObjectMethod(t.obj(), m);
   return env->GetStringUTFChars(str, JNI_FALSE);
 }
 

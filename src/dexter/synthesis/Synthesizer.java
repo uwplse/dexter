@@ -5,9 +5,12 @@ import dexter.Preferences;
 import dexter.ir.bool.Program;
 import dexter.ir.codegen.SkPrinter;
 import dexter.misc.ChooseIDInitializer;
+import org.apache.commons.io.IOUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +99,7 @@ public class Synthesizer {
 
     command.add(filepath);
 
-    if (Preferences.Global.debug)
+    if (Preferences.Global.verbosity > 1)
       System.out.println(String.join(" ", command));
 
     pb = new ProcessBuilder(command);
@@ -107,8 +110,13 @@ public class Synthesizer {
 
     if (Preferences.Global.log)
       code = pb.redirectOutput(outF).redirectError(errF).start().waitFor();
-    else
-      code = pb.start().waitFor();
+    else {
+      Process p = pb.start();
+      BufferedReader outS = new BufferedReader(new InputStreamReader(p.getInputStream()));
+      BufferedReader errS = new BufferedReader(new InputStreamReader(p.getInputStream()));
+      while ( outS.readLine() != null || errS.readLine() != null);
+      code = p.waitFor();
+    }
 
     if (parseF.exists())
       parseF.delete();

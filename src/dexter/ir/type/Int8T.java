@@ -7,5 +7,5 @@ public class Int8T extends IntT
 {
   protected Int8T() {}
 
-  @Override public String toString () { return "int8"; }
+  //@Override public String toString () { return "int8_t"; }
 }

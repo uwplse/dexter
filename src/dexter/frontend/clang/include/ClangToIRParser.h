@@ -76,6 +76,8 @@ private:
 
   static DeclRefExpr * makeDeclRefExpr(const VarDecl *D, bool RefersToEnclosingVariableOrCapture);
 
+  static bool isShortType (QualType cType);
+
   static bool debug;
 
 };

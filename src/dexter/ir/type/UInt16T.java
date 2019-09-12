@@ -7,5 +7,5 @@ public class UInt16T extends IntT
 {
   protected UInt16T() {}
 
-  @Override public String toString () { return "uint16"; }
+  //@Override public String toString () { return "uint16_t"; }
 }

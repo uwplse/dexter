@@ -149,13 +149,14 @@ void Dexter::ComputeVC::vc (clang::Expr * from, Dexter::Expr * to, Dexter::VCGen
     if (isa<TemplateSpecializationType>(opT)) {
       std::string qtn = cast<TemplateSpecializationType>(opT)->getAliasedType().getAsString();
       if (qtn.rfind("Halide::Runtime::Buffer", 0) == 0) {
+        Dexter::Expr * buffer = Dexter::ClangToIRParser::parse(c->getArg(0), vars);
+
         std::vector<Dexter::Expr*> params;
-        for (unsigned int i=0; i < c->getNumArgs(); ++i) {
+        for (unsigned int i=1; i < c->getNumArgs(); ++i) {
           params.push_back(Dexter::ClangToIRParser::parse(c->getArg(i), vars));
         }
-        params.push_back(to);
 
-        vc(c->getArg(0), new Dexter::CallExpr("HBuffer_Set", params), vcGen, replace);
+        vc(c->getArg(0), new Dexter::StoreExpr(buffer, to, params), vcGen, replace);
         return;
       }
     }
@@ -219,7 +220,12 @@ void Dexter::ComputeVC::vc (clang::CallExpr * s, Dexter::VCGenerator * vcGen)
     if (!fnDecl)
       Dexter::Util::error(s, "Function declaration not found: ");
 
-    std::string fn = fnDecl->getNameAsString();
+    std::string fn = fnDecl->getQualifiedNameAsString();
+
+    if (fn == "Dexter::Precondition") {
+      vcGen->addAssumption(Dexter::ClangToIRParser::parse(s->getArg(0), vars));
+      return;
+    }
 
     // Generate pc expr for function
     std::vector<Dexter::Expr*> pc_args;

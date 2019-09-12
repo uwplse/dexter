@@ -15,6 +15,7 @@
 #include "clang/Rewrite/Core/Rewriter.h"
 
 #include "ir/Expr.h"
+#include "ir/type/Type.h"
 
 using namespace clang;
 
@@ -26,11 +27,14 @@ public:
   static JavaVM * jvm;
   static JNIEnv * env;
 
-  static void initJVM (const std::string & dxjarPath);
+  static void initJVM (const std::string & dxjarPath, int verbosity);
   static void shutdownJVM ();
 
   static void print (Dexter::Expr * e);
   static std::string toString (Dexter::Expr * e);
+
+  static void print (Dexter::Type t);
+  static std::string toString (Dexter::Type t);
 
   static void ASSERT (bool cond, std::string msg);
 

@@ -25,10 +25,12 @@ static llvm::cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
 static llvm::cl::extrahelp DexterJarHelp("\n<dxjar> path to Dexter jar file\n");
 static llvm::cl::extrahelp DslCoreHelp("\n<dsl-core> path to default DSL implementation in Dexter IR\n");
 static llvm::cl::extrahelp DslExtHelp("\n<dsl-user> path to user DSL extensions in Dexter IR\n");
+static llvm::cl::extrahelp VerbosityHelp("\n<verbosity> level of verbosity\n");
 
 static llvm::cl::opt<std::string> JarPath("dxjar", llvm::cl::desc("<path to Dexter jar file>"), llvm::cl::Required);
 static llvm::cl::opt<std::string> DslCorePath("dsl-core", llvm::cl::desc("<path to core dsl in Dexter IR>"), llvm::cl::Required);
 static llvm::cl::opt<std::string> DslExtPath("dsl-user", llvm::cl::desc("<path to user dsl extensions in Dexter IR>"), llvm::cl::Optional, llvm::cl::init("-"));
+static llvm::cl::opt<int> Verbosity("verbosity", llvm::cl::desc("<level of debug verbosity>"), llvm::cl::Optional, llvm::cl::init(0));
 
 void initTypes()
 {
@@ -56,7 +58,7 @@ int main (int argc, const char **argv)
   ClangTool Tool(op.getCompilations(), op.getSourcePathList());
 
   // Init JVM
-  Dexter::Util::initJVM(JarPath.getValue());
+  Dexter::Util::initJVM(JarPath.getValue(), Verbosity.getValue());
   // Init Builtin Types
   initTypes();
   // Load types from default DSL to TypesFactory

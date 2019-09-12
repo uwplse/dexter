@@ -160,7 +160,8 @@ public class TypeChecker implements Visitor<Type>
     for (int i = 0; i < n.args().size(); ++i)
     {
       if (!n.args().get(i).accept(this).equals(callT.paramsT().get(i)))
-        throw new RuntimeException(n.args().get(i) + " should have type " + callT.paramsT().get(i) +
+        if (!(n.args().get(i).type() instanceof IntT && callT.paramsT().get(i) instanceof IntT))
+          throw new RuntimeException(n.args().get(i) + " should have type " + callT.paramsT().get(i) +
                 " instead of " + n.args().get(i).accept(this) + ": " + n);
     }
 
@@ -172,7 +173,8 @@ public class TypeChecker implements Visitor<Type>
   public Type visit(BinaryExpr n)
   {
     if (n.left().accept(this) != (n.right().accept(this))) {
-      throw new RuntimeException(n.left() + " evaluates to: " + n.left().accept(this) + " while " +
+      if (!(n.left().type() instanceof IntT && n.right().type() instanceof IntT))
+        throw new RuntimeException(n.left() + " evaluates to: " + n.left().accept(this) + " while " +
               n.right() + " evaluates to: " + n.right().accept(this) + " in " + n);
     }
 
@@ -272,7 +274,7 @@ public class TypeChecker implements Visitor<Type>
       e.type(field.type());
       return e.type();
     }
-    else
+    else if (t instanceof PtrT)
     {
       PtrT ptrT = (PtrT) t;
       if (e.field().equals("data")) {
@@ -287,6 +289,18 @@ public class TypeChecker implements Visitor<Type>
       else
         throw new RuntimeException("Pointer type does not have field " + e.field());
     }
+    else if (t instanceof BufferT)
+    {
+      BufferT bufT = (BufferT) t;
+      if (e.field().matches("(dim0|dim1|dim2|dim3)_extent")) {
+        e.type(TypesFactory.Int);
+        return TypesFactory.Int;
+      }
+      else
+        throw new RuntimeException("Buffer type does not have field " + e.field());
+    }
+    else
+      throw new RuntimeException("Unexpected target type: " + t);
   }
 
   @Override
@@ -462,7 +476,8 @@ public class TypeChecker implements Visitor<Type>
       else
       {
         if (!returnT.equals(argT))
-          throw new RuntimeException(arg + " in " + e + " evaluates to: " + argT + " rather than " + returnT);
+          if (!(returnT instanceof IntT && argT instanceof IntT))
+            throw new RuntimeException(arg + " in " + e + " evaluates to: " + argT + " rather than " + returnT);
       }
     }
 
@@ -598,7 +613,7 @@ public class TypeChecker implements Visitor<Type>
   @Override
   public Type visit(SelectExpr e)
   {
-    if (!(TypesFactory.isArrayT(e.array().accept(this)) || TypesFactory.isPtrT(e.array().accept(this)) || e.array() instanceof TupleExpr))
+    if (!(e.array().accept(this) instanceof CollectionT))
       throw new RuntimeException(e.array() + " is not an array" );
 
     for (Expr index : e.index())
@@ -607,7 +622,7 @@ public class TypeChecker implements Visitor<Type>
         throw new RuntimeException(index + " does not evaluate to int");
     }
 
-    ArrayT type = (ArrayT)e.array().type();
+    CollectionT type = (CollectionT)e.array().type();
     if (e.index().size() != type.dim())
       throw new RuntimeException(e + " should have " + type.dim() + " indices");
 
@@ -618,12 +633,12 @@ public class TypeChecker implements Visitor<Type>
   @Override
   public Type visit(StoreExpr e)
   {
-    if (!(TypesFactory.isArrayT(e.array().accept(this)) || TypesFactory.isPtrT(e.array().accept(this))) || e.array() instanceof TupleExpr)
+    if (!(e.array().accept(this) instanceof CollectionT))
       throw new RuntimeException(e.array() + " is not an array" );
 
 
-    if (e.value().accept(this) != ((ArrayT)e.array().type()).elemT())
-      throw new RuntimeException(e + " should store values of type " + ((ArrayT)e.array().type()).elemT());
+    if (e.value().accept(this) != ((CollectionT)e.array().type()).elemT())
+      throw new RuntimeException(e + " should store values of type " + ((CollectionT)e.array().type()).elemT());
 
     for (Expr index : e.index())
     {
@@ -631,7 +646,7 @@ public class TypeChecker implements Visitor<Type>
         throw new RuntimeException(index + " does not evaluate to int");
     }
 
-    ArrayT type = (ArrayT)e.array().type();
+    CollectionT type = (CollectionT)e.array().type();
     if (e.index().size() != type.dim())
       throw new RuntimeException(e + " should have " + type.dim() + " indices" + e.index().size());
 

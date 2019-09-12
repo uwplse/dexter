@@ -59,7 +59,7 @@ bool Dexter::GenerateOutputs::VisitFunctionDecl (FunctionDecl* f)
     stage_filename = dirName + f->getNameAsString() + "_stage_" +
           std::to_string((*stage)->getId()) +"_udfs.ir";
 
-    myfile.open (filename);
+    myfile.open (stage_filename);
     std::string udfs = GetUDFFile((*stage)->getUDFs());
     myfile << udfs;
     myfile.flush();

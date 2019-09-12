@@ -3,25 +3,25 @@ package dexter.ir.type;
 /**
  * Created by Maaz Ahmad on 6/25/19.
  */
-public class PtrT extends CollectionT
+public class BufferT extends CollectionT
 {
-  protected PtrT(Type elemT)
+  protected BufferT(Type elemT, int dims)
   {
-    super(1, elemT);
+    super(dims, elemT);
   }
 
   @Override
   public boolean equals (Object o)
   {
-    if (o instanceof PtrT)
+    if (o instanceof BufferT)
     {
-      PtrT oA = (PtrT)o;
+      BufferT oA = (BufferT)o;
       return oA.elemT.equals(elemT) && oA.dim == dim;
     }
     return false;
   }
 
-  @Override public String toString () { return "ptr(" + elemT + ")"; }
+  @Override public String toString () { return "buffer(" + elemT + "," + dim + ")"; }
 
   @Override public void print() { System.out.println(toString()); }
 }

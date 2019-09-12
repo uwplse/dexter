@@ -1,5 +1,6 @@
 .idea/*
 test/codegen/**
+test/frontend/**
 src/dexter/frontend/clang/obj/**
 src/dexter/frontend/clang/bin/**
 src/META-INF/**

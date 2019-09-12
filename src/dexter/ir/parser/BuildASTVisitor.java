@@ -40,6 +40,11 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
       DexterIRParser.ArrayTypeContext c = (DexterIRParser.ArrayTypeContext)ctx;
       return TypesFactory.arrayT(Integer.parseInt(c.dim.getText()), parseType(c.elemT));
     }
+    else if (ctx instanceof DexterIRParser.BufferTypeContext)
+    {
+      DexterIRParser.BufferTypeContext c = (DexterIRParser.BufferTypeContext)ctx;
+      return TypesFactory.bufferT(parseType(c.elemT), Integer.parseInt(c.dim.getText()));
+    }
     else if (ctx instanceof DexterIRParser.PointerTypeContext)
     {
       DexterIRParser.PointerTypeContext c = (DexterIRParser.PointerTypeContext)ctx;
@@ -76,6 +81,20 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
       String name = ctx.getText();
       if (name.equals("int"))
         return TypesFactory.Int;
+      else if (name.equals("int"))
+        return TypesFactory.Int;
+      else if (name.equals("int8_t"))
+        return TypesFactory.Int8;
+      else if (name.equals("int16_t"))
+        return TypesFactory.Int16;
+      else if (name.equals("int32_t"))
+        return TypesFactory.Int32;
+      else if (name.equals("uint8_t"))
+        return TypesFactory.UInt8;
+      else if (name.equals("uint16_t"))
+        return TypesFactory.UInt16;
+      else if (name.equals("uint32_t"))
+        return TypesFactory.UInt32;
       else if (name.equals("bool"))
         return TypesFactory.Bool;
       else if (name.equals("float"))

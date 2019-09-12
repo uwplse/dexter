@@ -1,41 +1,41 @@
 /*********************** Post-condition ************************/
 pc () : bool ->
-  @for ( out in @out_vars(HBuffer) )
-    emit buf_asn_2d(0, out.height, 0, out.width, out, @init(out))
+  @for ( out in @out_vars(buffer(int,2)) )
+    emit buf_asn_2d (0, out.dim1_extent, 0, out.dim0_extent, out, @init(out))
 
 /************************** Invariant **************************/
 inv () : bool ->
-  @for ( out in @out_vars(HBuffer) )
+  @for ( out in @out_vars(buffer(int,2)) )
     emit choose (
       inv_tmpl_1_gen (bnd_gen(out), bnd_gen(out), out, @init(out)),
       inv_tmpl_2_gen (bnd_gen(out), bnd_gen(out), bnd_gen(out), bnd_gen(out), bnd_gen(out), out, @init(out))
     )
 
-inv_tmpl_1_gen (lb_y: int, ub_y: int, out: HBuffer, out_init: HBuffer) : bool ->
-  buf_asn_2d (lb_y, ub_y, 0, out.width, out, out_init)
+inv_tmpl_1_gen (lb_y: int, ub_y: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+  buf_asn_2d (lb_y, ub_y, 0, out.dim0_extent, out, out_init)
   &&
   choose (
-    idn_2d (ub_y, out.height, 0, out.width, out, out_init),
-    idn_2d (0, lb_y, 0, out.width, out, out_init)
+    idn_2d (ub_y, out.dim1_extent, 0, out.dim0_extent, out, out_init),
+    idn_2d (0, lb_y, 0, out.dim0_extent, out, out_init)
   )
 
-inv_tmpl_2_gen (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuffer) : bool ->
-  buf_asn_2d (lb_y, ub_y, 0, out.width, out, out_init)
+inv_tmpl_2_gen (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+  buf_asn_2d (lb_y, ub_y, 0, out.dim0_extent, out, out_init)
   &&
   choose (
-    idn_2d (ub_y+1, out.height, 0, out.width, out, out_init),
-    idn_2d (0, lb_y-1, 0, out.width, out, out_init)
+    idn_2d (ub_y+1, out.dim1_extent, 0, out.dim0_extent, out, out_init),
+    idn_2d (0, lb_y-1, 0, out.dim0_extent, out, out_init)
   )
   &&
   buf_asn_1d(curr_y, lb_x, ub_x, out, out_init)
   &&
   choose (
-    idn_1d (curr_y, ub_x, out.width, out, out_init),
+    idn_1d (curr_y, ub_x, out.dim0_extent, out, out_init),
     idn_1d (curr_y, 0, lb_x, out, out_init)
   )
 
 /******************* Dynamically generated functions ***********/
-buf_asn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuffer) : bool ->
+buf_asn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_y,
     lb_y,
@@ -44,11 +44,11 @@ buf_asn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: 
       idx_x,
       lb_x,
       ub_x,
-      HBuffer_Get(out, idx_x, idx_y) = int_expr(HBuffer_Get(out_init, idx_x, idx_y))
+      select(out, idx_x, idx_y) = int_expr(select(out_init, idx_x, idx_y))
     )
   )
 
-idn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuffer) : bool ->
+idn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_y,
     lb_y,
@@ -57,24 +57,24 @@ idn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuf
       idx_x,
       lb_x,
       ub_x,
-      HBuffer_Get(out, idx_x, idx_y) = HBuffer_Get(out_init, idx_x, idx_y)
+      select(out, idx_x, idx_y) = select(out_init, idx_x, idx_y)
     )
   )
 
-buf_asn_1d (idx_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuffer) : bool ->
+buf_asn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_x,
     lb_x,
     ub_x,
-    HBuffer_Get(out, idx_x, idx_y) = int_expr(HBuffer_Get(out_init, idx_x, idx_y))
+    select(out, idx_x, idx_y) = int_expr(select(out_init, idx_x, idx_y))
   )
 
-idn_1d (idx_y: int, lb_x: int, ub_x: int, out: HBuffer, out_init: HBuffer) : bool ->
+idn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_x,
     lb_x,
     ub_x,
-    HBuffer_Get(out, idx_x, idx_y) = HBuffer_Get(out_init, idx_x, idx_y)
+    select(out, idx_x, idx_y) = select(out_init, idx_x, idx_y)
   )
 
 /****************************** Generators *********************/
@@ -84,5 +84,5 @@ int_expr (val: int) : int ->
   if val < uninterp(int) then uninterp(int) else val
 
 // Bounds and Indexes
-bnd_gen (out: HBuffer) : int ->
-  choose(0, out.width, out.height, @vars(int))
+bnd_gen (out: buffer(int,2)) : int ->
+  choose(0, out.dim0_extent, out.dim1_extent, @vars(int))

@@ -41,12 +41,15 @@ public class Compiler {
     if (Preferences.Global.run_frontend)
       CppFrontend.run();
 
+    // Load intention code blocks
+    Set<CodeBlock> intentionalBlocks = CppFrontend.getIntentionalBlocks();
+
+    if (intentionalBlocks.size() == 0)
+      return;
+
     // Initialize TypesFactory
     TypesFactory.loadDSL(Files.coreDslFilePath());
     TypesFactory.loadDSL(Files.userDslFilePath());
-
-    // Load intention code blocks
-    Set<CodeBlock> intentionalBlocks = CppFrontend.getIntentionalBlocks();
 
     for (CodeBlock cb : intentionalBlocks) {
       // Get DAG of operations in code block
@@ -108,7 +111,7 @@ public class Compiler {
       // Use synthesized summary to generate Halide Code
       String halideCode = CodeGen.asHalideGenerator(cb);
 
-      System.out.println(halideCode);
+      System.out.println("\n\n" + halideCode);
     }
   }
 
@@ -173,7 +176,7 @@ public class Compiler {
     // Remove generators and unused functions
     removeUnusedFunctions(p, false);
 
-    if (Preferences.Global.debug)
+    if (Preferences.Global.verbosity > 2)
       p.print();
 
     return p;
@@ -261,6 +264,9 @@ public class Compiler {
       // Extract term mapping
       Expr point = extractSynthesizedPoint(tm);
 
+      if (Preferences.Global.verbosity > 2)
+        point.print();
+
       // Save term mapping
       termMapping.put(term, point);
 
@@ -282,7 +288,7 @@ public class Compiler {
     // Update postconditions
     updateStencilExpression(p, termMapping, buffer.type());
 
-    if (Preferences.Global.debug)
+    if (Preferences.Global.verbosity > 1)
       p.print();
 
     return p;
@@ -398,17 +404,8 @@ public class Compiler {
     Expr ui_expr = target;
 
     Type elemT ;
-    if (target.type() instanceof ArrayT)
-      elemT = ((ArrayT) target.type()).elemT();
-    else if (target.type() instanceof PtrT)
-      elemT = ((PtrT) target.type()).elemT();
-    else if (target.type() instanceof ClassT) {
-      ClassT clsT = (ClassT) target.type();
-      if (clsT.name().equals("HBuffer"))
-        elemT = ((ArrayT) clsT.fields().get(0).type()).elemT();
-      else
-        throw new RuntimeException("NYI");
-    }
+    if (target.type() instanceof CollectionT)
+      elemT = ((CollectionT) target.type()).elemT();
     else
       throw new RuntimeException("NYI");
 

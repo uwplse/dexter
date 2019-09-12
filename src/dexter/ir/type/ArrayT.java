@@ -3,21 +3,12 @@ package dexter.ir.type;
 /**
  * Created by Maaz Ahmad on 6/25/19.
  */
-public class ArrayT implements Type
+public class ArrayT extends CollectionT
 {
-  protected Type elemT;
-  protected int dim;
-
   protected ArrayT(int dim, Type elemT)
   {
-    this.elemT = elemT;
-    this.dim = dim;
+    super(dim, elemT);
   }
-
-  public int dim () { return dim; }
-  public Type elemT () { return elemT; }
-
-  @Override public String toString () { return "array(" + dim + "," + elemT + ")"; }
 
   @Override
   public boolean equals (Object o)
@@ -30,6 +21,7 @@ public class ArrayT implements Type
     return false;
   }
 
-  @Override
-  public int hashCode () { return 0; }
+  @Override public String toString () { return "array(" + dim + "," + elemT + ")"; }
+
+  @Override public void print() { System.out.println(toString()); }
 }

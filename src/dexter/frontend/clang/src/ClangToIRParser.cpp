@@ -162,10 +162,10 @@ Dexter::Expr * Dexter::ClangToIRParser::parse (clang::Expr * e, std::map<NamedDe
 
       if (q_cls_name == "Halide::Runtime::Buffer")
       {
-        if (fn_name == "height")
-          return new FieldExpr(parse(obj, vars), "height");
         if (fn_name == "width")
-          return new FieldExpr(parse(obj, vars), "width");
+          return new FieldExpr(parse(obj, vars), "dim0_extent");
+        else if (fn_name == "height")
+          return new FieldExpr(parse(obj, vars), "dim1_extent");
         else
           Util::error(e, "NYI: Support for Halide Buffer func `" + fn_name + "`:-\n");
       }
@@ -225,10 +225,11 @@ Dexter::Expr * Dexter::ClangToIRParser::parse (clang::Expr * e, std::map<NamedDe
             std::string qtn = cast<TemplateSpecializationType>(opT)->getAliasedType().getAsString();
             if (qtn.rfind("Halide::Runtime::Buffer", 0) == 0) {
               std::vector<Dexter::Expr*> params;
-              for (unsigned int i=0; i < c->getNumArgs(); ++i) {
+              Dexter::Expr* array = parse(c->getArg(0), vars);
+              for (unsigned int i=1; i < c->getNumArgs(); ++i) {
                 params.push_back(parse(c->getArg(i), vars));
               }
-              return new Dexter::CallExpr("HBuffer_Get", params);
+              return new Dexter::SelectExpr(array, params);
             }
           }
 
@@ -351,8 +352,10 @@ Dexter::Expr * Dexter::ClangToIRParser::parse (clang::Expr * e, std::map<NamedDe
   else if (isa<CXXThisExpr>(e))
     return new Dexter::VarExpr("inp", Dexter::ClangToIRParser::toIRType(e->getType()));
 
-  else if (isa<IntegerLiteral>(e))
+  else if (isa<IntegerLiteral>(e)){
+    // e->getType()->dump();
     return new IntLitExpr(cast<IntegerLiteral>(e)->getValue().getSExtValue());
+  }
 
   else if (isa<CXXBoolLiteralExpr>(e))  // only in C++
     return new BoolLitExpr(cast<CXXBoolLiteralExpr>(e)->getValue());
@@ -517,13 +520,28 @@ Dexter::Type Dexter::ClangToIRParser::toIRType (QualType cType)
     return toIRType(cast<ReferenceType>(cType)->getPointeeType());
 
   else if (cType->isBooleanType())
-    return TypesFactory::Bool;
+      return TypesFactory::Bool;
+
+  else if (cType->isCharType() && cType->isSignedIntegerType())
+    return TypesFactory::Int8;
+
+  else if (cType->isCharType())
+    return TypesFactory::UInt8;
+
+  else if (isShortType(cType) && cType->isSignedIntegerType())
+    return TypesFactory::Int16;
+
+  else if (isShortType(cType))
+    return TypesFactory::UInt16;
+
+  else if (cType->isIntegerType() && cType->isSignedIntegerType())
+    return TypesFactory::Int32;
+
+  else if (cType->isIntegerType())
+    return TypesFactory::UInt32;
 
   else if (cType->isFloatingType())
     return TypesFactory::Float;
-
-  else if (cType->isIntegerType())
-    return TypesFactory::Int;
 
   else if (cType->isArrayType())
     return TypesFactory::arrayT(1, toIRType(cast<ArrayType>(cType)->getElementType()));
@@ -573,13 +591,40 @@ Dexter::Type Dexter::ClangToIRParser::toIRType (QualType cType)
 
     RecordDecl* rdecl = cast<RecordType>(des_cType.getTypePtr())->getDecl();
 
+    std::string t = des_cType.getAsString();
     std::string tn = rdecl->getNameAsString();
     std::string tqn = rdecl->getQualifiedNameAsString();
 
     if (TypesFactory::isClassT(tn))
       return TypesFactory::lookupClassT(tn);
-    else if (tqn == "Halide::Runtime::Buffer")
-      return TypesFactory::lookupClassT("HBuffer");
+    else if (tqn == "Halide::Runtime::Buffer") {
+      std::smatch res;
+      std::regex pattern("(const )?class Halide::Runtime::Buffer<(.*),(.*)>");
+
+      if (std::regex_match(t, res, pattern)) {
+        std::string eT = getCanonicalName(res[2]);
+        int dim = stoi(getCanonicalName(res[3]));
+
+        if (eT == "uint8")
+          return TypesFactory::bufferT(Dexter::TypesFactory::UInt8, dim);
+        else if (eT == "uint16")
+          return TypesFactory::bufferT(Dexter::TypesFactory::UInt16, dim);
+        else if (eT == "uint32")
+          return TypesFactory::bufferT(Dexter::TypesFactory::UInt32, dim);
+        else if (eT == "int8")
+          return TypesFactory::bufferT(Dexter::TypesFactory::Int8, dim);
+        else if (eT == "int16")
+          return TypesFactory::bufferT(Dexter::TypesFactory::Int16, dim);
+        else if (eT == "int32")
+          return TypesFactory::bufferT(Dexter::TypesFactory::Int32, dim);
+        else if (eT == "float")
+          return TypesFactory::bufferT(Dexter::TypesFactory::Float, dim);
+        else
+          Util::error(cType, ">> Don't know how to translate type to IR: ");
+      }
+      else
+        Util::error(des_cType, ">>> Don't know how to translate type to IR: " + t + " ");
+    }
     else
       Util::error(cType, "Don't know how to translate type to IR: ");
 
@@ -592,6 +637,29 @@ Dexter::Type Dexter::ClangToIRParser::toIRType (QualType cType)
 
   // unreachable
   return NULL;
+}
+
+bool Dexter::ClangToIRParser::isShortType (QualType cType)
+{
+  const auto *BT = cType->getAs<BuiltinType>();
+
+  switch (BT->getKind()) {
+    case BuiltinType::Short:
+    case BuiltinType::UShort:
+      return true;//return TypesFactory::Int;
+    case BuiltinType::UChar:
+    case BuiltinType::Char_U:
+    case BuiltinType::WChar_U:
+    case BuiltinType::Char_S:
+    case BuiltinType::SChar:
+    case BuiltinType::WChar_S:
+    case BuiltinType::Char8:
+    case BuiltinType::Char16:
+    case BuiltinType::Char32:
+      return false;
+    default:
+      return false;
+  }
 }
 
 Dexter::Expr * Dexter::ClangToIRParser::integerCast (Dexter::Expr * subExpr, QualType from, QualType to)

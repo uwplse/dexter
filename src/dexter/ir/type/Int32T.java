@@ -7,5 +7,5 @@ public class Int32T extends IntT
 {
   protected Int32T() {}
 
-  @Override public String toString () { return "int32"; }
+  //@Override public String toString () { return "int32_t"; }
 }

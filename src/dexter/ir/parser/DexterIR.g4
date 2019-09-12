@@ -21,9 +21,10 @@ varDecl : name=ID ':' t=type;
 type
      : name=ID                                          # classType
      | 'array' '(' dim=NUMBER ',' elemT=type ')'        # arrayType
+     | 'ptr' '(' elemT=type ')'                         # pointerType
+     | 'buffer' '(' elemT=type ',' dim=NUMBER ')'       # bufferType
      | 'tuple' '(' sz=NUMBER ',' elemT=type ')'         # tupleType
      | 'list' '(' elemT=type ')'                        # listType
-     | 'ptr' '(' elemT=type ')'                         # pointerType
      | '(' (type (',' type)* )? ')' '->' retT=type      # fnType
      | 'bv' '(' w=NUMBER ')'                            # bitvectorType
      | BASETYPE                                         # baseType
@@ -141,7 +142,7 @@ BOR : '|';
 BXOR : '^';
 BNOT : '~';
 
-BASETYPE : 'int' | 'bool' | 'float' ;
+BASETYPE : 'int8_t' | 'int16_t' | 'int32_t' | 'uint8_t' | 'uint16_t' | 'uint32_t' | 'int' | 'bool' | 'float' ;
 
 MACRO : 'out_vars' | 'out_arr_vars' | 'in_vars' | 'idx_vars' | 'vars' | 'consts' ;
 

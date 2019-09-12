@@ -1,5 +1,6 @@
 package dexter.ir.codegen;
 
+import dexter.Preferences;
 import dexter.ir.Expr;
 import dexter.ir.Visitor;
 import dexter.ir.array.*;
@@ -61,6 +62,8 @@ public class SkPrinter implements Visitor<String>
       return "int";
     else if (t instanceof PtrT)
       return "Ptr_" + toSkType(((PtrT) t).elemT());
+    else if (t instanceof BufferT)
+      return "Buffer" + ((BufferT) t).dim() + "D<" + toSkType(((BufferT) t).elemT()) + ">";
     else if (t instanceof ArrayT)
     {
       ArrayT aT = (ArrayT)t;
@@ -152,6 +155,39 @@ public class SkPrinter implements Visitor<String>
   @Override
   public String visit(DecrPtrExpr e) {
     return "new " + toSkType(e.type()) + "(data=("+e.ptr().accept(this)+".data), offset=(" + e.ptr().accept(this) + ".offset - " + e.decr().accept(this)+"))";
+  }
+
+  public String visit(CallExpr e, int id)
+  {
+    if (TypesFactory.isClassT(e.name()))
+    {
+      return e.accept(this);
+    }
+    else {
+      // If calling a generator function
+      if (e.name().endsWith("_gen")) {
+        List<Expr> newArgs = new ArrayList<>(e.args());
+
+        // Pass choose vars
+        for (FuncDecl fnDecl : this.fns) {
+          if (fnDecl.name().equals(e.name())) {
+            ChooseBodyParamsFinder f = new ChooseBodyParamsFinder();
+            fnDecl.body().accept(f);
+
+            for (Tuple2<Integer,Integer> ID : f.IDs) {
+              newArgs.add(new VarExpr("choose" + ID._1 + "_" + id, TypesFactory.Int));
+              chooseIDs.put(ID._1 + "_" + id, (int) Math.ceil(Math.log(ID._2) / Math.log(2)));
+            }
+
+            break;
+          }
+        }
+
+        return e.name() + printExprList(newArgs, "(", ", ", ")", false);
+      }
+      else
+        return e.accept(this);
+    }
   }
 
   @Override
@@ -267,21 +303,21 @@ public class SkPrinter implements Visitor<String>
     // reset
     CountCallExprs.reset();
 
-    Map<CallExpr, Integer> genCalls = new HashMap<>();
+    Map<CallExpr, List<Integer>> genCalls = new HashMap<>();
     List<Expr> newArgs = new ArrayList<>();
     for (Expr choice : ch.args()){
       CountCallExprs cce = new CountCallExprs();
       newArgs.add(choice.accept(cce));
-      cce.getCount().forEach((c, i) -> {
-        if (!genCalls.containsKey(c) || genCalls.get(c) < i)
-          genCalls.put(c, i);
+      cce.getCount().forEach((c, ids) -> {
+        if (!genCalls.containsKey(c) || genCalls.get(c).size() < ids.size())
+          genCalls.put(c, ids);
       });
     }
 
     // re-use calls to generators inside the body
     for (CallExpr c : genCalls.keySet()){
-      for (int i=0; i<genCalls.get(c); i++)
-        sb.append(toSkType(c.type()) + " " + c.name() + "_" + CountCallExprs.getIds().get(c) + "_" + i + " = " + c.accept(this) + ";\n" + indent());
+      for (int i=0; i<genCalls.get(c).size(); i++)
+        sb.append(toSkType(c.type()) + " " + c.name() + "_" + CountCallExprs.getIds().get(c) + "_" + i + " = " + this.visit(c, genCalls.get(c).get(i)) + ";\n" + indent());
     }
 
     sb.append("return ");
@@ -478,6 +514,24 @@ public class SkPrinter implements Visitor<String>
       return sb.toString();
     }
 
+    else if (TypesFactory.isBufferT(t))
+    {
+      BufferT bufT = (BufferT)t;
+
+      StringBuffer sb = new StringBuffer();
+
+      if (TypesFactory.isPrimitiveT(bufT.elemT())) {
+        sb.append(indent() + toSkType(bufT) + " " + n + " = new " + toSkType(bufT) + "();\n");
+        sb.append(indent() + n + ".data = " + n + "_data;\n");
+        for (int dim=0; dim<bufT.dim(); dim++)
+          sb.append(indent() + n + ".dim" + dim + "_extent = " + v.name().replace("_init","")+"_dim" + dim + ";\n");
+      }
+      else
+        throw new RuntimeException("don't know how to serialize array type: " + v.name());
+
+      return sb.toString();
+    }
+
     // TODO: fix this once Shoaib decides how arrays should be encoded
     else if (TypesFactory.isArrayT(t))
     {
@@ -494,27 +548,6 @@ public class SkPrinter implements Visitor<String>
 
       StringBuffer sb = new StringBuffer();
       sb.append(indent() + toSkType(classT) + " " + n + " = new " + toSkType(classT) + "();\n");
-
-      if (classT.name().equals("HBuffer")) {
-        if (v.name().endsWith("_init")) {
-          for (VarExpr field : classT.fields()) {
-            String target = id();
-            String serializedFieldName = (field.name().equals("data") ? src + "_" + field.name() : src.substring(0, src.length()-4) + field.name());
-            Type fieldT = field.type();
-
-            if (TypesFactory.isClassT(fieldT))
-              sb.append(deserializeFromHarness(new VarExpr(target, field.type()), serializedFieldName, enclosedArray));
-            else if (TypesFactory.isListT(fieldT))
-              sb.append(deserializeFromHarness(new VarExpr(target, field.type()), serializedFieldName, enclosedArray));
-            else
-              sb.append(indent() + toSkType(fieldT) + " " + target + " = " + serializedFieldName + enclosedArray + ";\n");
-
-            sb.append(indent() + n + "." + field.name() + " = " + target + ";\n");
-          }
-
-          return sb.toString();
-        }
-      }
 
       for (VarExpr field : classT.fields())
       {
@@ -603,20 +636,32 @@ public class SkPrinter implements Visitor<String>
         throw new RuntimeException("don't know how to serialize array type: " + v.name());
     }
 
-    else if (TypesFactory.isClassT(v.type()))
+    else if (TypesFactory.isBufferT(t))
+    {
+      BufferT bufT = (BufferT)t;
+
+      List<String> s = new ArrayList<>();
+
+      if (TypesFactory.isPrimitiveT(bufT.elemT())) {
+        if (v.name().endsWith("_init"))
+          return toSkType(bufT.elemT()) + "[ARRAY_LEN] " + v.name() + "_data";
+        else
+          s.add (toSkType(bufT.elemT()) + "[ARRAY_LEN] " + v.name() + "_data");
+
+        for (int dim=0; dim<bufT.dim(); dim++)
+          s.add("int " + v.name() + "_dim" + dim);
+
+        return String.join(", ", s);
+      }
+      else
+        throw new RuntimeException("don't know how to serialize array type: " + v.name());
+    }
+    else if (TypesFactory.isClassT(t))
     {
       List<String> s = new ArrayList<>();
 
-      if (((ClassT) v.type()).name().equals("HBuffer"))
-        if (v.name().endsWith("_init"))
-          for (VarExpr field : ((ClassT)v.type()).fields())
-          {  s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray)); break; }
-        else
-          for (VarExpr field : ((ClassT)v.type()).fields())
-            s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
-      else
-        for (VarExpr field : ((ClassT)v.type()).fields())
-          s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
+      for (VarExpr field : ((ClassT)v.type()).fields())
+        s.add(serializeToHarness(new VarExpr(v.name() + "_" + field.name(), field.type()), enclosedArray));
 
       return String.join(", ", s);
     }
@@ -840,10 +885,10 @@ public class SkPrinter implements Visitor<String>
     sb.append("include \"src/dexter/synthesis/grammar.skh\";\n\n");
 
     // Ultimately, I suppose this should come from some config file or user param.
-    sb.append("int ARRAY_LEN = 70;\n");
+    sb.append("int ARRAY_LEN = " + Preferences.Sketch.arr_sz_bnd + ";\n");
 
     // All array select and stores are padding with offset
-    sb.append("int OFFSET = 30;\n\n");
+    sb.append("int OFFSET = " + Preferences.Sketch.arr_sz_bnd / 2 + ";\n\n");
 
     for (ClassDecl c : p.classes())
       sb.append(c.accept(this));
@@ -874,6 +919,8 @@ public class SkPrinter implements Visitor<String>
     sb.append(printListFunctions());
 
     sb.append(printPtrFunctions());
+
+    sb.append(printBufferFunctions());
 
     sb.append(printOpFunctions());
 
@@ -919,12 +966,49 @@ public class SkPrinter implements Visitor<String>
       handled.add(skPtrT);
 
       /* declaration
-         struct ListT { int size; T [size] contents; }
+         struct PtrT <T> { int offset; T [size] data; }
        */
       sb.append("struct " + skPtrT + " {\n" +
                 "  int offset;\n" +
                 "  " + skElemType + "[ARRAY_LEN] data;\n" +
                 "}\n\n");
+    }
+
+    return sb.toString();
+  }
+
+  protected String printBufferFunctions() {
+    if (TypesFactory.bufferTypes().size() == 0)
+      return "";
+
+    StringBuffer sb = new StringBuffer();
+    sb.append("\n\n/*** Buffer declarations ***/\n\n");
+
+    // make buffer printing deterministic for testing purposes
+    List<BufferT> buffers = new ArrayList<>(TypesFactory.bufferTypes());
+    buffers.sort(Comparator.comparing((BufferT t) -> t.toString()));
+
+    List<String> handled = new ArrayList<>();
+
+    for (BufferT t : buffers)
+    {
+      String skBufferT = "Buffer" + t.dim() + "D <T>";
+
+      if (handled.contains(skBufferT))
+        continue;
+
+      handled.add(skBufferT);
+
+      /* declaration
+         struct Buffer <T> { T [size] data; int dim0_extent; int dim1_extent; ... }
+       */
+      sb.append("struct " + skBufferT + " {\n" +
+          "  T [ARRAY_LEN] data;\n");
+
+      for (int dim=0; dim<t.dim(); dim++)
+          sb.append("  int dim" + dim + "_extent;\n");
+
+      sb.append("}\n\n");
     }
 
     return sb.toString();
@@ -1274,6 +1358,13 @@ public class SkPrinter implements Visitor<String>
     {
       return e.array().accept(this) + ".data[OFFSET + " + e.array().accept(this) + ".offset + (" + e.index().get(0).accept(this) + ")]";
     }
+    else if  (e.array().type() instanceof BufferT)
+    {
+      // assume planar mem layout
+      // assume 2D
+      assert (((BufferT) e.array().type()).dim() == 2);
+      return e.array().accept(this) + ".data[OFFSET + " + e.index().get(0).accept(this) + " + " + e.index().get(1).accept(this) + " * " + e.array().accept(this) + ".dim0_extent]";
+    }
     else
     {
       // Temporary hack for STNG
@@ -1300,6 +1391,12 @@ public class SkPrinter implements Visitor<String>
       sb.append(skArrayType + " r = new " + skArrayType + "(data=(" + e.array().accept(this) + ".data), offset=(" + e.array().accept(this) + ".offset));\n" +
           indent() + "r.data[OFFSET + r.offset + (" + e.index().get(0).accept(this) + ")] = " + e.value().accept(this) + ";\n" +
           indent() + "return r");
+    else if (e.array().type() instanceof BufferT) {
+      assert (((BufferT) e.array().type()).dim() == 2);
+      sb.append(skArrayType + " r = new " + skArrayType + "(data=" + e.array().accept(this) + ".data, dim0_extent=" + e.array().accept(this) + ".dim0_extent, dim1_extent=" + e.array().accept(this) + ".dim1_extent);\n" +
+          indent() + "r.data[OFFSET + " + e.index().get(0).accept(this) + " + " + e.index().get(1).accept(this) + " * " + e.array().accept(this) + ".dim0_extent] = " + e.value().accept(this) + ";\n" +
+          indent() + "return r");
+    }
     else
       sb.append(skArrayType + " r = " + e.array().accept(this) + ";\n" +
           indent() +"r" + printExprList(indexes, "[", "][", "]", false) + " = " + e.value().accept(this) + ";\n" +

@@ -8,4 +8,6 @@ public class IntT implements Type
   protected IntT() {}
 
   @Override public String toString () { return "int"; }
+
+  @Override public void print() { System.out.println(toString()); }
 }

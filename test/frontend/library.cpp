@@ -6,11 +6,10 @@
 template<typename T, int D>
 using Buffer = Halide::Runtime::Buffer<T,D>;
 
-// 9.94 ms per megapixel on Intel x86
-void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output) 
+void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 {
-	Buffer<uint8_t, 2> temp(input.width(), input.height());
-	
+	Buffer<uint8_t,2> temp(input.width(), input.height());
+
 	for (int y = 0; y < temp.height(); y++)
 		for (int x = 0; x < temp.width(); x++)
 			temp(x, y) = (input(x-1, y) + input(x, y) + input(x+1, y)) / 3;
@@ -20,9 +19,9 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 			output(x, y) = (temp(x, y-1) + temp(x, y) + temp(x, y+1)) / 3;
 }
 
-/*void harrisCorners (Buffer<float> input, Buffer<float> output)
+/*void harrisCorners (Buffer<float,3> input, Buffer<float,3> output)
 {
-	Buffer<float> grayscale(input.width(), input.height());
+	Buffer<float,2> grayscale(input.width(), input.height());
 
 	// Convert Image to Grayscale
 	for (int y = 0; y < input.height(); y++)
@@ -138,7 +137,7 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 			output(x, y) = (float)(a*c - b*b - 0.04*(a + c)*(a + c)); // k = 0.04
 		}
 	}
-}
+}*/
 
-DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)*/
-DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
+//DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
+//DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)

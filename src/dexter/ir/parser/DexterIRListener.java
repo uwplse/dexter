@@ -84,6 +84,30 @@ public interface DexterIRListener extends ParseTreeListener {
 	 */
 	void exitArrayType(DexterIRParser.ArrayTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code pointerType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterPointerType(DexterIRParser.PointerTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code pointerType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitPointerType(DexterIRParser.PointerTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code bufferType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterBufferType(DexterIRParser.BufferTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bufferType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitBufferType(DexterIRParser.BufferTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code tupleType}
 	 * labeled alternative in {@link DexterIRParser#type}.
 	 * @param ctx the parse tree
@@ -107,18 +131,6 @@ public interface DexterIRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitListType(DexterIRParser.ListTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link DexterIRParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterPointerType(DexterIRParser.PointerTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link DexterIRParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitPointerType(DexterIRParser.PointerTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code fnType}
 	 * labeled alternative in {@link DexterIRParser#type}.

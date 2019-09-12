@@ -21,12 +21,12 @@ public class CLIParser
   private boolean log = false;
 
   @Option(
-      name="--debug",
-      aliases="-d",
+      name="--verbose",
+      aliases="-v",
       required=false,
-      usage="Run in debug mode"
+      usage="Level of verbosity"
   )
-  private boolean debug = false;
+  private int verbosity = 0;
 
   @Option(
       name="--use-output-logs",
@@ -88,7 +88,7 @@ public class CLIParser
   private File frontend;
 
   public boolean log() { return log; }
-  public boolean debug() { return debug; }
+  public int verbosity() { return verbosity; }
   public boolean use_output_logs() { return use_output_logs; }
   public boolean skip_frontend() { return skip_frontend; }
   public boolean generate_intermediate_files() { return generate_intermediate_files; }
@@ -139,11 +139,13 @@ public class CLIParser
       return;
     }
 
+    if ( this.verbosity < 1 )
+      return;
+
+    System.out.println("--verbosity set to " + this.verbosity);
+
     if ( this.log )
       System.out.println("--log flag is set");
-
-    if ( this.debug )
-      System.out.println("--debug flag is set");
 
     if ( this.generate_intermediate_files )
       System.out.println("--generate-intermediate-files flag is set");

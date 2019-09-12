@@ -8,6 +8,12 @@
 #include "ir/type/TypesFactory.h"
 
 Dexter::IntT Dexter::TypesFactory::Int;
+Dexter::Int8T Dexter::TypesFactory::Int8;
+Dexter::Int16T Dexter::TypesFactory::Int16;
+Dexter::Int32T Dexter::TypesFactory::Int32;
+Dexter::UInt8T Dexter::TypesFactory::UInt8;
+Dexter::UInt16T Dexter::TypesFactory::UInt16;
+Dexter::UInt32T Dexter::TypesFactory::UInt32;
 Dexter::BoolT Dexter::TypesFactory::Bool;
 Dexter::FloatT Dexter::TypesFactory::Float;
 
@@ -23,6 +29,12 @@ void Dexter::TypesFactory::init ()
   // Init types
   Bool.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Bool", "Ldexter/ir/type/Type;")));
   Int.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Int", "Ldexter/ir/type/Type;")));
+  Int8.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Int8", "Ldexter/ir/type/Type;")));
+  Int16.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Int16", "Ldexter/ir/type/Type;")));
+  Int32.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Int32", "Ldexter/ir/type/Type;")));
+  UInt8.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "UInt8", "Ldexter/ir/type/Type;")));
+  UInt16.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "UInt16", "Ldexter/ir/type/Type;")));
+  UInt32.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "UInt32", "Ldexter/ir/type/Type;")));
   Float.init(e->GetStaticObjectField(ts, e->GetStaticFieldID(ts, "Float", "Ldexter/ir/type/Type;")));
 }
 
@@ -42,6 +54,15 @@ Dexter::ArrayT Dexter::TypesFactory::arrayT (int dim, Dexter::Type elemsT)
   jmethodID m = e->GetStaticMethodID(c, "arrayT", "(ILdexter/ir/type/Type;)Ldexter/ir/type/ArrayT;");
   jobject tobj = e->CallStaticObjectMethod(c, m, (jint) dim, elemsT.obj());
   return ArrayT(tobj);
+}
+
+Dexter::BufferT Dexter::TypesFactory::bufferT (Dexter::Type elemsT, int dim)
+{
+  JNIEnv * e = Util::env;
+  jclass c = e->FindClass("dexter/ir/type/TypesFactory");
+  jmethodID m = e->GetStaticMethodID(c, "bufferT", "(Ldexter/ir/type/Type;I)Ldexter/ir/type/BufferT;");
+  jobject tobj = e->CallStaticObjectMethod(c, m, elemsT.obj(), (jint) dim);
+  return BufferT(tobj);
 }
 
 Dexter::ClassT Dexter::TypesFactory::classT (std::string name, std::vector<VarExpr*> fields)

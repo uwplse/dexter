@@ -7,5 +7,5 @@ public class UInt32T extends IntT
 {
   protected UInt32T() {}
 
-  @Override public String toString () { return "uint32"; }
+  //@Override public String toString () { return "uint32_t"; }
 }

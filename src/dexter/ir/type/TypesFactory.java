@@ -16,11 +16,18 @@ import java.util.*;
 public class TypesFactory
 {
   public static final Type Int = new IntT();
+  public static final Type Int8 = new Int8T();
+  public static final Type Int16 = new Int16T();
+  public static final Type Int32 = new Int32T();
+  public static final Type UInt8 = new UInt8T();
+  public static final Type UInt16 = new UInt16T();
+  public static final Type UInt32 = new UInt32T();
   public static final Type Bool = new BoolT();
   public static final Type Float = new FloatT();
 
   protected static Map<Type, PtrT> ptrT = new HashMap<>();
   protected static Map<Map.Entry<Integer, Type>, ArrayT> arrayT = new HashMap<>();
+  protected static Map<Map.Entry<Type, Integer>, BufferT> bufferT = new HashMap<>();
   protected static Map<Map.Entry<String, Map.Entry<Type, List<Type>>>, FunctionT> functionsT = new HashMap<>();
   protected static Map<String, ClassT> classT = new HashMap<>();
   protected static Map<Type, ListT> listT = new HashMap<>();
@@ -71,7 +78,12 @@ public class TypesFactory
     }
   }
 
-  public static boolean isPrimitiveT(Type t) { return t == Int || t == Float || t == Bool || t instanceof BitvectorT ; }
+  public static boolean isPrimitiveT(Type t) {
+    return
+        t == Int || t == Float || t == Bool || t instanceof BitvectorT ||
+        t == Int8 || t == Int16 || t == Int32 ||
+        t == UInt8 || t == UInt16 || t == UInt32;
+  }
 
   public static FunctionT functionT(String name, Type returnT, List<Type> params)
   {
@@ -159,6 +171,28 @@ public class TypesFactory
   public static boolean isArrayT(Type t)
   {
     return arrayT.containsValue(t);
+  }
+
+  public static BufferT bufferT(Type elemsT, int dim)
+  {
+    Map.Entry<Type, Integer> key = new AbstractMap.SimpleImmutableEntry<>(elemsT, dim);
+    BufferT r = bufferT.get(key);
+    if (r == null)
+    {
+      r = new BufferT(elemsT, dim);
+      bufferT.put(key, r);
+    }
+
+    return r;
+  }
+
+  public static boolean isBufferT(Type t)
+  {
+    return bufferT.containsValue(t);
+  }
+
+  public static Collection<BufferT> bufferTypes() {
+    return bufferT.values();
   }
 
   public static ListT listT(Type elemsT)

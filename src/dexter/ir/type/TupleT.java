@@ -30,4 +30,6 @@ public class TupleT extends ArrayT {
 
   @Override
   public int hashCode () { return 0; }
+
+  @Override public void print() { System.out.println(toString()); }
 }

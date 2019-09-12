@@ -1,15 +1,19 @@
 int_terms_gen (x: int, y: int) : int ->
   choose(
-    //select(@in_vars(array(int)), idx_2d_gen(x, y, width_gen())),
-    //select(@in_vars(ptr(int)), idx_2d_gen(x, y, width_gen())),
-    HBuffer_Get(@in_vars(HBuffer), rad_gen(x), rad_gen(y))
+    HBuffer_Get(@in_vars(buffer(2, int), offset_gen(stride_gen(x), dilate_gen(rad_gen())), offset_gen(stride_gen(y), dilate_gen(rad_gen())))
   )
 
-idx_2d_gen (x: int, y: int, width: int) : int ->
-  index2D(rad_gen(x), rad_gen(y), width)
+stride_gen (val: int) : int ->
+	choose(val, val*choose(2,3,4), val*@in_vars(int))
 
-rad_gen (val: int) : int ->
- choose(val, val+choose(1), val-+choose(1))
+rad_gen () : int ->
+	choose(1, 2)
+
+dilate_gen (rad: int) : int ->
+	choose(rad, rad*@in_vars(int))
+
+offset_gen (val: int, rad: int) : int ->
+ choose(val, val+rad, val-rad)
 
 width_gen () : int ->
   @vars(int)

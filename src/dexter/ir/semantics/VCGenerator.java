@@ -67,8 +67,8 @@ public class VCGenerator
 
   public void registerBounds (VarExpr v, Expr w, Expr h)
   {
-    BinaryExpr we = new BinaryExpr(new FieldExpr(v, "width"), BinaryExpr.Op.EQ, w);
-    BinaryExpr he = new BinaryExpr(new FieldExpr(v, "height"), BinaryExpr.Op.EQ, h);
+    BinaryExpr we = new BinaryExpr(new FieldExpr(v, "dim0_extent"), BinaryExpr.Op.EQ, w);
+    BinaryExpr he = new BinaryExpr(new FieldExpr(v, "dim1_extent"), BinaryExpr.Op.EQ, h);
     BinaryExpr assumption = new BinaryExpr(we, BinaryExpr.Op.AND, he);
     addAssumption(assumption);
     //this.bounds.put(v, new Pair<>(w, h));

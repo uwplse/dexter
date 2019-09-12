@@ -6,4 +6,5 @@ package dexter.ir.type;
 public interface Type
 {
   String toString();
+  void print();
 }

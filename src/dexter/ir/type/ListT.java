@@ -29,4 +29,6 @@ public class ListT implements Type
 
   @Override
   public int hashCode () { return 0; }
+
+  @Override public void print() { System.out.println(toString()); }
 }

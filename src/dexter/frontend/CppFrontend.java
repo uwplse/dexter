@@ -1,6 +1,7 @@
 package dexter.frontend;
 
 import dexter.Files;
+import dexter.Preferences;
 import dexter.dag.Pipeline;
 
 import javax.json.Json;
@@ -16,7 +17,7 @@ import java.util.Set;
 public class CppFrontend {
   public static void run () {
     try {
-      ProcessBuilder pb = new ProcessBuilder("./run.sh", Files.cppFilePath(), Files.userDslFilePath());
+      ProcessBuilder pb = new ProcessBuilder("./run.sh", Files.cppFilePath(), Files.userDslFilePath(), Files.cppFrontendDirPath(), Integer.toString(Preferences.Global.verbosity));
       pb.directory(Files.cppFrontendDir());
       pb.inheritIO().start().waitFor();
     }
@@ -28,6 +29,9 @@ public class CppFrontend {
 
   public static Set<CodeBlock> getIntentionalBlocks() throws IOException {
     Set<CodeBlock> codeBlocks = new HashSet<>();
+
+    if (!Files.tempDir().exists())
+      return codeBlocks;
 
     for (File file : Files.tempDir().listFiles()) {
       if (file.getName().matches(".*\\.json")) {

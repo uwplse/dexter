@@ -57,6 +57,20 @@ public interface DexterIRVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayType(DexterIRParser.ArrayTypeContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code pointerType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPointerType(DexterIRParser.PointerTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code bufferType}
+	 * labeled alternative in {@link DexterIRParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBufferType(DexterIRParser.BufferTypeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code tupleType}
 	 * labeled alternative in {@link DexterIRParser#type}.
 	 * @param ctx the parse tree
@@ -70,13 +84,6 @@ public interface DexterIRVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitListType(DexterIRParser.ListTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code pointerType}
-	 * labeled alternative in {@link DexterIRParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPointerType(DexterIRParser.PointerTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code fnType}
 	 * labeled alternative in {@link DexterIRParser#type}.

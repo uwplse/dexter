@@ -102,6 +102,30 @@ public class DexterIRBaseListener implements DexterIRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPointerType(DexterIRParser.PointerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPointerType(DexterIRParser.PointerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBufferType(DexterIRParser.BufferTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBufferType(DexterIRParser.BufferTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTupleType(DexterIRParser.TupleTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -121,18 +145,6 @@ public class DexterIRBaseListener implements DexterIRListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitListType(DexterIRParser.ListTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPointerType(DexterIRParser.PointerTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPointerType(DexterIRParser.PointerTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

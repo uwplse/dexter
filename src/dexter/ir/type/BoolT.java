@@ -8,4 +8,6 @@ public class BoolT implements Type
   protected BoolT() {}
 
   @Override public String toString () { return "bool"; }
+
+  @Override public void print() { System.out.println(toString()); }
 }

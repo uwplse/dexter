@@ -389,24 +389,54 @@ public class CodeGen {
         if (!m.matches())
           throw new RuntimeException("Unexpected buffer type: " + bufType);
 
-        String elemT = m.group(1);
-        String dims = m.group(2);
+        int dims = Integer.parseInt(m.group(2));
 
-        for (int dim = 0; dim < Integer.parseInt(dims); ++dim)
+        for (int dim = 0; dim < dims; ++dim)
           schedule.append(var.name() + ".dim("+dim+").set_bounds_estimate(0, 1024);\n    ");
       }
       else {
         String tp = cppTypes.get(var.name());
-        if (tp.startsWith("const")) {
-          tp = tp.replace("const ", "");
-        }
-        schedule.append("Input<" + tp + "> " +
-            var.name() + "{\"" + var.name() + "\"};\n  ");
+        // TODO make type specific
+        schedule.append(var.name() + ".offset.set_estimate(16383);\n    ");
       }
     }
 
     for (VarExpr var: outVars) {
-      var.print();
+      if (TypesFactory.isArrayT(var.type())) {
+        throw new RuntimeException("NYI.");
+      }
+      else if (TypesFactory.isPtrT(var.type())) {
+        throw new RuntimeException("NYI.");
+      }
+      else if (TypesFactory.isClassT(var.type().toString())) {
+        String bufType = cppTypes.get(var.name());
+
+        Pattern p = Pattern.compile("class Halide::Runtime::Buffer<(.*?), (.*?)>");
+        Matcher m = p.matcher(bufType);
+        if (!m.matches())
+          throw new RuntimeException("Unexpected buffer type: " + bufType);
+
+        int dims = Integer.parseInt(m.group(2));
+
+        if (dims == 1)
+          schedule.append(var.name() + ".estimate(i, 0, 1024);\n    ");
+        else if (dims == 2) {
+          schedule.append(var.name() + ".estimate(x, 0, 1024);\n    ");
+          schedule.append(var.name() + ".estimate(y, 0, 1024);\n    ");
+        }
+        else if (dims == 3) {
+          schedule.append(var.name() + ".estimate(x, 0, 1024);\n    ");
+          schedule.append(var.name() + ".estimate(y, 0, 1024);\n    ");
+          schedule.append(var.name() + ".estimate(c, 0, 4);\n    ");
+        }
+        else {
+          for (int dim = 0; dim < dims; ++dim)
+            schedule.append(var.name() + ".estimate(d" + dim + ", 0, 1024);\n    ");
+        }
+      }
+      else {
+        NYI();
+      }
     }
 
     return schedule.toString();
