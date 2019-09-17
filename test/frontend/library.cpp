@@ -139,5 +139,5 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 	}
 }*/
 
-//DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
+DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
 //DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)

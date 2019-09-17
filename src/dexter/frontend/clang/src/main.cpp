@@ -8,6 +8,7 @@
 
 #include "Util.h"
 #include "Scheduler.h"
+#include "Preferences.h"
 
 /**
  * Created by Maaz Ahmad on 6/26/19.
@@ -57,8 +58,10 @@ int main (int argc, const char **argv)
   CommonOptionsParser op(argc, argv, ToolingSampleCategory);
   ClangTool Tool(op.getCompilations(), op.getSourcePathList());
 
+  // Init Verbosity
+  Dexter::Preferences::Verbosity = Verbosity.getValue();
   // Init JVM
-  Dexter::Util::initJVM(JarPath.getValue(), Verbosity.getValue());
+  Dexter::Util::initJVM(JarPath.getValue());
   // Init Builtin Types
   initTypes();
   // Load types from default DSL to TypesFactory

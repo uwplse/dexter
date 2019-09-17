@@ -122,7 +122,7 @@ public class CLIParser
       }
 
       if ( this.out == null )
-        this.out = new File(this.source.getAbsoluteFile() + ".out");
+        this.out = new File(this.source.getAbsoluteFile().getAbsolutePath().substring(0, this.source.getAbsoluteFile().getAbsolutePath().lastIndexOf('.')) + "_out.cpp");
 
       if ( !this.frontend.exists() )
         throw new CmdLineException(parser,

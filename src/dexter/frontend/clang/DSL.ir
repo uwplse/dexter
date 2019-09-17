@@ -1,4 +1,4 @@
-// Halide Buffer support
+/*/ Halide Buffer support
 class HBuffer (
 	data: array(1, int),
 	width: int,
@@ -20,7 +20,7 @@ HBuffer_Get (buf: HBuffer, x:int, y:int) : int ->
 	select(
 		buf.data,
 		y * buf.width + x
-	)
+	)*/
 
 // Functions to model various casts
 //  - Type Promotions

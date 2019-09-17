@@ -32,7 +32,7 @@ public class Grammar {
 
   public static Program loadROIGrammar (Program p, CodeAnalysis analysis) throws IOException {
     // Read Grammar file
-    Program grammar = Files.loadIRFile(Files.grammarFile(ROIGrammar));
+    Program grammar = Files.loadGrammarFile(ROIGrammar);
 
     // Stitch Grammar file
     p.stitch(grammar);
@@ -45,7 +45,7 @@ public class Grammar {
 
   public static Program loadTermGrammar (Program p, CodeAnalysis analysis, Type bufT, Type termT) throws IOException {
     // Read Grammar file
-    Program grammar = Files.loadIRFile(Files.grammarFile(TermGrammar));
+    Program grammar = Files.loadGrammarFile(TermGrammar);
 
     // Stitch Grammar file
     stitchPointsGrammar(p, grammar, bufT, termT);
@@ -82,18 +82,8 @@ public class Grammar {
     Expr termGenCall = null;
 
     Type genT;
-    if (bufT instanceof ArrayT)
-      genT = ((ArrayT) bufT).elemT();
-    else if (bufT instanceof PtrT)
-      genT = ((PtrT) bufT).elemT();
-    else if (bufT instanceof ClassT)
-    {
-      ClassT clsT = (ClassT) bufT;
-      if (clsT.name().equals("HBuffer"))
-        genT = ((ArrayT) clsT.fields().get(0).type()).elemT();
-      else
-        throw new RuntimeException("Unexpected outVar type: " + bufT);
-    }
+    if (bufT instanceof CollectionT)
+      genT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("Unexpected outVar type: " + bufT);
 
@@ -138,17 +128,8 @@ public class Grammar {
 
   private static CallExpr generateExprGrammarCall(List<Expr> opts, Type bufT) {
     Type elemT ;
-    if (bufT instanceof ArrayT)
-      elemT = ((ArrayT) bufT).elemT();
-    else if (bufT instanceof PtrT)
-      elemT = ((PtrT) bufT).elemT();
-    else if (bufT instanceof ClassT) {
-      ClassT clsT = (ClassT) bufT;
-      if (clsT.name().equals("HBuffer"))
-        elemT = ((ArrayT) clsT.fields().get(0).type()).elemT();
-      else
-        throw new RuntimeException("NYI");
-    }
+    if (bufT instanceof CollectionT)
+      elemT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("NYI");
 

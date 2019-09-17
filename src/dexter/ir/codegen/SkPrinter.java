@@ -1,5 +1,6 @@
 package dexter.ir.codegen;
 
+import dexter.Files;
 import dexter.Preferences;
 import dexter.ir.Expr;
 import dexter.ir.Visitor;
@@ -17,10 +18,12 @@ import dexter.ir.list.*;
 import dexter.ir.macro.*;
 import dexter.ir.tuple.TupleExpr;
 import dexter.ir.type.*;
+import dexter.synthesis.Synthesizer;
 import org.antlr.v4.runtime.misc.Pair;
 import scala.Tuple2;
 import scala.annotation.meta.field;
 
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -882,7 +885,10 @@ public class SkPrinter implements Visitor<String>
     StringBuffer sb = new StringBuffer();
 
     // Include grammar file
-    sb.append("include \"src/dexter/synthesis/grammar.skh\";\n\n");
+    try {
+      sb.append(Files.convert(Synthesizer.class.getResourceAsStream("grammar.skh"), Charset.defaultCharset()) + "\n\n");
+    }
+    catch (Exception e) { /* should never happen */ }
 
     // Ultimately, I suppose this should come from some config file or user param.
     sb.append("int ARRAY_LEN = " + Preferences.Sketch.arr_sz_bnd + ";\n");
@@ -1363,7 +1369,7 @@ public class SkPrinter implements Visitor<String>
       // assume planar mem layout
       // assume 2D
       assert (((BufferT) e.array().type()).dim() == 2);
-      return e.array().accept(this) + ".data[OFFSET + " + e.index().get(0).accept(this) + " + " + e.index().get(1).accept(this) + " * " + e.array().accept(this) + ".dim0_extent]";
+      return e.array().accept(this) + ".data[OFFSET + (" + e.index().get(0).accept(this) + ") + (" + e.index().get(1).accept(this) + ") * " + e.array().accept(this) + ".dim0_extent]";
     }
     else
     {
@@ -1394,7 +1400,7 @@ public class SkPrinter implements Visitor<String>
     else if (e.array().type() instanceof BufferT) {
       assert (((BufferT) e.array().type()).dim() == 2);
       sb.append(skArrayType + " r = new " + skArrayType + "(data=" + e.array().accept(this) + ".data, dim0_extent=" + e.array().accept(this) + ".dim0_extent, dim1_extent=" + e.array().accept(this) + ".dim1_extent);\n" +
-          indent() + "r.data[OFFSET + " + e.index().get(0).accept(this) + " + " + e.index().get(1).accept(this) + " * " + e.array().accept(this) + ".dim0_extent] = " + e.value().accept(this) + ";\n" +
+          indent() + "r.data[OFFSET + (" + e.index().get(0).accept(this) + ") + (" + e.index().get(1).accept(this) + ") * " + e.array().accept(this) + ".dim0_extent] = " + e.value().accept(this) + ";\n" +
           indent() + "return r");
     }
     else

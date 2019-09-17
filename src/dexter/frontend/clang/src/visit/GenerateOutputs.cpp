@@ -36,9 +36,10 @@ bool Dexter::GenerateOutputs::VisitFunctionDecl (FunctionDecl* f)
   std::set<Stage*>::iterator stage;
   for (stage = stages.begin(); stage != stages.end(); ++stage)
   {
-    llvm::outs() << "Writing VCs to file for intentional code block `"
-                 << f->getNameAsString()
-                 << "` (Stage " << (*stage)->getId() << ")\n";
+    if (Dexter::Preferences::Verbosity > 0)
+      llvm::outs() << "Writing VCs to file for intentional code block `"
+                   << f->getNameAsString()
+                   << "` (Stage " << (*stage)->getId() << ")\n";
 
     if ((*stage)->isEmpty())
       continue;
@@ -67,15 +68,23 @@ bool Dexter::GenerateOutputs::VisitFunctionDecl (FunctionDecl* f)
   }
 
   // Generate Analysis file
-  llvm::outs() << "Writing static analysis results to file for intentional code block `"
-               << f->getNameAsString()
-               << "`\n\n";
+  if (Dexter::Preferences::Verbosity > 0)
+    llvm::outs() << "Writing static analysis results to file for intentional code block `"
+                 << f->getNameAsString()
+                 << "`\n\n";
 
   filename = dirName + f->getNameAsString() + ".json";
 
   myfile.open (filename);
   std::string analysis = GetJsonAnalysis(pipeline);
   myfile << analysis;
+  myfile.flush();
+  myfile.close();
+
+  // Dump code that needs to be replaced
+  filename = dirName + f->getNameAsString() + ".cpp";
+  myfile.open (filename);
+  myfile << Dexter::Util::printr(f, rewriter);
   myfile.flush();
   myfile.close();
 

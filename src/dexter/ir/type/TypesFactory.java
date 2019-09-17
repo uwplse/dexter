@@ -1,5 +1,6 @@
 package dexter.ir.type;
 
+import dexter.Preferences;
 import dexter.ir.bool.ClassDecl;
 import dexter.ir.bool.FuncDecl;
 import dexter.ir.bool.Program;
@@ -60,9 +61,11 @@ public class TypesFactory
     }
     fis.close();
 
-    System.out.println("Loading DSL...");
-    System.out.println(p.classes().size() + " class definitions found");
-    System.out.println(p.functions().size() + " function definitions found");
+    if (Preferences.Global.verbosity > 0) {
+      System.out.println("Loading DSL...");
+      System.out.println(p.classes().size() + " class definitions found");
+      System.out.println(p.functions().size() + " function definitions found");
+    }
 
     for (ClassDecl c : p.classes()){
       classT(c.name(), c.fields());

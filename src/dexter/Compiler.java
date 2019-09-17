@@ -20,15 +20,20 @@ import dexter.ir.integer.FloatLitExpr;
 import dexter.ir.integer.IntLitExpr;
 import dexter.ir.semantics.TypeChecker;
 import dexter.ir.semantics.VarChecker;
-import dexter.ir.type.*;
+import dexter.ir.type.ClassT;
+import dexter.ir.type.CollectionT;
+import dexter.ir.type.Type;
+import dexter.ir.type.TypesFactory;
 import dexter.modifier.*;
 import dexter.synthesis.ExprPatcher;
 import dexter.synthesis.Synthesizer;
+import org.apache.commons.io.FileUtils;
 import scala.Tuple2;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -51,16 +56,22 @@ public class Compiler {
     TypesFactory.loadDSL(Files.coreDslFilePath());
     TypesFactory.loadDSL(Files.userDslFilePath());
 
+    String origCode = new Scanner(Files.cppFile()).useDelimiter("\\A").next();
+
     for (CodeBlock cb : intentionalBlocks) {
       // Get DAG of operations in code block
       Pipeline pipeline = cb.asDAG();
+
+      if (Preferences.Global.verbosity < 1)
+        System.out.println("Auto-scheduling code block` " + cb.name() + "` (this may take a while...)");
 
       // Lift each stage of the pipeline using 3-stage synth algorithm
       for (Stage stage : pipeline.stages()) {
         if (stage.isEmpty() || !stage.containsLoop())
           continue;
 
-        System.out.println("\n## Lifting code block `" + cb.name() + "` (Stage " + stage.id() + ")\n");
+        if (Preferences.Global.verbosity > 0)
+          System.out.println("\n## Lifting code block `" + cb.name() + "` (Stage " + stage.id() + ")\n");
 
         // If execution logs available from prior runs, re-use them
         File stageSummary = Files.summaryFile(cb.name(), stage.id());
@@ -74,7 +85,8 @@ public class Compiler {
         Map<Expr, Expr> termsMapping = new LinkedHashMap<>();
         List<Program> clauses = new ArrayList<>();
         for (VarExpr buffer : outputBuffers) {
-          System.out.println("Synthesizing post-condition clause for buffer: " + buffer.name());
+          if (Preferences.Global.verbosity > 0)
+            System.out.println("Synthesizing post-condition clause for buffer: " + buffer.name());
 
           // Filter outvars set
           stage.analysis().filterOutputBuffers(buffer);
@@ -105,23 +117,39 @@ public class Compiler {
         }
 
         // Stitch clauses together to generate stage summary
-        stage.summary(generateSummary(clauses));
+        Program summary = generateSummary(clauses);
+        checkSemantics(summary);
+        stage.summary(summary);
       }
 
       // Use synthesized summary to generate Halide Code
-      String halideCode = CodeGen.asHalideGenerator(cb);
+      String halideFunc = CodeGen.asHalideGenerator(cb);
 
-      System.out.println("\n\n" + halideCode);
+      String origFunc = new Scanner(Files.origFuncFile(cb.name())).useDelimiter("\\A").next();
+
+      if (Preferences.Global.verbosity > 0)
+        System.out.println("\n\n" + halideFunc);
+
+      Files.writeFile(Files.outputFile().getParent() + "/halide_" + cb.name() + ".cpp", halideFunc);
+
+      origCode = origCode.replaceAll(Pattern.quote(origFunc), "#include \"" + cb.name() + ".h\"").replaceAll("DEXTER_REGISTER_INTENTIONAL_FUNC\\(" + cb.name() + ",.*", "");
     }
+
+    Files.writeFile(Files.outputFilePath(), origCode);
+
+    if (!Preferences.Global.log)
+      if (Files.tempDir().exists())
+        FileUtils.deleteDirectory(Files.tempDir());
   }
 
   // 3 synthesis stages
   private static Program synthesizeROI(CodeBlock cb, Stage stage, VarExpr buffer) throws IOException, InterruptedException {
-    System.out.println("\nStep 1: Infer output ROI");
+    if (Preferences.Global.verbosity > 0) {
+      System.out.println("\nStep 1: Infer output ROI");
+      System.out.println("   Preparing synthesis problem...");
+    }
 
     if (!Files.binDir(cb.name(), stage.id()).exists()) Files.binDir(cb.name(), stage.id()).mkdir();
-
-    System.out.println("   Preparing synthesis problem...");
 
     // Load VC
     Program p = Files.loadIRFile(Files.vcFile(cb.name(), stage.id()));
@@ -155,14 +183,16 @@ public class Compiler {
     p = (Program) p.accept(new VCWritesUpdator(p.functions(), analysis.getOutputBuffers(), ui_expr));
 
     // Load grammar
-    System.out.println("   Loading ROI grammar... ");
+    if (Preferences.Global.verbosity > 0)
+      System.out.println("   Loading ROI grammar... ");
     p = Grammar.loadROIGrammar(p, analysis);
 
     // Check semantics
     checkSemantics(p);
 
     // Run synthesizer
-    System.out.print("   Running the synthesizer... ");
+    if (Preferences.Global.verbosity > 0)
+      System.out.print("   Running the synthesizer... ");
 
     Preferences.Sketch.expr_codegen = false;
     Preferences.Sketch.lightverif = Preferences.Sketch.ROI.lightverif;
@@ -183,9 +213,10 @@ public class Compiler {
   }
 
   private static Program synthesizeTerminals(CodeBlock cb, Stage stage, VarExpr buffer, Program p, Map<Expr, Expr> termMapping) throws IOException, InterruptedException {
-    System.out.println("\nStep 2: Infer terminals");
-
-    System.out.println("   Preparing synthesis problem...");
+    if (Preferences.Global.verbosity > 0) {
+      System.out.println("\nStep 2: Infer terminals");
+      System.out.println("   Preparing synthesis problem...");
+    }
 
     // Load UDFs
     Program udfs = Files.loadIRFile(Files.udfsFile(cb.name(), stage.id()));
@@ -228,7 +259,8 @@ public class Compiler {
       if (termMapping.containsKey(term))
         continue;
 
-      System.out.println("\n   Mapping terminal: " + term);
+      if (Preferences.Global.verbosity > 0)
+        System.out.println("\n   Mapping terminal: " + term);
 
       // Load program analysis
       CodeAnalysis analysis = stage.analysis();
@@ -241,14 +273,16 @@ public class Compiler {
       tm = new Program(p.functions(), p.classes(), ((Program) vc.accept(vcwa)).body());
 
       // Load grammar
-      System.out.println("      Loading terminal grammar... ");
+      if (Preferences.Global.verbosity > 0)
+        System.out.println("      Loading terminal grammar... ");
       tm = Grammar.loadTermGrammar(tm, analysis, buffer.type(), term.type());
 
       // Check semantics
       checkSemantics(tm);
 
       // Run synthesizer
-      System.out.print("      Running the synthesizer... ");
+      if (Preferences.Global.verbosity > 0)
+        System.out.print("      Running the synthesizer... ");
 
       Preferences.Sketch.expr_codegen = false;
       Preferences.Sketch.lightverif = Preferences.Sketch.Term.lightverif;
@@ -264,7 +298,7 @@ public class Compiler {
       // Extract term mapping
       Expr point = extractSynthesizedPoint(tm);
 
-      if (Preferences.Global.verbosity > 2)
+      if (Preferences.Global.verbosity > 1)
         point.print();
 
       // Save term mapping
@@ -295,9 +329,10 @@ public class Compiler {
   }
 
   private static Program synthesizeStencilExpr(CodeBlock cb, Stage stage, VarExpr buffer, Program p, Map<Expr, Expr> termsMapping) throws IOException, InterruptedException {
-    System.out.println("\nStep 3: Infer stencil expr");
-
-    System.out.println("   Preparing synthesis problem...");
+    if (Preferences.Global.verbosity > 0) {
+      System.out.println("\nStep 3: Infer stencil expr");
+      System.out.println("   Preparing synthesis problem...");
+    }
 
     // Load UDFs
     Program udfs = Files.loadIRFile(Files.udfsFile(cb.name(), stage.id()));
@@ -329,7 +364,8 @@ public class Compiler {
     p.body(vc.body());
 
     // Stitch stage 3 grammar for synthesizing expressions
-    System.out.println("   Loading Expr grammar... ");
+    if (Preferences.Global.verbosity > 0)
+      System.out.println("   Loading Expr grammar... ");
     List<Expr> opts = genExprSynthOpts(termsMapping, vca.getStencilExprs(), buffer.type());
     p = Grammar.loadExprGrammar(p, stage.analysis(), opts, buffer.type());
 
@@ -337,7 +373,8 @@ public class Compiler {
     checkSemantics(p);
 
     // Run synthesizer
-    System.out.print("   Running the synthesizer... ");
+    if (Preferences.Global.verbosity > 0)
+      System.out.print("   Running the synthesizer... ");
 
     Preferences.Sketch.expr_codegen = true;
     Preferences.Sketch.lightverif = Preferences.Sketch.Expr.lightverif;
@@ -511,17 +548,8 @@ public class Compiler {
     List<FuncDecl> fns = new ArrayList<>();
 
     Type elemT ;
-    if (bufT instanceof ArrayT)
-      elemT = ((ArrayT) bufT).elemT();
-    else if (bufT instanceof PtrT)
-      elemT = ((PtrT) bufT).elemT();
-    else if (bufT instanceof ClassT) {
-      ClassT clsT = (ClassT) bufT;
-      if (clsT.name().equals("HBuffer"))
-        elemT = ((ArrayT) clsT.fields().get(0).type()).elemT();
-      else
-        throw new RuntimeException("NYI");
-    }
+    if (bufT instanceof CollectionT)
+      elemT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("NYI");
 
@@ -531,15 +559,7 @@ public class Compiler {
             new VarExpr("idx_y", TypesFactory.Int)
     );
 
-    Expr e;
-    if (bufT instanceof ClassT) {
-      List<Expr> idx2 = new ArrayList<>();
-      idx2.add(new VarExpr("out_init", bufT));
-      idx2.addAll(idx);
-      e = new CallExpr("HBuffer_Get", idx2);
-    }
-    else
-      e = new SelectExpr(new VarExpr("out_init", bufT), idx);
+    Expr e = new SelectExpr(new VarExpr("out_init", bufT), idx);
 
     e.type(elemT);
 
@@ -585,18 +605,8 @@ public class Compiler {
     int i = 1;
 
     Type elemT;
-    if (bufT instanceof ArrayT)
-      elemT = ((ArrayT) bufT).elemT();
-    else if (bufT instanceof PtrT)
-      elemT = ((PtrT) bufT).elemT();
-    else if (bufT instanceof ClassT)
-    {
-      ClassT clsT = (ClassT) bufT;
-      if (clsT.name().equals("HBuffer"))
-        elemT = ((ArrayT) clsT.fields().get(0).type()).elemT();
-      else
-        throw new RuntimeException("Unexpected outVar type: " + bufT);
-    }
+    if (bufT instanceof CollectionT)
+      elemT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("Unexpected outVar type: " + bufT);
 

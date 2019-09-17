@@ -52,4 +52,9 @@ public class Preferences {
     Global.run_frontend = !parser.skip_frontend();
     Global.generate_intermediate_files = parser.generate_intermediate_files();
   }
+
+  // To call from clang_frontend
+  public static void setVerbosity (int v) {
+    Global.verbosity = v;
+  }
 }

@@ -175,6 +175,15 @@ public class HalidePrinter implements Visitor<String>
   public String visit(SelectExpr e) {
     assert (e.index().size() == 1);
 
+    if (TypesFactory.isBufferT(e.array().type())) {
+      String expr = e.array().accept(this) + "(";
+
+      for (Expr idx : e.index())
+        expr += "Halide::cast<int32_t>(" + idx.accept(this) + "), ";
+
+      return expr.substring(0, expr.length()-2) + ")";
+    }
+
     Expr idx = e.index().get(0);
 
     if (idx instanceof IntLitExpr || idx instanceof VarExpr)

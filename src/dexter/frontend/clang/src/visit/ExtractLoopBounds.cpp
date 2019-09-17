@@ -53,7 +53,8 @@ void Dexter::ExtractLoopBounds::Extract (Stmt *s)
     if (forTemplate1(loop) || forTemplate2(loop) || forTemplate3(loop) || forTemplate4(loop))
     {
       int lno = rewriter.getSourceMgr().getSpellingLineNumber(loop->getSourceRange().getBegin());
-      llvm::outs() << "Extracting bounds for for-loop at line " << lno << "\n";
+      if (Dexter::Preferences::Verbosity > 0)
+        llvm::outs() << "Extracting bounds for for-loop at line " << lno << "\n";
     }
     else
       Util::error(loop, "For-Loop does not match any bound extraction templates: ");

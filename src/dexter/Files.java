@@ -5,6 +5,8 @@ import dexter.ir.bool.Program;
 import dexter.ir.parser.Util;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.util.Scanner;
 
 /**
  * Created by Maaz Ahmad on 6/25/19.
@@ -23,6 +25,7 @@ public class Files {
   private static String tmpDir;
   private static String binDir;
 
+  private static String origFuncFilePath;
   private static String analysisFilePath;
   private static String vcFilePath;
   private static String udfsFilePath;
@@ -53,6 +56,7 @@ public class Files {
     tmpDir = ParentDir(inputFilePath) + "/" + FileName(inputFilePath) + "_dx_tmp/";
     binDir = tmpDir + "%s_stage_%d_bin/";
 
+    origFuncFilePath = tmpDir + "%s.cpp";
     analysisFilePath = tmpDir + "%s.json";
     vcFilePath = tmpDir + "%s_stage_%d.ir";
     udfsFilePath = tmpDir + "%s_stage_%d_udfs.ir";
@@ -79,6 +83,7 @@ public class Files {
   public static String coreDslFilePath() { return coreDslFilePath; }
   public static String userDslFilePath() { return userDslFilePath; }
 
+  public static String origFuncFilePath(String bn) { return String.format(origFuncFilePath, bn); }
   public static String analysisFilePath(String bn) { return String.format(analysisFilePath, bn); }
   public static String vcFilePath(String bn, int sid) { return String.format(vcFilePath, bn, sid); }
   public static String udfsFilePath(String bn, int sid) { return String.format(udfsFilePath, bn, sid); }
@@ -93,6 +98,8 @@ public class Files {
   public static String termSketchFilePath(String bn, int sid, String var, int tid) { return String.format(termSketchFilePath, bn, sid, var, tid); }
   public static String exprSketchFilePath(String bn, int sid, String var) { return String.format(exprSketchFilePath, bn, sid, var); }
 
+  public static String outputFilePath () { return outputFilePath; }
+
   // File getters
   public static File cppFrontendDir() { return new File(cppFrontendDirPath()); }
   public static File tempDir() { return new File(tmpDirPath()); }
@@ -104,6 +111,7 @@ public class Files {
   public static File coreDslFile() { return new File(coreDslFilePath()); }
   public static File userDslFile() { return new File(userDslFilePath()); }
 
+  public static File origFuncFile(String bn) { return new File(origFuncFilePath(bn)); }
   public static File analysisFile(String bn) { return new File(analysisFilePath(bn)); }
   public static File vcFile(String bn, int sid) { return new File(vcFilePath(bn, sid)); }
   public static File udfsFile(String bn, int sid) { return new File(udfsFilePath(bn, sid)); }
@@ -118,23 +126,9 @@ public class Files {
   public static File termSketchFile(String bm, int sid, String var, int tid) { return new File(termSketchFilePath(bm, sid, var, tid)); }
   public static File exprSketchFile(String bn, int sid, String var) { return new File(exprSketchFilePath(bn, sid, var)); }
 
+  public static File outputFile () { return new File(outputFilePath()); }
 
   // Misc
-  public static String grammarFilePath (Grammar.Name name) {
-    switch (name) {
-      case ROIGrammar:
-        return "src/dexter/grammar/ROIGrammar.ir";
-      case TermGrammar:
-        return "src/dexter/grammar/TermGrammar.ir";
-      default:
-        throw new RuntimeException("Grammar not found.");
-    }
-  }
-
-  public static File grammarFile (Grammar.Name name) {
-    return new File(grammarFilePath(name));
-  }
-
   public static String ParentDir(String path) { return new File(path).getParent(); }
 
   public static String FileName(String path) { return new File(path).getName().split("\\.")[0]; }
@@ -147,6 +141,29 @@ public class Files {
     Program p = (Program) Util.parse(fis, false);
     fis.close();
     return p;
+  }
+
+  public static Program loadGrammarFile(Grammar.Name grammar) throws IOException {
+    InputStream in;
+    switch (grammar) {
+      case ROIGrammar:
+        in = Grammar.class.getResourceAsStream("ROIGrammar.ir");
+        break;
+      case TermGrammar:
+        in = Grammar.class.getResourceAsStream("TermGrammar.ir");
+        break;
+      default:
+        throw new RuntimeException("Grammar not found.");
+    }
+    Program p = (Program) Util.parse(convert(in, Charset.defaultCharset()), false);
+    return p;
+  }
+
+  public static String convert(InputStream inputStream, Charset charset) throws IOException {
+
+    try (Scanner scanner = new Scanner(inputStream, charset.name())) {
+      return scanner.useDelimiter("\\A").next();
+    }
   }
 
   public static void writeFile(String filepath, String content) throws IOException {

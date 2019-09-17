@@ -24,7 +24,7 @@ JavaVM * Dexter::Util::jvm;
     <string>BundledApp</string>
    </array>
  */
-void Dexter::Util::initJVM (const std::string &dxJarPath, int verbosity)
+void Dexter::Util::initJVM (const std::string &dxJarPath)
 {
   JavaVMOption options[1]; // A list of options to build a JVM from C++
   JavaVMInitArgs vm_args; // Arguments for the JVM (see below)
@@ -34,7 +34,7 @@ void Dexter::Util::initJVM (const std::string &dxJarPath, int verbosity)
   std::vector<char> cstr(s.c_str(), s.c_str() + s.size() + 1);
   options[0].optionString = cstr.data();
 
-  if (verbosity > 0)
+  if (Dexter::Preferences::Verbosity > 0)
     llvm::outs() << "Dexter jar path: " << options[0].optionString << "\n";
 
   //memset(&vm_args, 0, sizeof(vm_args));
@@ -48,8 +48,8 @@ void Dexter::Util::initJVM (const std::string &dxJarPath, int verbosity)
     llvm::errs() << "Unable to create JVM\n";
     exit(1);
   }
-  else if (verbosity > 0)
-    llvm::outs() << "created jvm: " << jvm << " e " << env << "\n\n";
+  else if (Dexter::Preferences::Verbosity > 0)
+    llvm::outs() << "created jvm: " << jvm << " e " << env << "\n";
 }
 
 void Dexter::Util::ASSERT (bool cond, std::string msg)

@@ -35,14 +35,16 @@ public class CodeGen {
     String schedule = extractSchedule(pipeline);
 
     code.append(
+      "#include \"Halide.h\"\n" +
+      "\n" +
       "class Gen_$FUNC_NAME$ : public Halide::Generator<Gen_$FUNC_NAME$> {\n" +
       "public:\n" +
-      "  $INP_DECLS$\n" +
-      "  $OUT_DECLS$\n" +
+      "  $INP_DECLS$" +
+        "$OUT_DECLS$\n" +
       "  $VAR_DECLS$\n" +
+      "  $LOCAL_DECLS$\n" +
       "  $FN_DECLS$" +
       "void generate() {\n" +
-      "    $LOCAL_DECLS$\n" +
       "    $HALIDE_STATEMENTS$\n" +
       "  }\n" +
       "  void schedule() {\n" +
@@ -78,7 +80,7 @@ public class CodeGen {
       else if (TypesFactory.isPtrT(var.type())) {
         throw new RuntimeException("NYI.");
       }
-      else if (TypesFactory.isClassT(var.type().toString())) {
+      else if (TypesFactory.isBufferT(var.type())) {
         String bufType = cppTypes.get(var.name());
 
         Pattern p = Pattern.compile("class Halide::Runtime::Buffer<(.*?), (.*?)>");
@@ -136,7 +138,7 @@ public class CodeGen {
       else if (TypesFactory.isPtrT(var.type())) {
         throw new RuntimeException("NYI.");
       }
-      else if (TypesFactory.isClassT(var.type().toString())) {
+      else if (TypesFactory.isBufferT(var.type())) {
         String bufType = cppTypes.get(var.name());
 
         Pattern p = Pattern.compile("class Halide::Runtime::Buffer<(.*?), (.*?)>");
@@ -233,7 +235,7 @@ public class CodeGen {
       else if (TypesFactory.isPtrT(var.type())) {
         throw new RuntimeException("NYI.");
       }
-      else if (TypesFactory.isClassT(var.type())) {
+      else if (TypesFactory.isBufferT(var.type())) {
         for (int i=0; i<count; i++)
           if (i==0)
             localDecls.append("Halide::Func " + var.name() + ";\n  ");
@@ -264,24 +266,7 @@ public class CodeGen {
       if (pc == null)
         throw new RuntimeException("Postcondition function not found");
 
-      List<Expr> stmts = new ArrayList<Expr>();
-      Stack<Expr> stack = new Stack<>();
-      stack.push(pc.body());
-
-      while (!stack.isEmpty()) {
-        Expr stmt = stack.pop();
-        if (stmt instanceof CallExpr)
-          stmts.add(stmt);
-        else if (stmt instanceof BinaryExpr)
-        {
-          stack.push(((BinaryExpr) stmt).left());
-          stack.push(((BinaryExpr) stmt).right());
-        }
-        else if (stmt instanceof BoolLitExpr)
-          ;
-        else
-          NYI();
-      }
+      List<Expr> stmts = getStatements(pc);
 
       for (Expr stmt : stmts) {
         CallExpr c = (CallExpr) stmt;
@@ -381,7 +366,7 @@ public class CodeGen {
       else if (TypesFactory.isPtrT(var.type())) {
         throw new RuntimeException("NYI.");
       }
-      else if (TypesFactory.isClassT(var.type().toString())) {
+      else if (TypesFactory.isBufferT(var.type())) {
         String bufType = cppTypes.get(var.name());
 
         Pattern p = Pattern.compile("class Halide::Runtime::Buffer<(.*?), (.*?)>");
@@ -408,7 +393,7 @@ public class CodeGen {
       else if (TypesFactory.isPtrT(var.type())) {
         throw new RuntimeException("NYI.");
       }
-      else if (TypesFactory.isClassT(var.type().toString())) {
+      else if (TypesFactory.isBufferT(var.type())) {
         String bufType = cppTypes.get(var.name());
 
         Pattern p = Pattern.compile("class Halide::Runtime::Buffer<(.*?), (.*?)>");
@@ -452,11 +437,94 @@ public class CodeGen {
       localVars.addAll(stage.analysis().getLocalVars());
 
       for (VarExpr v : stage.analysis().getInputVars())
-        if (!localVars.contains(v))
+        if (!localVars.contains(v) && varIsUsed(v, stage))
           inpVars.add(v);
 
       cppTypes.putAll(stage.analysis().cppTypes());
     }
+  }
+
+  private static boolean varIsUsed(VarExpr v, Stage stage) {
+    FuncDecl pc = null;
+
+    for (FuncDecl fnDecl : stage.summary().functions()) {
+      if (fnDecl.name().equals("pc"))
+        pc = fnDecl;
+    }
+
+    if (pc == null)
+      throw new RuntimeException("Postcondition function not found");
+
+    List<Expr> stmts = getStatements(pc);
+
+    for (Expr stmt : stmts) {
+      CallExpr c = (CallExpr) stmt;
+      if (c.name().matches(".*_buf_asn_2d(_[0-9]+)?$")) {
+        // Find Decl
+        FuncDecl fnDecl = null;
+        for (FuncDecl fn :stage.summary().functions())
+          if (fn.name().equals(c.name()))
+            fnDecl = fn;
+
+        // Discard the for-loops
+        Expr e = ((ForallExpr) fnDecl.body()).body();
+        e = ((ForallExpr) e).body();
+
+        // Get expr
+        CallExpr rhs = (CallExpr) ((BinaryExpr) e).right();
+        FuncDecl exprFnDecl = null;
+        for (FuncDecl fn : stage.summary().functions())
+          if (fn.name().equals(rhs.name()))
+            exprFnDecl = fn;
+
+        assert exprFnDecl != null;
+
+        CallExpr v1 = new CallExpr(
+            ((VarExpr) c.args().get(4)).name(),
+            Arrays.asList(new VarExpr("x", TypesFactory.Int), new VarExpr("y", TypesFactory.Int))
+        );
+
+        Map<VarExpr,Expr> termMapping = new HashMap<>();
+        termMapping.put(exprFnDecl.params().get(0), v1);
+        for (int i=1; i<exprFnDecl.params().size(); i++) {
+          VarExpr param = exprFnDecl.params().get(i);
+          Expr arg = rhs.args().get(i);
+          termMapping.put(param, arg);
+        }
+
+        ExtractLiveVars elv = new ExtractLiveVars(termMapping);
+        exprFnDecl.body().accept(elv);
+        if (elv.contains(v))
+          return true;
+      }
+      else
+        NYI();
+    }
+
+    return false;
+  }
+
+  private static List<Expr> getStatements(FuncDecl pc) {
+    List<Expr> stmts = new ArrayList<Expr>();
+    Stack<Expr> stack = new Stack<>();
+    stack.push(pc.body());
+
+    while (!stack.isEmpty()) {
+      Expr stmt = stack.pop();
+      if (stmt instanceof CallExpr)
+        stmts.add(stmt);
+      else if (stmt instanceof BinaryExpr)
+      {
+        stack.push(((BinaryExpr) stmt).left());
+        stack.push(((BinaryExpr) stmt).right());
+      }
+      else if (stmt instanceof BoolLitExpr)
+        ;
+      else
+        NYI();
+    }
+
+    return stmts;
   }
 
   private static void getOutputVars(Pipeline pipeline, Set<VarExpr> outpVars, Map<String, String> cppTypes) {

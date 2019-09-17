@@ -14,7 +14,8 @@ bool Dexter::ExtractInVars::VisitFunctionDecl (FunctionDecl* f)
   if (!ext->lift())
     return true;
 
-  llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
+  if (Dexter::Preferences::Verbosity > 0)
+    llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
 
   Pipeline* pipeline = Dexter::DeclExt::Get(f)->DAG();
   std::set<Stage*> stages = pipeline->getAllStages();

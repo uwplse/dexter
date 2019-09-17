@@ -44,7 +44,8 @@ void Dexter::NormalizeCode::NormalizeLoops (Stmt *s)
     ForStmt *loop = cast<ForStmt>(s);
 
     int lno = rewriter.getSourceMgr().getSpellingLineNumber(loop->getSourceRange().getBegin());
-    llvm::outs() << "Normalizing for-loop at line " << lno << "\n";
+    if (Dexter::Preferences::Verbosity > 0)
+      llvm::outs() << "Normalizing for-loop at line " << lno << "\n";
 
     if (this->debug)
       llvm::outs() << Util::print(loop) << "\n";

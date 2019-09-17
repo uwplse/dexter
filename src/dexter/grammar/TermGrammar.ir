@@ -1,6 +1,6 @@
 int_terms_gen (x: int, y: int) : int ->
   choose(
-    HBuffer_Get(@in_vars(buffer(2, int), offset_gen(stride_gen(x), dilate_gen(rad_gen())), offset_gen(stride_gen(y), dilate_gen(rad_gen())))
+    select(@in_vars(buffer(int,2)), offset_gen(stride_gen(x), dilate_gen(rad_gen())), offset_gen(stride_gen(y), dilate_gen(rad_gen())))
   )
 
 stride_gen (val: int) : int ->

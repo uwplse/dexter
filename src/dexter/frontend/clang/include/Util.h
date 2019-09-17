@@ -17,6 +17,8 @@
 #include "ir/Expr.h"
 #include "ir/type/Type.h"
 
+#include "Preferences.h"
+
 using namespace clang;
 
 namespace Dexter {
@@ -27,7 +29,7 @@ public:
   static JavaVM * jvm;
   static JNIEnv * env;
 
-  static void initJVM (const std::string & dxjarPath, int verbosity);
+  static void initJVM (const std::string & dxjarPath);
   static void shutdownJVM ();
 
   static void print (Dexter::Expr * e);

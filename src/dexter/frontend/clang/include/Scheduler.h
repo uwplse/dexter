@@ -27,6 +27,8 @@
 #include "visit/ComputeVC.h"
 #include "visit/GenerateOutputs.h"
 
+#include "Preferences.h"
+
 using namespace clang;
 
 namespace Dexter {
@@ -60,14 +62,16 @@ public:
   void EndSourceFileAction() override
   {
     SourceManager &SM = rewriter.getSourceMgr();
-    llvm::errs() << "** EndSourceFileAction for: "
+    if (Dexter::Preferences::Verbosity > 0)
+      llvm::errs() << "** EndSourceFileAction for: "
                  << SM.getFileEntryForID(SM.getMainFileID())->getName() << "\n\n";
   }
 
   std::unique_ptr<ASTConsumer> CreateASTConsumer(CompilerInstance &CI,
                                                  StringRef file) override
   {
-    llvm::errs() << "\n** Creating AST consumer for: " << file << "\n\n";
+    if (Dexter::Preferences::Verbosity > 0)
+      llvm::errs() << "\n** Creating AST consumer for: " << file << "\n\n";
     rewriter.setSourceMgr(CI.getSourceManager(), CI.getLangOpts());
     return llvm::make_unique<Scheduler>(rewriter);
   }

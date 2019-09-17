@@ -32,7 +32,8 @@ public class Synthesizer {
     int err_code = runSketch(skFilePath);
 
     if (err_code == 0) {
-      out.println("(Successful)");
+      if (Preferences.Global.verbosity > 0)
+        out.println("(Successful)");
     }
     else {
       out.println("(Failed)");
@@ -95,7 +96,9 @@ public class Synthesizer {
     command.add("--bnd-int-range"); command.add(Integer.toString(Preferences.Sketch.int_range));
     command.add("--bnd-arr-size"); command.add(Integer.toString(Preferences.Sketch.arr_sz_bnd));
 
-    command.add("--fe-custom-codegen"); command.add((Preferences.Sketch.expr_codegen ? "out/artifacts/dexter_jar/dexterExprCodegen.jar" : "out/artifacts/dexter_jar/dexter.jar"));
+    String codeGen = Synthesizer.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    String exprCodeGen = new File(codeGen).getParent() + "/dexterExprCodegen.jar";
+    command.add("--fe-custom-codegen"); command.add((Preferences.Sketch.expr_codegen ? exprCodeGen : codeGen));
 
     command.add(filepath);
 

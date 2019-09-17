@@ -28,7 +28,8 @@ bool Dexter::GenerateDAG::VisitFunctionDecl (FunctionDecl *f)
 
   ext->DAG(pipeline);
 
-  llvm::outs() << "Intentional code block `" << f->getNameAsString() << "` converted to a DAG with " << pipeline->getAllStages().size() << " stages.\n";
+  if (Dexter::Preferences::Verbosity > 0)
+    llvm::outs() << "Intentional code block `" << f->getNameAsString() << "` converted to a DAG with " << pipeline->getAllStages().size() << " stages.\n";
 
   return true;
 }
