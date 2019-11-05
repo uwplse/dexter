@@ -113,7 +113,7 @@ public class VCGenerator
       args.add(new VarExpr(outVar.name()+"_init", outVar.type()));
 
     this.vc = new CallExpr("pc", args);
-    this.decls.add(new FuncDecl("pc", args, TypesFactory.Bool, new BoolLitExpr(true)));
+    this.decls.add(new FuncDecl("pc", args, TypesFactory.Bool, new BoolLitExpr(true), false));
   }
 
   public void conditional (Expr cond, VCGenerator consequentVC, VCGenerator altVC)
@@ -175,7 +175,7 @@ public class VCGenerator
         args.add(new VarExpr(outVar.name()+"_init", outVar.type()));
 
     CallExpr inv = new CallExpr(invName, args);
-    this.decls.add(new FuncDecl(invName, args, TypesFactory.Bool, new BoolLitExpr(true)));
+    this.decls.add(new FuncDecl(invName, args, TypesFactory.Bool, new BoolLitExpr(true), false));
 
     return inv;
   }

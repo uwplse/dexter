@@ -1,41 +1,254 @@
 /*********************** Post-condition ************************/
 pc () : bool ->
-  @for ( out in @out_vars(buffer(int,2)) )
-    emit buf_asn_2d (0, out.dim1_extent, 0, out.dim0_extent, out, @init(out))
+  (@for ( out in @out_vars(buffer(int,1)) )
+    emit buf_asn_1di (0, out.dim0_extent, out, @init(out))) &&
+  (@for ( out in @out_vars(buffer(float,1)) )
+    emit buf_asn_1df (0, out.dim0_extent, out, @init(out))) &&
+  (@for ( out in @out_vars(buffer(int,2)) )
+    emit buf_asn_2di (0, out.dim0_extent, 0, out.dim1_extent, out, @init(out))) &&
+  (@for ( out in @out_vars(buffer(float,2)) )
+    emit buf_asn_2df (0, out.dim0_extent, 0, out.dim1_extent, out, @init(out))) &&
+  (@for ( out in @out_vars(buffer(int,3)) )
+    emit buf_asn_3di (0, out.dim0_extent, 0, out.dim1_extent, 0, out.dim2_extent, out, @init(out))) &&
+  (@for ( out in @out_vars(buffer(float,3)) )
+    emit buf_asn_3df (0, out.dim0_extent, 0, out.dim1_extent, 0, out.dim2_extent, out, @init(out)))
 
 /************************** Invariant **************************/
 inv () : bool ->
-  @for ( out in @out_vars(buffer(int,2)) )
+  (@for ( out in @out_vars(buffer(int,1)) )
     emit choose (
-      inv_tmpl_1_gen (bnd_gen(out), bnd_gen(out), out, @init(out)),
-      inv_tmpl_2_gen (bnd_gen(out), bnd_gen(out), bnd_gen(out), bnd_gen(out), bnd_gen(out), out, @init(out))
-    )
+      inv_tmpl_1i (bnd1Di(out), bnd1Di(out), out, @init(out))
+    )) &&
+  (@for ( out in @out_vars(buffer(float,1)) )
+    emit choose (
+      inv_tmpl_1f (bnd1Df(out), bnd1Df(out), out, @init(out))
+    )) &&
+  (@for ( out in @out_vars(buffer(int,2)) )
+    emit choose (
+      inv_tmpl_2i (bnd2Di(out), bnd2Di(out), out, @init(out)),
+      inv_tmpl_3i (bnd2Di(out), bnd2Di(out), bnd2Di(out), bnd2Di(out), bnd2Di(out), out, @init(out))
+    )) &&
+  (@for ( out in @out_vars(buffer(float,2)) )
+    emit choose (
+      inv_tmpl_2f (bnd2Df(out), bnd2Df(out), out, @init(out)),
+      inv_tmpl_3f (bnd2Df(out), bnd2Df(out), bnd2Df(out), bnd2Df(out), bnd2Df(out), out, @init(out))
+    )) &&
+  (@for ( out in @out_vars(buffer(int,3)) )
+    emit choose (
+      inv_tmpl_4i (bnd3Di(out), bnd3Di(out), out, @init(out)),
+      inv_tmpl_5i (bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), out, @init(out)),
+      inv_tmpl_6i (bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), bnd3Di(out), out, @init(out))
+    )) &&
+  (@for ( out in @out_vars(buffer(float,3)) )
+    emit choose (
+      inv_tmpl_4f (bnd3Df(out), bnd3Df(out), out, @init(out)),
+      inv_tmpl_5f (bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), out, @init(out)),
+      inv_tmpl_6f (bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), bnd3Df(out), out, @init(out))
+    ))
 
-inv_tmpl_1_gen (lb_y: int, ub_y: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
-  buf_asn_2d (lb_y, ub_y, 0, out.dim0_extent, out, out_init)
+// Invariant template 1
+generator inv_tmpl_1i (lb_x: int, ub_x: int, out: buffer(int,1), out_init: buffer(int,1)) : bool ->
+  buf_asn_1di (lb_x, ub_x, out, out_init)
   &&
   choose (
-    idn_2d (ub_y, out.dim1_extent, 0, out.dim0_extent, out, out_init),
-    idn_2d (0, lb_y, 0, out.dim0_extent, out, out_init)
+    iden_1di (ub_x, out.dim0_extent, out, out_init),
+    iden_1di (0, lb_x, out, out_init)
   )
 
-inv_tmpl_2_gen (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
-  buf_asn_2d (lb_y, ub_y, 0, out.dim0_extent, out, out_init)
+generator inv_tmpl_1f (lb_x: int, ub_x: int, out: buffer(float,1), out_init: buffer(float,1)) : bool ->
+  buf_asn_1df (lb_x, ub_x, out, out_init)
   &&
   choose (
-    idn_2d (ub_y+1, out.dim1_extent, 0, out.dim0_extent, out, out_init),
-    idn_2d (0, lb_y-1, 0, out.dim0_extent, out, out_init)
-  )
-  &&
-  buf_asn_1d(curr_y, lb_x, ub_x, out, out_init)
-  &&
-  choose (
-    idn_1d (curr_y, ub_x, out.dim0_extent, out, out_init),
-    idn_1d (curr_y, 0, lb_x, out, out_init)
+    iden_1df (ub_x, out.dim0_extent, out, out_init),
+    iden_1df (0, lb_x, out, out_init)
   )
 
-/******************* Dynamically generated functions ***********/
-buf_asn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+// Invariant template 2
+generator inv_tmpl_2i (lb_y: int, ub_y: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+  buf_asn_2di (0, out.dim0_extent, lb_y, ub_y, out, out_init)
+  &&
+  choose (
+    iden_2di (0, out.dim0_extent, ub_y, out.dim1_extent, out, out_init),
+    iden_2di (0, out.dim0_extent, 0, lb_y, out, out_init)
+  )
+
+generator inv_tmpl_2f (lb_y: int, ub_y: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  buf_asn_2df (0, out.dim0_extent, lb_y, ub_y, out, out_init)
+  &&
+  choose (
+    iden_2df (0, out.dim0_extent, ub_y, out.dim1_extent, out, out_init),
+    iden_2df (0, out.dim0_extent, 0, lb_y, out, out_init)
+  )
+
+// Invariant template 3
+generator inv_tmpl_3i (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+  buf_asn_2di (0, out.dim0_extent, lb_y, ub_y, out, out_init)
+  &&
+  choose (
+    iden_2di (0, out.dim0_extent, ub_y+1, out.dim1_extent, out, out_init),
+    iden_2di (0, out.dim0_extent, 0, lb_y-1, out, out_init)
+  )
+  &&
+  buf_asn_row_2di (curr_y, lb_x, ub_x, out, out_init)
+  &&
+  choose (
+    iden_row_2di (curr_y, ub_x, out.dim0_extent, out, out_init),
+    iden_row_2di (curr_y, 0, lb_x, out, out_init)
+  )
+
+generator inv_tmpl_3f (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  buf_asn_2df (0, out.dim0_extent, lb_y, ub_y, out, out_init)
+  &&
+  choose (
+    iden_2df (0, out.dim0_extent, ub_y+1, out.dim1_extent, out, out_init),
+    iden_2df (0, out.dim0_extent, 0, lb_y-1, out, out_init)
+  )
+  &&
+  buf_asn_row_2df (curr_y, lb_x, ub_x, out, out_init)
+  &&
+  choose (
+    iden_row_2df (curr_y, ub_x, out.dim0_extent, out, out_init),
+    iden_row_2df (curr_y, 0, lb_x, out, out_init)
+  )
+
+// Invariant template 4
+generator inv_tmpl_4i (lb_y: int, ub_y: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  buf_asn_3di (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3di (0, out.dim0_extent, ub_y, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3di (0, out.dim0_extent, 0, lb_y, 0, out.dim2_extent, out, out_init)
+  )
+
+generator inv_tmpl_4f (lb_y: int, ub_y: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  buf_asn_3df (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3df (0, out.dim0_extent, ub_y, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3df (0, out.dim0_extent, 0, lb_y, 0, out.dim2_extent, out, out_init)
+  )
+
+// Invariant template 5
+generator inv_tmpl_5i (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  buf_asn_3di (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3di (0, out.dim0_extent, ub_y+1, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3di (0, out.dim0_extent, 0, lb_y-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_row_3di (curr_y, lb_x, ub_x, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_row_3di (curr_y, ub_x, out.dim0_extent, 0, out.dim2_extent, out, out_init),
+    iden_row_3di (curr_y, 0, lb_x, 0, out.dim2_extent, out, out_init)
+  )
+
+generator inv_tmpl_5f (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  buf_asn_3df (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3df (0, out.dim0_extent, ub_y+1, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3df (0, out.dim0_extent, 0, lb_y-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_row_3df (curr_y, lb_x, ub_x, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_row_3df (curr_y, ub_x, out.dim0_extent, 0, out.dim2_extent, out, out_init),
+    iden_row_3df (curr_y, 0, lb_x, 0, out.dim2_extent, out, out_init)
+  )
+
+// Invariant template 6
+generator inv_tmpl_6i (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, curr_x: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  buf_asn_3di (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3di (0, out.dim0_extent, ub_y+1, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3di (0, out.dim0_extent, 0, lb_y-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_row_3di (curr_y, lb_x, ub_x, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_row_3di (curr_y, ub_x+1, out.dim0_extent, 0, out.dim2_extent, out, out_init),
+    iden_row_3di (curr_y, 0, lb_x-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_cn_3di (curr_x, curr_y, lb_cn, ub_cn, out, out_init)
+  &&
+  choose (
+    iden_cn_3di (curr_x, curr_y, ub_cn+1, out.dim2_extent, out, out_init),
+    iden_cn_3di (curr_x, curr_y, 0, lb_cn-1, out, out_init)
+  )
+
+generator inv_tmpl_6f (lb_y: int, ub_y: int, curr_y: int, lb_x: int, ub_x: int, curr_x: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  buf_asn_3df (0, out.dim0_extent, lb_y, ub_y, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_3df (0, out.dim0_extent, ub_y+1, out.dim1_extent, 0, out.dim2_extent, out, out_init),
+    iden_3df (0, out.dim0_extent, 0, lb_y-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_row_3df (curr_y, lb_x, ub_x, 0, out.dim2_extent, out, out_init)
+  &&
+  choose (
+    iden_row_3df (curr_y, ub_x+1, out.dim0_extent, 0, out.dim2_extent, out, out_init),
+    iden_row_3df (curr_y, 0, lb_x-1, 0, out.dim2_extent, out, out_init)
+  )
+  &&
+  buf_asn_cn_3df (curr_x, curr_y, lb_cn, ub_cn, out, out_init)
+  &&
+  choose (
+    iden_cn_3df (curr_x, curr_y, ub_cn+1, out.dim2_extent, out, out_init),
+    iden_cn_3df (curr_x, curr_y, 0, lb_cn-1, out, out_init)
+  )
+
+/******************* Modelling Halide DSL ***********/
+
+// Since template types are not currently supported, we have seperate functions for float
+// and integer buffers.
+
+// Identity functions are used to assert that the values in the provided range have not been modified
+
+// 1D Buffer Assign (Int)
+buf_asn_1di (lb_x: int, ub_x: int, out: buffer(int,1), out_init: buffer(int,1)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x) = int_expr(select(out_init, idx_x))
+  )
+
+// 1D Buffer Assign (Float)
+buf_asn_1df (lb_x: int, ub_x: int, out: buffer(float,1), out_init: buffer(float,1)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x) = float_expr(select(out_init, idx_x))
+  )
+
+// 1D Buffer Iden (Int)
+iden_1di (lb_x: int, ub_x: int, out: buffer(int,1), out_init: buffer(int,1)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x) = select(out_init, idx_x)
+  )
+
+// 1D Buffer Iden (Float)
+iden_1df (lb_x: int, ub_x: int, out: buffer(float,1), out_init: buffer(float,1)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x) = select(out_init, idx_x)
+  )
+
+// 2D Buffer Assign (Int)
+buf_asn_2di (lb_x: int, ub_x: int, lb_y: int, ub_y: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_y,
     lb_y,
@@ -48,7 +261,22 @@ buf_asn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_
     )
   )
 
-idn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+// 2D Buffer Assign (Float)
+buf_asn_2df (lb_x: int, ub_x: int, lb_y: int, ub_y: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      select(out, idx_x, idx_y) = float_expr(select(out_init, idx_x, idx_y))
+    )
+  )
+
+// 2D Buffer Iden (Int)
+iden_2di (lb_x: int, ub_x: int, lb_y: int, ub_y: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_y,
     lb_y,
@@ -61,7 +289,22 @@ idn_2d (lb_y: int, ub_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init
     )
   )
 
-buf_asn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+// 2D Buffer Iden (Float)
+iden_2df (lb_x: int, ub_x: int, lb_y: int, ub_y: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      select(out, idx_x, idx_y) = select(out_init, idx_x, idx_y)
+    )
+  )
+
+// Single row assignment for 2D buffers (Int)
+buf_asn_row_2di (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_x,
     lb_x,
@@ -69,12 +312,198 @@ buf_asn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buff
     select(out, idx_x, idx_y) = int_expr(select(out_init, idx_x, idx_y))
   )
 
-idn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
+// Single row assignment for 2D buffers (Float)
+buf_asn_row_2df (idx_y: int, lb_x: int, ub_x: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x, idx_y) = float_expr(select(out_init, idx_x, idx_y))
+  )
+
+// Single row iden for 2D buffers (Int)
+iden_row_2di (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(int,2)) : bool ->
   forall(
     idx_x,
     lb_x,
     ub_x,
     select(out, idx_x, idx_y) = select(out_init, idx_x, idx_y)
+  )
+
+// Single row iden for 2D buffers (Float)
+iden_row_2df (idx_y: int, lb_x: int, ub_x: int, out: buffer(float,2), out_init: buffer(float,2)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    select(out, idx_x, idx_y) = select(out_init, idx_x, idx_y)
+  )
+
+// 3D Buffer Assign (Int)
+buf_asn_3di (lb_x: int, ub_x: int, lb_y: int, ub_y: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      forall(
+        idx_cn,
+        lb_cn,
+        ub_cn,
+        select(out, idx_x, idx_y, idx_cn) = int_expr(select(out_init, idx_x, idx_y, idx_cn))
+      )
+    )
+  )
+
+// 3D Buffer Assign (Float)
+buf_asn_3df (lb_y: int, ub_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      forall(
+        idx_cn,
+        lb_cn,
+        ub_cn,
+        select(out, idx_x, idx_y, idx_cn) = float_expr(select(out_init, idx_x, idx_y, idx_cn))
+      )
+    )
+  )
+
+iden_3di (lb_x: int, ub_x: int, lb_y: int, ub_y: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      forall(
+        idx_cn,
+        lb_cn,
+        ub_cn,
+        select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
+      )
+    )
+  )
+
+// 3D Buffer Assign (Float)
+iden_3df (lb_y: int, ub_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_y,
+    lb_y,
+    ub_y,
+    forall(
+      idx_x,
+      lb_x,
+      ub_x,
+      forall(
+        idx_cn,
+        lb_cn,
+        ub_cn,
+        select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
+      )
+    )
+  )
+
+// Single row assignment for 3D buffers (Int)
+buf_asn_row_3di (idx_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    forall(
+      idx_cn,
+      lb_cn,
+      ub_cn,
+      select(out, idx_x, idx_y, idx_cn) = int_expr(select(out_init, idx_x, idx_y, idx_cn))
+    )
+  )
+
+// Single row assignment for 3D buffers (Float)
+buf_asn_row_3df (idx_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    forall(
+      idx_cn,
+      lb_cn,
+      ub_cn,
+      select(out, idx_x, idx_y, idx_cn) = float_expr(select(out_init, idx_x, idx_y, idx_cn))
+    )
+  )
+
+// Single row iden for 3D buffers (Int)
+iden_row_3di (idx_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    forall(
+      idx_cn,
+      lb_cn,
+      ub_cn,
+      select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
+    )
+  )
+
+// Single row iden for 3D buffers (Float)
+iden_row_3df (idx_y: int, lb_x: int, ub_x: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_x,
+    lb_x,
+    ub_x,
+    forall(
+      idx_cn,
+      lb_cn,
+      ub_cn,
+      select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
+    )
+  )
+
+// Single cn assignment for 3D buffers (Int)
+buf_asn_cn_3di (idx_x: int, idx_y: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_cn,
+    lb_cn,
+    ub_cn,
+    select(out, idx_x, idx_y, idx_cn) = int_expr(select(out_init, idx_x, idx_y, idx_cn))
+  )
+
+// Single cn assignment for 3D buffers (Float)
+buf_asn_cn_3df (idx_x: int, idx_y: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_cn,
+    lb_cn,
+    ub_cn,
+    select(out, idx_x, idx_y, idx_cn) = float_expr(select(out_init, idx_x, idx_y, idx_cn))
+  )
+
+// Single cn assignment for 3D buffers (Int)
+iden_cn_3di (idx_x: int, idx_y: int, lb_cn: int, ub_cn: int, out: buffer(int,3), out_init: buffer(int,3)) : bool ->
+  forall(
+    idx_cn,
+    lb_cn,
+    ub_cn,
+    select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
+  )
+
+// Single cn assignment for 3D buffers (Float)
+iden_cn_3df (idx_x: int, idx_y: int, lb_cn: int, ub_cn: int, out: buffer(float,3), out_init: buffer(float,3)) : bool ->
+  forall(
+    idx_cn,
+    lb_cn,
+    ub_cn,
+    select(out, idx_x, idx_y, idx_cn) = select(out_init, idx_x, idx_y, idx_cn)
   )
 
 /****************************** Generators *********************/
@@ -83,6 +512,24 @@ idn_1d (idx_y: int, lb_x: int, ub_x: int, out: buffer(int,2), out_init: buffer(i
 int_expr (val: int) : int ->
   if val < uninterp(int) then uninterp(int) else val
 
+float_expr (val: float) : float ->
+  if val < uninterp(float) then uninterp(float) else val
+
 // Bounds and Indexes
-bnd_gen (out: buffer(int,2)) : int ->
+generator bnd1Di (out: buffer(int,1)) : int ->
+  choose(0, out.dim0_extent, @vars(int))
+
+generator bnd1Df (out: buffer(float,1)) : int ->
+  choose(0, out.dim0_extent, @vars(int))
+
+generator bnd2Di (out: buffer(int,2)) : int ->
   choose(0, out.dim0_extent, out.dim1_extent, @vars(int))
+
+generator bnd2Df (out: buffer(float,2)) : int ->
+  choose(0, out.dim0_extent, out.dim1_extent, @vars(int))
+
+generator bnd3Di (out: buffer(int,3)) : int ->
+  choose(0, out.dim0_extent, out.dim1_extent, out.dim2_extent, @vars(int))
+
+generator bnd3Df (out: buffer(float,3)) : int ->
+  choose(0, out.dim0_extent, out.dim1_extent, out.dim2_extent, @vars(int))

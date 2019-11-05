@@ -17,7 +17,7 @@ class FuncDecl : public Dexter::Expr
 {
 public:
 
-  FuncDecl (std::string name, std::vector<VarExpr *> params, Dexter::Type retType, Dexter::Expr * body);
+  FuncDecl (std::string name, std::vector<VarExpr *> params, Dexter::Type retType, Dexter::Expr * body, bool isGen);
 };
 
 }

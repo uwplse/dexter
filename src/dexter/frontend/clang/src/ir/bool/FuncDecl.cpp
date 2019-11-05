@@ -7,7 +7,7 @@
 
 #include "ir/bool/FuncDecl.h"
 
-Dexter::FuncDecl::FuncDecl (std::string name, std::vector<VarExpr *> params, Dexter::Type retType, Dexter::Expr * body) : Dexter::Expr(NULL)
+Dexter::FuncDecl::FuncDecl (std::string name, std::vector<VarExpr *> params, Dexter::Type retType, Dexter::Expr * body, bool isGen) : Dexter::Expr(NULL)
 {
   JNIEnv * e = Util::env;
 
@@ -23,6 +23,6 @@ Dexter::FuncDecl::FuncDecl (std::string name, std::vector<VarExpr *> params, Dex
   jstring n = e->NewStringUTF(name.c_str());
 
 	c = e->FindClass("dexter/ir/bool/FuncDecl");
-	m = e->GetMethodID(c, "<init>", "(Ljava/lang/String;Ljava/util/List;Ldexter/ir/type/Type;Ldexter/ir/Expr;)V");
-	this->mObj = e->NewObject(c, m, n, list, retType.obj(), body->obj());
+	m = e->GetMethodID(c, "<init>", "(Ljava/lang/String;Ljava/util/List;Ldexter/ir/type/Type;Ldexter/ir/Expr;Z)V");
+	this->mObj = e->NewObject(c, m, n, list, retType.obj(), body->obj(), isGen);
 }

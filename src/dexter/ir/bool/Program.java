@@ -73,12 +73,12 @@ public class Program extends Expr
       if (fn.name().matches("pc")) {
         for (FuncDecl grm_fn : grammar.functions)
           if (grm_fn.name().matches("pc"))
-            fns.add(new FuncDecl(fn.name, fn.params, fn.retType, grm_fn.body));
+            fns.add(new FuncDecl(fn.name, fn.params, fn.retType, grm_fn.body, fn.isGenerator));
       }
       else if (fn.name().matches("inv[0-9]+")) {
         for (FuncDecl grm_fn : grammar.functions)
           if (grm_fn.name().matches("inv"))
-            fns.add(new FuncDecl(fn.name, fn.params, fn.retType, grm_fn.body));
+            fns.add(new FuncDecl(fn.name, fn.params, fn.retType, grm_fn.body, fn.isGenerator));
       }
     }
 

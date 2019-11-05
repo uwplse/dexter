@@ -40,6 +40,16 @@ public interface DexterIRListener extends ParseTreeListener {
 	 */
 	void exitFnDecl(DexterIRParser.FnDeclContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DexterIRParser#genDecl}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenDecl(DexterIRParser.GenDeclContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DexterIRParser#genDecl}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenDecl(DexterIRParser.GenDeclContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DexterIRParser#classDecl}.
 	 * @param ctx the parse tree
 	 */

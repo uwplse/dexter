@@ -22,7 +22,7 @@ public class PostfixFnNamesWithID extends Transformer {
   public Expr transform(FuncDecl fn)
   {
     if (fn.name().matches("int_expr|float_expr|pc_pc_fn_asn_2di|pc_pc_fn_asn_2df|pc_pc_fn_asn_1di|pc_pc_fn_asn_1df"))
-      return new FuncDecl(fn.name() + "_" + clauseID, fn.params(), fn.retType(), fn.body().accept(this));
+      return new FuncDecl(fn.name() + "_" + clauseID, fn.params(), fn.retType(), fn.body().accept(this), false);
     return null;
   }
 

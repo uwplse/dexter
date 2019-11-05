@@ -28,8 +28,12 @@ bool Dexter::GenerateDAG::VisitFunctionDecl (FunctionDecl *f)
 
   ext->DAG(pipeline);
 
-  if (Dexter::Preferences::Verbosity > 0)
-    llvm::outs() << "Intentional code block `" << f->getNameAsString() << "` converted to a DAG with " << pipeline->getAllStages().size() << " stages.\n";
+  if (Dexter::Preferences::Verbosity > 0) {
+    if (Dexter::Preferences::Mode == 0)
+        llvm::outs() << "Intentional code block `" << f->getNameAsString() << "` converted to a DAG with " << pipeline->getAllStages().size() << " stages.\n";
+      else
+        llvm::outs() << "Legacy code block `" << f->getNameAsString() << "` converted to a DAG with " << pipeline->getAllStages().size() << " stages.\n";
+  }
 
   return true;
 }
@@ -54,6 +58,9 @@ void Dexter::GenerateDAG::AssignStmt (Stmt * o, Dexter::Pipeline * pipeline)
   if (debug) {
     llvm::outs() << Dexter::Util::print(s) << "\n";
   }
+
+  if (s == NULL)
+    return;
 
   if (isa<CompoundStmt>(s))
   {

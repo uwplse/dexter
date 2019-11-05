@@ -1,29 +1,6 @@
-/*/ Halide Buffer support
-class HBuffer (
-	data: array(1, int),
-	width: int,
-	height: int
-)
+/******************* Modelling Type Casts ***********/
 
-HBuffer_Set (buf: HBuffer, x:int, y:int, val: int) : HBuffer ->
-	HBuffer(
-		store(
-			buf.data,
-			val,
-			y * buf.width + x
-		),
-		buf.width,
-		buf.height
-	)
-
-HBuffer_Get (buf: HBuffer, x:int, y:int) : int ->
-	select(
-		buf.data,
-		y * buf.width + x
-	)*/
-
-// Functions to model various casts
-//  - Type Promotions
+// Type Promotions that do not affect the value
 cast_uint8_uint16 (val: int) : int ->
   val
 
@@ -45,8 +22,6 @@ cast_uint16_int32 (val: int) : int ->
 cast_uint16_int64 (val: int) : int ->
   val
 
-cast_int64_int32 (val: int) : int
-
 cast_int8_int16 (val: int) : int ->
   val
 
@@ -56,7 +31,9 @@ cast_int8_int32 (val: int) : int ->
 cast_int16_int32 (val: int) : int ->
   val
 
-//  - Type Demotions
+// Type Demotions
+cast_int64_int32 (val: int) : int
+
 cast_int16_uint8 (val: int) : int ->
   val % 256
 
@@ -78,8 +55,6 @@ cast_int16_uint32 (val: int) : int ->
 cast_uint16_uint8 (val: int) : int ->
   val % 256
 
-cast_uint16_float (val: int) : float
-
 cast_int32_int16 (val: int) : int ->
   val // behavior undefined
 
@@ -91,14 +66,6 @@ cast_int32_uint32 (val: int) : int ->
     val
   else
     (2147483647 + 1) - val
-
-cast_int32_float (val: int) : float
-
-cast_double_int64 (val: float) : int
-
-cast_double_uint8 (val: float) : int
-
-cast_double_int16 (val: float) : int
 
 cast_uint32_uint8 (val: int) : int ->
   val % 256
@@ -118,6 +85,17 @@ cast_uint32_int32 (val: int) : int ->
   else
     val
 
+// Float <-> Int Type conversions
+cast_uint16_float (val: int) : float
+
+cast_int32_float (val: int) : float
+
+cast_double_int64 (val: float) : int
+
+cast_double_uint8 (val: float) : int
+
+cast_double_int16 (val: float) : int
+
 cast_double_int32 (val: float) : int
 
 cast_int32_double (val: int) : float
@@ -128,7 +106,8 @@ cast_float_int32 (val: float) : int
 
 cast_uint8_float (val: int) : float
 
-// Some utility functions
+/******************* Models For Library Functions ***********/
+
 std_min (v1: int, v2: int) : int ->
   if v1 > v2 then v2 else v1
 
@@ -146,3 +125,6 @@ std_abs (v: int) : int ->
 
 std_absf (v: float) : float ->
   if v >= 0.0 then v else -v
+
+rand () : int ->
+  uninterp(int)

@@ -54,6 +54,18 @@ public class DexterIRBaseListener implements DexterIRListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterGenDecl(DexterIRParser.GenDeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGenDecl(DexterIRParser.GenDeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterClassDecl(DexterIRParser.ClassDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}

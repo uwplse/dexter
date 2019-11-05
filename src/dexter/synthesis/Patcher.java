@@ -10,10 +10,7 @@ import dexter.ir.parser.Util;
 import dexter.ir.semantics.TypeChecker;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by akcheung on 7/5/17.
@@ -27,7 +24,7 @@ public class Patcher extends Transformer
   protected List<FuncDecl> fns;
 
   //protected int currentNum;
-  protected int ceID;
+  protected Stack<Integer> ceID;
 
   public static void main (String[] args) throws IOException {
     FileInputStream fis = new FileInputStream(new File(args[0]));
@@ -44,7 +41,8 @@ public class Patcher extends Transformer
     this.fns = functions;
 
     //this.currentNum = 0;
-    this.ceID = -1;
+    this.ceID = new Stack<>();
+    this.ceID.push(-1);
 
     BufferedReader in = new BufferedReader(new FileReader(OutputParser.outFilename));
 
@@ -65,7 +63,8 @@ public class Patcher extends Transformer
   {
     int chID = e.getId();
 
-    if (debug) System.err.println(e.accept(new Printer()));
+    if (debug)
+      System.err.println(e.accept(new Printer()));
 
     if (vals.containsKey(chID + "")) {
       if (debug)
@@ -76,18 +75,18 @@ public class Patcher extends Transformer
       else
         return e.args().get(e.args().size()-1).accept(this);
     }
-    else if (vals.containsKey(chID + "_" + ceID)) {
+    else if (vals.containsKey(chID + "_" + ceID.peek())) {
       if (debug)
-        System.out.println(e.args().get(vals.get(chID + "_" + ceID)).accept(new Printer()));
+        System.out.println(e.args().get(vals.get(chID + "_" + ceID.peek())).accept(new Printer()));
 
-      if (vals.get(chID + "_" + ceID) < e.args().size())
-        return e.args().get(vals.get(chID + "_" + ceID)).accept(this);
+      if (vals.get(chID + "_" + ceID.peek()) < e.args().size())
+        return e.args().get(vals.get(chID + "_" + ceID.peek())).accept(this);
       else
         return e.args().get(e.args().size()-1).accept(this);
     }
     else {
       if (debug)
-        System.out.println("VALS NOT FOUND: " + chID + ", " + chID + "_" + ceID);
+        System.out.println("VALS NOT FOUND: " + chID + ", " + chID + "_" + ceID.peek());
 
       return null;
     }
@@ -96,8 +95,10 @@ public class Patcher extends Transformer
   @Override
   public Expr transform (CallExpr e)
   {
-    if (!e.name().endsWith("_gen"))
-      return null;
+    for (FuncDecl fnDecl : this.fns)
+      if (fnDecl.name().matches(e.name()))
+        if (!fnDecl.isGenerator())
+          return null;
 
     if (debug) System.err.println(">>> " + e.accept(new Printer()) + "   :   " + e.getId());
 
@@ -108,9 +109,9 @@ public class Patcher extends Transformer
     for (FuncDecl fn : this.fns) {
       if (fn.name().equals(e.name()))
       {
-        this.ceID = e.getId();
+        this.ceID.push(e.getId());
         Expr rVal = fn.body().accept(this);
-        this.ceID = -1;
+        this.ceID.pop();
         for (int i=0; i<fn.params().size(); i++)
           rVal = rVal.accept(new Substitutor(fn.params().get(i), args.get(i)));
         return rVal;

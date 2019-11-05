@@ -14,8 +14,12 @@ bool Dexter::ExtractUDFs::VisitFunctionDecl (FunctionDecl* f)
   if (!ext->lift())
     return true;
 
-  if (Dexter::Preferences::Verbosity > 0)
-    llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
+  if (Dexter::Preferences::Verbosity > 0) {
+    if (Dexter::Preferences::Mode == 0)
+      llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
+    else
+      llvm::outs() << "Analyzing legacy code block `" << f->getNameAsString() << "`\n";
+  }
 
   Pipeline* pipeline = Dexter::DeclExt::Get(f)->DAG();
   std::set<Stage*> stages = pipeline->getAllStages();
@@ -25,6 +29,7 @@ bool Dexter::ExtractUDFs::VisitFunctionDecl (FunctionDecl* f)
   for (stage = stages.begin(); stage != stages.end(); ++stage)
   {
     udfs.clear();
+    udfs_orig.clear();
 
     std::vector<Stmt*> stmts = (*stage)->getStatements();
     std::vector<Stmt*>::iterator stmt;
@@ -103,6 +108,10 @@ void Dexter::ExtractUDFs::Extract (Stmt * o)
 
 void Dexter::ExtractUDFs::GenerateUDF (FunctionDecl * fnDecl)
 {
+  // Type already exists?
+  if (this->udfs_orig.count(fnDecl))
+    return;
+
   if (debug) {
     llvm::outs() << "Porting Fn: \n" << Util::print(fnDecl);
   }
@@ -146,8 +155,8 @@ void Dexter::ExtractUDFs::GenerateUDF (FunctionDecl * fnDecl)
     // Get return type
     Dexter::Type rType = ClangToIRParser::toIRType(fnDecl->getReturnType());
 
-    // Type already exists?
-    if (TypesFactory::isFunctionT(fn_name, rType, paramsT))
+    // Type already exists in IR lib?
+    if (!fnDecl->hasBody() && TypesFactory::isFunctionT(fn_name, rType, paramsT))
       return;
 
     // Translate function body to IR
@@ -155,6 +164,7 @@ void Dexter::ExtractUDFs::GenerateUDF (FunctionDecl * fnDecl)
 
     // Save UDF
     this->udfs.insert(irDecl);
+    this->udfs_orig.insert(fnDecl);
 
     // Add function type to TypesFactory
     TypesFactory::functionT(fn_name, rType, paramsT);
@@ -163,6 +173,10 @@ void Dexter::ExtractUDFs::GenerateUDF (FunctionDecl * fnDecl)
 
 void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * mDecl)
 {
+  // Type already exists?
+  if (this->udfs_orig.count(mDecl))
+    return;
+
   // Get method and class names
   std::string m_name = mDecl->getNameAsString();
   std::string cls_name = mDecl->getParent()->getNameAsString();
@@ -191,10 +205,6 @@ void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * 
     paramsT.push_back(ClangToIRParser::toIRType(paramT));
   }
 
-  // Type already exists?
-  if (TypesFactory::isFunctionT(ir_name, retTML, paramsT))
-    return;
-
   // Auto-model type
   if (hasRefParams)
     Util::error(mDecl, "NYI: Dynamic modelling of methods that take reference type parameters: ");
@@ -210,6 +220,7 @@ void Dexter::ExtractUDFs::GenerateUDF (clang::Expr * container, CXXMethodDecl * 
 
     // Save UDF
     this->udfs.insert(irDecl);
+    this->udfs_orig.insert(mDecl);
 
     // Add function type to TypesFactory
     TypesFactory::functionT(ir_name, retTML, paramsT);

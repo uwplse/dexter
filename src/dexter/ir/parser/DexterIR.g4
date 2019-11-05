@@ -5,13 +5,18 @@ grammar DexterIR;
 package dexter.ir.parser;
 }
 
-program  : (classDecl | fnDecl | uFnDecl)*  expr?;
+program  : (classDecl | fnDecl | uFnDecl | genDecl)*  expr?;
 
 uFnDecl  : name=ID '(' varDecl (',' varDecl)* ')' ':' retType=type ;
 
 fnDecl
      : name=ID '(' varDecl (',' varDecl)* ')' ':' retType=type '->' body=expr
      | name=ID '(' ')' ':' retType=type '->' body=expr
+     ;
+
+genDecl
+     : 'generator' name=ID '(' varDecl (',' varDecl)* ')' ':' retType=type '->' body=expr
+     | 'generator' name=ID '(' ')' ':' retType=type '->' body=expr
      ;
 
 classDecl : 'class' name=ID '(' varDecl (',' varDecl)* ')' ;

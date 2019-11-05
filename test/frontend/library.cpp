@@ -18,8 +18,9 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 		for (int x = 0; x < output.width(); x++)
 			output(x, y) = (temp(x, y-1) + temp(x, y) + temp(x, y+1)) / 3;
 }
+//DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
 
-/*void harrisCorners (Buffer<float,3> input, Buffer<float,3> output)
+void harrisCorners (Buffer<float,3> input, Buffer<float,2> output)
 {
 	Buffer<float,2> grayscale(input.width(), input.height());
 
@@ -33,7 +34,7 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
 
 
 	// Compute Scharr Derivations
-	Buffer<float> temp(input.width(), input.height());
+	/*Buffer<float> temp(input.width(), input.height());
 	Buffer<float> Dx(input.width(), input.height());
 	Buffer<float> Dy(input.width(), input.height());
 
@@ -136,8 +137,6 @@ void blur (Buffer<uint8_t,2> input, Buffer<uint8_t,2> output)
             float c = cov_yy(x, y);
 			output(x, y) = (float)(a*c - b*b - 0.04*(a + c)*(a + c)); // k = 0.04
 		}
-	}
-}*/
-
-DEXTER_REGISTER_INTENTIONAL_FUNC(blur, Dexter::Target::Halide)
-//DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)
+	}*/
+}
+DEXTER_REGISTER_INTENTIONAL_FUNC(harrisCorners, Dexter::Target::Halide)

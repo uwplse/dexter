@@ -14,7 +14,10 @@ bool Dexter::VarScopeAnalysis::VisitFunctionDecl (FunctionDecl *f)
   if (!ext->lift())
     return true;
 
-  llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
+  if (Dexter::Preferences::Mode == 0)
+    llvm::outs() << "Analyzing intentional code block `" << f->getNameAsString() << "`\n";
+  else
+    llvm::outs() << "Analyzing legacy code block `" << f->getNameAsString() << "`\n";
 
   std::set<ValueDecl *> scope;
   this->liveVars = std::stack<std::set<ValueDecl *>>();

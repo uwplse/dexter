@@ -19,9 +19,14 @@ bool Dexter::ComputeVC::VisitFunctionDecl (FunctionDecl* f)
   std::set<Stage*>::iterator stage;
   for (stage = stages.begin(); stage != stages.end(); ++stage)
   {
-    if (Dexter::Preferences::Verbosity > 0)
-      llvm::outs() << "Computing VC for intentional code block `" << f->getNameAsString()
-                   << "` (Stage " << (*stage)->getId() << ")\n";
+    if (Dexter::Preferences::Verbosity > 0) {
+      if (Dexter::Preferences::Mode == 0)
+        llvm::outs() << "Computing VC for intentional code block `" << f->getNameAsString()
+                           << "` (Stage " << (*stage)->getId() << ")\n";
+      else
+        llvm::outs() << "Computing VC for legacy code block `" << f->getNameAsString()
+                           << "` (Stage " << (*stage)->getId() << ")\n";
+    }
 
     if ((*stage)->isEmpty())
       continue;

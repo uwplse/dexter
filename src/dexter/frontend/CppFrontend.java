@@ -17,9 +17,16 @@ import java.util.Set;
 public class CppFrontend {
   public static void run () {
     try {
-      ProcessBuilder pb = new ProcessBuilder("./run.sh", Files.cppFilePath(), Files.userDslFilePath(), Files.cppFrontendDirPath(), Integer.toString(Preferences.Global.verbosity));
+      ProcessBuilder pb = new ProcessBuilder(
+          "./run.sh",
+          Files.cppFilePath(),
+          Files.userDslFilePath(),
+          Files.cppFrontendDirPath(),
+          Integer.toString(Preferences.Global.verbosity),
+          Preferences.Global.mode.value()
+      );
       pb.directory(Files.cppFrontendDir());
-      pb.inheritIO().start().waitFor();
+      int code = pb.inheritIO().start().waitFor();
     }
     catch ( Exception e ) {
       System.err.println("Clang front-end crashed unexpectedly.");

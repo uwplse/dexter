@@ -189,7 +189,7 @@ public class Transformer implements Visitor<Expr>
     {
       FuncDecl f = new FuncDecl(o.name(),
               o.params().stream().map(p -> (VarExpr)p.accept(this)).collect(Collectors.toList()),
-              o.retType(), (o.isUnInterpreted() ? null : o.body().accept(this)));
+              o.retType(), (o.isUnInterpreted() ? null : o.body().accept(this)), o.isGenerator());
 
       f = (FuncDecl)f.type(TypesFactory.functionT(f.name(), f.retType(), f.params().stream().map(p -> p.type()).collect(Collectors.toList())));
       return f;

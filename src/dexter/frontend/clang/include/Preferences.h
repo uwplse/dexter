@@ -4,6 +4,7 @@
 namespace Dexter {
   namespace Preferences {
     extern int Verbosity;
+    extern int Mode;
   }
 }
 

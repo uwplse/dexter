@@ -121,7 +121,11 @@ public class TypesFactory
   {
     Map.Entry<Type, List<Type>> sig = new AbstractMap.SimpleImmutableEntry<>(returnT, params);
     Map.Entry<String, Map.Entry<Type, List<Type>>> key = new AbstractMap.SimpleImmutableEntry<>(name, sig);
-    return functionsT.containsKey(key);
+    for (Map.Entry<String, Map.Entry<Type, List<Type>>> k : functionsT.keySet()) {
+      if (k.equals(key))
+        return true;
+    }
+    return false;
   }
 
   public static BitvectorT bitvectorT(int width)

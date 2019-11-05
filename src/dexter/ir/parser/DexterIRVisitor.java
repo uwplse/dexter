@@ -31,6 +31,12 @@ public interface DexterIRVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFnDecl(DexterIRParser.FnDeclContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DexterIRParser#genDecl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGenDecl(DexterIRParser.GenDeclContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DexterIRParser#classDecl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

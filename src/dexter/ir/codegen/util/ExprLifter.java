@@ -73,7 +73,7 @@ public class ExprLifter implements Visitor<Expr>
     }
 
     String fnName = fnName();
-    FuncDecl newDecl = (FuncDecl)new FuncDecl(fnName, uniqueVarsUsed, e.type(), e).type(e.type());
+    FuncDecl newDecl = (FuncDecl)new FuncDecl(fnName, uniqueVarsUsed, e.type(), e, false).type(e.type());
     this.newDecls.add(newDecl);
 
     return (CallExpr)new CallExpr(fnName, uniqueVarsUsed).type(e.type());
@@ -193,7 +193,7 @@ public class ExprLifter implements Visitor<Expr>
   @Override
   public Expr visit(FuncDecl f)
   {
-    return new FuncDecl(f.name(), f.params(), f.retType(), (f.isUnInterpreted() ? f.body() : f.body().accept(this).type(f.retType())));
+    return new FuncDecl(f.name(), f.params(), f.retType(), (f.isUnInterpreted() ? f.body() : f.body().accept(this).type(f.retType())), f.isGenerator());
   }
 
   @Override

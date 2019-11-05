@@ -141,6 +141,15 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
       fnDecls.add(f);
     }
 
+    for (DexterIRParser.GenDeclContext c : ctx.genDecl())
+    {
+      FuncDecl f = (FuncDecl) visit(c);
+      if (fnDecls.contains(f))
+        throw new RuntimeException("duplicate declaration of: " + f.name());
+
+      fnDecls.add(f);
+    }
+
     return ctx.expr() == null ? new Program(fnDecls, classDecls, null) : new Program(fnDecls, classDecls, visit(ctx.expr()));
   }
 
@@ -181,9 +190,8 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
     }
 
     Type returnT = parseType(ctx.retType);
-    Expr r = new FuncDecl(ctx.name.getText(), params, returnT, null);
+    FuncDecl r = new FuncDecl(ctx.name.getText(), params, returnT, null, false);
     r.type(TypesFactory.functionT(ctx.name.getText(), returnT, paramsT));
-
     return r;
   }
 
@@ -204,9 +212,30 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
     }
 
     Type returnT = parseType(ctx.retType);
-    Expr r = new FuncDecl(ctx.name.getText(), params, returnT, visit(ctx.body));
+    FuncDecl r = new FuncDecl(ctx.name.getText(), params, returnT, visit(ctx.body), false);
     r.type(TypesFactory.functionT(ctx.name.getText(), returnT, paramsT));
+    return r;
+  }
 
+  @Override
+  public Expr visitGenDecl(DexterIRParser.GenDeclContext ctx)
+  {
+    List<VarExpr> params = new ArrayList<>();
+    List<Type> paramsT = new ArrayList<>();
+
+    for (DexterIRParser.VarDeclContext c : ctx.varDecl())
+    {
+      VarExpr p = (VarExpr)visit(c);
+      if (params.contains(p))
+        throw new RuntimeException("duplicate declaration of: " + p.name());
+
+      params.add(p);
+      paramsT.add(p.type());
+    }
+
+    Type returnT = parseType(ctx.retType);
+    FuncDecl r = new FuncDecl(ctx.name.getText(), params, returnT, visit(ctx.body), true);
+    r.type(TypesFactory.functionT(ctx.name.getText(), returnT, paramsT));
     return r;
   }
 
@@ -523,7 +552,7 @@ public class BuildASTVisitor extends DexterIRBaseVisitor<Expr>
     }
 
     Type returnT = parseType(ctx.retType);
-    Expr r = new FuncDecl("lambda", params, returnT, visit(ctx.body));
+    Expr r = new FuncDecl("lambda", params, returnT, visit(ctx.body), false);
     r.type(new FunctionT("lambda", paramsT, returnT));
 
     return r;

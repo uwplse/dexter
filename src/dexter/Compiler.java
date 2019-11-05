@@ -3,7 +3,6 @@ package dexter;
 import dexter.analysis.ExtractLiveFunctionSet;
 import dexter.analysis.ExtractStencilExpr;
 import dexter.analysis.VCAnalyzer;
-import dexter.codegen.halide.CodeGen;
 import dexter.dag.Pipeline;
 import dexter.dag.Stage;
 import dexter.frontend.CodeAnalysis;
@@ -20,7 +19,6 @@ import dexter.ir.integer.FloatLitExpr;
 import dexter.ir.integer.IntLitExpr;
 import dexter.ir.semantics.TypeChecker;
 import dexter.ir.semantics.VarChecker;
-import dexter.ir.type.ClassT;
 import dexter.ir.type.CollectionT;
 import dexter.ir.type.Type;
 import dexter.ir.type.TypesFactory;
@@ -33,7 +31,6 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -123,7 +120,7 @@ public class Compiler {
       }
 
       // Use synthesized summary to generate Halide Code
-      String halideFunc = CodeGen.asHalideGenerator(cb);
+      /*String halideFunc = CodeGen.asHalideGenerator(cb);
 
       String origFunc = new Scanner(Files.origFuncFile(cb.name())).useDelimiter("\\A").next();
 
@@ -132,10 +129,10 @@ public class Compiler {
 
       Files.writeFile(Files.outputFile().getParent() + "/halide_" + cb.name() + ".cpp", halideFunc);
 
-      origCode = origCode.replaceAll(Pattern.quote(origFunc), "#include \"" + cb.name() + ".h\"").replaceAll("DEXTER_REGISTER_INTENTIONAL_FUNC\\(" + cb.name() + ",.*", "");
+      origCode = origCode.replaceAll(Pattern.quote(origFunc), "#include \"" + cb.name() + ".h\"").replaceAll("DEXTER_REGISTER_INTENTIONAL_FUNC\\(" + cb.name() + ",.*", "");*/
     }
 
-    Files.writeFile(Files.outputFilePath(), origCode);
+    //Files.writeFile(Files.outputFilePath(), origCode);
 
     if (!Preferences.Global.log)
       if (Files.tempDir().exists())
@@ -280,6 +277,8 @@ public class Compiler {
       // Check semantics
       checkSemantics(tm);
 
+      tm.print();
+
       // Run synthesizer
       if (Preferences.Global.verbosity > 0)
         System.out.print("      Running the synthesizer... ");
@@ -316,13 +315,10 @@ public class Compiler {
     LetExpr currBody = (LetExpr) p.body();
     p.body(new LetExpr(currBody.vars(), currBody.body(), currBody.assumptions()));
 
-    // Load program analysis
-    CodeAnalysis analysis = stage.analysis();
-
     // Update postconditions
     updateStencilExpression(p, termMapping, buffer.type());
 
-    if (Preferences.Global.verbosity > 1)
+    if (Preferences.Global.verbosity > 2)
       p.print();
 
     return p;
@@ -454,14 +450,7 @@ public class Compiler {
       List<Expr> idxLst = idx._2;
 
       Expr inp;
-      if (target.type() instanceof ClassT) {
-        List<Expr> args = new ArrayList<>();
-        args.add(target);
-        args.addAll(idxLst);
-        inp = new CallExpr("HBuffer_Get", args);
-      }
-      else
-        inp = new SelectExpr(target, idxLst);
+      inp = new SelectExpr(target, idxLst);
 
       List<Expr> inpLst = new ArrayList<>();
       if (params.isEmpty())
@@ -470,25 +459,9 @@ public class Compiler {
         inpLst.addAll(params);
 
       if (elemT == TypesFactory.Int)
-        if (target.type() instanceof ClassT) {
-          List<Expr> args = new ArrayList<>();
-          args.add(ui_expr);
-          args.addAll(idxLst);
-          args.add(new CallExpr("int_expr", inpLst));
-          ui_expr = new CallExpr("HBuffer_Set", args);
-        }
-        else
-          ui_expr = new StoreExpr(ui_expr, new CallExpr("int_expr", inpLst), idxLst);
+        ui_expr = new StoreExpr(ui_expr, new CallExpr("int_expr", inpLst), idxLst);
       else if (elemT == TypesFactory.Float)
-        if (target.type() instanceof ClassT) {
-          List<Expr> args = new ArrayList<>();
-          args.add(ui_expr);
-          args.addAll(idxLst);
-          args.add(new CallExpr("float_expr", inpLst));
-          ui_expr = new CallExpr("HBuffer_Set", args);
-        }
-        else
-          ui_expr = new StoreExpr(ui_expr, new CallExpr("float_expr", inpLst), idxLst);
+        ui_expr = new StoreExpr(ui_expr, new CallExpr("float_expr", inpLst), idxLst);
       else
         throw new RuntimeException("Unexpected outvar elem type: " + target.type());
 
@@ -547,55 +520,82 @@ public class Compiler {
   private static void updateStencilExpression(Program p, Map<Expr, Expr> termMapping, Type bufT) {
     List<FuncDecl> fns = new ArrayList<>();
 
-    Type elemT ;
+    Type elemT;
     if (bufT instanceof CollectionT)
       elemT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("NYI");
 
-    // Outvar_init value
-    List<Expr> idx = Arrays.asList(
-            new VarExpr("idx_x", TypesFactory.Int),
-            new VarExpr("idx_y", TypesFactory.Int)
-    );
-
-    Expr e = new SelectExpr(new VarExpr("out_init", bufT), idx);
-
-    e.type(elemT);
-
-    List<Expr> terms = new ArrayList<>();
-    terms.add(e);
-    terms.addAll(termMapping.values().stream().map(v -> v.accept(new VarExprToScopeMacroConvertor())).collect(Collectors.toList()));
-
-    Expr genCall = null;
-
-    if (elemT == TypesFactory.Int)
-      genCall = new CallExpr("int_expr", terms);
-    else if (elemT == TypesFactory.Float)
-      genCall = new CallExpr("float_expr", terms);
-    else
-      throw new RuntimeException("Unexpected outVar type: " + bufT);
-
     // Update stencil expressions with calls to the generator function
-    for (FuncDecl fn : p.functions())
-      if (fn.name().equals("pc") || fn.name().matches("inv[0-9]+"))
-        fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), genCall)));
-      else if (fn.name().equals("int_expr") || fn.name().equals("float_expr"))
-      {
+    for (FuncDecl fn : p.functions()) {
+      if (fn.name().matches(".*?buf_asn_1d(i|f)")) {
+        Expr stencilExpr = generateExprGrammarCall(bufT, 1, termMapping);
+        fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), stencilExpr)));
+      } else if (fn.name().matches(".*?(buf_asn_2d(i|f)|buf_asn_row_2d(i|f))")) {
+        Expr stencilExpr = generateExprGrammarCall(bufT, 2, termMapping);
+        fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), stencilExpr)));
+      }
+      //if (fn.name().equals("pc") || fn.name().matches("inv[0-9]+"))
+      //fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), genCall)));
+      else if (fn.name().equals("int_expr") || fn.name().equals("float_expr")) {
         List<VarExpr> params = new ArrayList<>();
-        int i = 1;
-        for (Expr term : terms)
+        params.add(new VarExpr("v1", elemT));
+        int i=2;
+        for (Expr term : termMapping.values())
           params.add(new VarExpr("v" + i++, term.type()));
 
         fn.params(params);
         fn.body(null);
         fn.isUnInterpreted(true);
         fns.add(fn);
-      }
-      else if (!fns.contains(fn))
+      } else if (!fns.contains(fn))
         fns.add(fn);
 
-    p.functions(fns);
+      p.functions(fns);
+    }
+  }
+
+  private static Expr generateExprGrammarCall(Type bufT, int dim, Map<Expr, Expr> termMapping) {
+    Type elemT;
+    if (bufT instanceof CollectionT)
+      elemT = ((CollectionT) bufT).elemT();
+    else
+      throw new RuntimeException("NYI");
+
+    // Outvar_init value
+    Expr idx_x = new VarExpr("idx_x", TypesFactory.Int);
+    Expr idx_y = new VarExpr("idx_y", TypesFactory.Int);
+    Expr idx_c = new VarExpr("idx_c", TypesFactory.Int);
+
+    List<Expr> args;
+
+    switch (dim) {
+      case 1:
+        args = Arrays.asList(idx_x);
+        break;
+      case 2:
+        args = Arrays.asList(idx_x, idx_y);
+        break;
+      case 3:
+        args = Arrays.asList(idx_x, idx_y, idx_c);
+        break;
+      default:
+        throw new RuntimeException("NYI");
+    }
+
+    Expr e = new SelectExpr(new VarExpr("out_init", bufT), args);
+    e.type(elemT);
+
+    List<Expr> terms = new ArrayList<>();
+    terms.add(e);
+    terms.addAll(termMapping.values().stream().map(v -> v.accept(new VarExprToScopeMacroConvertor())).collect(Collectors.toList()));
+
+    if (elemT == TypesFactory.Int)
+      return new CallExpr("int_expr", terms);
+    else if (elemT == TypesFactory.Float)
+      return new CallExpr("float_expr", terms);
+    else
+      throw new RuntimeException("Unexpected output type: " + bufT);
   }
 
   private static List<Expr> genExprSynthOpts (Map<Expr, Expr> termsMapping, Set<Expr> stencilExprs, Type bufT) throws IOException {

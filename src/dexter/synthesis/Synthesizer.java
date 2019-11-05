@@ -43,7 +43,6 @@ public class Synthesizer {
     // Patch output
     if (!Preferences.Sketch.expr_codegen) {
       p = (Program) p.accept(new Patcher(p.functions()));
-
       File skParse = new File("metalift_skParse.txt");
       skParse.delete();
     }

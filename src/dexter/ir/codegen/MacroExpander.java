@@ -115,13 +115,18 @@ public class MacroExpander extends Transformer {
   @Override
   public Expr transform (CallExpr e)
   {
+   // e.print();
+
     // Get function template
     FuncDecl fnDecl = null;
     for (FuncDecl fn : this.fns) {
+      //fn.print();
       if (fn.name().equals(e.name())) {
         fnDecl = fn;
       }
     }
+
+    //System.out.println(fnDecl);
 
     // TODO: REMOVE
     if (e.name().matches("int_expr_grm|float_expr_grm"))
@@ -236,7 +241,7 @@ public class MacroExpander extends Transformer {
     argsToAdd.addAll(symConsts);
 
     body = body.accept(new RecursiveCallUpdater(e.name(), fn_name, argsToAdd));
-    this.dynFns.get(fnDecl.name()).add(new FuncDecl(fn_name, params, fnDecl.retType(), body));
+    this.dynFns.get(fnDecl.name()).add(new FuncDecl(fn_name, params, fnDecl.retType(), body, fnDecl.isGenerator()));
 
     // Change CallExpr to have needed args
     return new CallExpr(fn_name, new ArrayList<>(newArgs));
@@ -338,6 +343,22 @@ public class MacroExpander extends Transformer {
       ret = new BinaryExpr(ret, BinaryExpr.Op.AND, e.getSubExpr().accept(new Substitutor(e.getId(), var)));
 
     return ret.accept(this);
+  }
+
+  @Override
+  public Expr transform (ChooseExpr e)
+  {
+    List<Expr> opts = new ArrayList<>();
+    for (Expr arg : e.args())
+      try {
+        Expr opt = arg.accept(this);
+        opts.add(opt);
+      } catch (RuntimeException x) {
+        if (!x.getMessage().startsWith("NYI: Default value for type buffer"))
+          throw x;
+      }
+
+    return new ChooseExpr(opts);
   }
 
   @Override

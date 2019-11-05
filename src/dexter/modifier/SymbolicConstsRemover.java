@@ -60,12 +60,12 @@ public class SymbolicConstsRemover extends Transformer {
   @Override
   public Expr transform (FuncDecl e)
   {
-    return new FuncDecl(e.name(), e.params().stream().filter(param -> !param.name().matches("Const[0-9]+")).collect(Collectors.toList()), e.retType(), (e.isUnInterpreted() ? null : e.body().accept(this)));
+    return new FuncDecl(e.name(), e.params().stream().filter(param -> !param.name().matches("Const[0-9]+")).collect(Collectors.toList()), e.retType(), (e.isUnInterpreted() ? null : e.body().accept(this)), e.isGenerator());
   }
 
   @Override
   public Expr transform (LetExpr e)
   {
-    return new LetExpr(e.vars().stream().filter(param -> !param.name().matches("Const[0-9]+")).collect(Collectors.toSet()), e.body().accept(this), e.assumptions().accept(this));
+    return new LetExpr(e.vars().stream().filter(param -> !param.name().matches("Const[0-9]+")).collect(Collectors.toSet()), e.body().accept(this), (e.assumptions() == null ? null : e.assumptions().accept(this)));
   }
 }

@@ -167,8 +167,12 @@ public class SkPrinter implements Visitor<String>
       return e.accept(this);
     }
     else {
-      // If calling a generator function
-      if (e.name().endsWith("_gen")) {
+      FuncDecl decl = null;
+      for (FuncDecl fn : fns)
+        if (fn.name().matches(e.name()))
+          decl = fn;
+
+      if (decl.isGenerator()) {
         List<Expr> newArgs = new ArrayList<>(e.args());
 
         // Pass choose vars
@@ -218,8 +222,12 @@ public class SkPrinter implements Visitor<String>
       return sb.toString();
     }
     else {
-      // If calling a generator function
-      if (e.name().endsWith("_gen")) {
+      FuncDecl decl = null;
+      for (FuncDecl fn : fns)
+        if (fn.name().matches(e.name()))
+          decl = fn;
+
+      if (decl.isGenerator()) {
         List<Expr> newArgs = new ArrayList<>(e.args());
 
         // Pass choose vars
@@ -309,7 +317,7 @@ public class SkPrinter implements Visitor<String>
     Map<CallExpr, List<Integer>> genCalls = new HashMap<>();
     List<Expr> newArgs = new ArrayList<>();
     for (Expr choice : ch.args()){
-      CountCallExprs cce = new CountCallExprs();
+      CountCallExprs cce = new CountCallExprs(fns);
       newArgs.add(choice.accept(cce));
       cce.getCount().forEach((c, ids) -> {
         if (!genCalls.containsKey(c) || genCalls.get(c).size() < ids.size())
@@ -340,7 +348,8 @@ public class SkPrinter implements Visitor<String>
       chooseIDs.put(chID+"", (int) Math.ceil(Math.log(e.args().size()) / Math.log(2)));
 
     if (e.args().size() == 1) {
-      sb.append("(" + prefix + (chID) + " == 0 ? " + e.args().get(0).accept(this) + " : " + e.args().get(0).accept(this) + ")");
+      //sb.append("(" + prefix + (chID) + " == 0 ? " + e.args().get(0).accept(this) + " : " + e.args().get(0).accept(this) + ")");
+      sb.append("(" + e.args().get(0).accept(this) + ")");
       return sb.toString();
     }
 
@@ -703,7 +712,7 @@ public class SkPrinter implements Visitor<String>
 
       return sb.toString();
     }
-    else if (n.name().endsWith("_gen"))
+    else if (n.isGenerator())
     {
       StringBuffer sb = new StringBuffer();
 
@@ -1366,10 +1375,8 @@ public class SkPrinter implements Visitor<String>
     }
     else if  (e.array().type() instanceof BufferT)
     {
-      // assume planar mem layout
-      // assume 2D
-      assert (((BufferT) e.array().type()).dim() == 2);
-      return e.array().accept(this) + ".data[OFFSET + (" + e.index().get(0).accept(this) + ") + (" + e.index().get(1).accept(this) + ") * " + e.array().accept(this) + ".dim0_extent]";
+      String index = genIndex(e.array().accept(this), e.index(), 0);
+      return e.array().accept(this) + ".data[OFFSET + " + index + "]";
     }
     else
     {
@@ -1398,9 +1405,16 @@ public class SkPrinter implements Visitor<String>
           indent() + "r.data[OFFSET + r.offset + (" + e.index().get(0).accept(this) + ")] = " + e.value().accept(this) + ";\n" +
           indent() + "return r");
     else if (e.array().type() instanceof BufferT) {
-      assert (((BufferT) e.array().type()).dim() == 2);
-      sb.append(skArrayType + " r = new " + skArrayType + "(data=" + e.array().accept(this) + ".data, dim0_extent=" + e.array().accept(this) + ".dim0_extent, dim1_extent=" + e.array().accept(this) + ".dim1_extent);\n" +
-          indent() + "r.data[OFFSET + (" + e.index().get(0).accept(this) + ") + (" + e.index().get(1).accept(this) + ") * " + e.array().accept(this) + ".dim0_extent] = " + e.value().accept(this) + ";\n" +
+      int dims = ((BufferT) e.array().type()).dim();
+
+      String init = "";
+      for (int dim=0; dim<dims; dim++)
+        init += ", dim" + dim + "_extent=" + e.array().accept(this) + ".dim" + dim +"_extent";
+
+      String index = genIndex(e.array().accept(this), e.index(), 0);
+
+      sb.append(skArrayType + " r = new " + skArrayType + "(data=" + e.array().accept(this) + ".data"  + init + ");\n" +
+          indent() + "r.data[OFFSET + " + index + "] = " + e.value().accept(this) + ";\n" +
           indent() + "return r");
     }
     else
@@ -1409,6 +1423,13 @@ public class SkPrinter implements Visitor<String>
           indent() +"return r");
 
     return sb.toString();
+  }
+
+  private String genIndex(String arr, List<Expr> index, int curr) {
+    if (index.size() <= curr + 1)
+      return index.get(curr).accept(this);
+    else
+      return index.get(curr).accept(this) + " + (" + arr + ".dim" + curr + "_extent * " + genIndex(arr, index, curr + 1) + ")";
   }
 
   @Override

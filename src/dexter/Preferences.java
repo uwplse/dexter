@@ -4,7 +4,16 @@ package dexter;
  * Created by Maaz Ahmad on 6/25/19.
  */
 public class Preferences {
+  public enum Mode {
+    Intentional("0"),
+    Legacy("1");
+    private String value;
+    Mode (String v) { value = v; }
+    public String value () { return value; }
+  }
+
   public static class Global {
+    public static Mode mode = Mode.Intentional;
     public static int verbosity = 0;
     public static boolean log = false;
     public static boolean use_output_logs = false;
@@ -19,7 +28,7 @@ public class Preferences {
     }
 
     public static class Term {
-      public static boolean lightverif = true;
+      public static boolean lightverif = false;
       public static boolean minisat = true;
     }
 
@@ -48,6 +57,7 @@ public class Preferences {
   public static void init (CLIParser parser) {
     Global.log = parser.log();
     Global.verbosity = parser.verbosity();
+    Global.mode = parser.mode();
     Global.use_output_logs = parser.use_output_logs();
     Global.run_frontend = !parser.skip_frontend();
     Global.generate_intermediate_files = parser.generate_intermediate_files();

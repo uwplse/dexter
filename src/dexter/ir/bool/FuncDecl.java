@@ -17,14 +17,16 @@ public class FuncDecl extends Expr
   protected Expr body;
   protected Type retType;
   protected boolean isUnInterpreted;
+  protected boolean isGenerator;
 
-  public FuncDecl (String name, List<VarExpr> params, Type retType, Expr body)
+  public FuncDecl (String name, List<VarExpr> params, Type retType, Expr body, boolean isGen)
   {
     this.name = name;
     this.params = new ArrayList<> (params);
     this.body = body;
     this.isUnInterpreted = (body == null ? true : false);
     this.retType = retType;
+    this.isGenerator = isGen;
   }
 
   public String name () { return name; }
@@ -33,6 +35,8 @@ public class FuncDecl extends Expr
   public Type retType () { return retType; }
   public boolean isUnInterpreted () { return isUnInterpreted; }
   public void isUnInterpreted (boolean isU) { isUnInterpreted = isU; }
+  public boolean isGenerator () { return isGenerator; }
+  public void isGenerator (boolean isG) { isGenerator = isG; }
 
   public void body (Expr body) { this.body = body; }
   public void params (List<VarExpr> params) { this.params = params; }

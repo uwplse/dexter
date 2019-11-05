@@ -7,6 +7,8 @@ public class IntT implements Type
 {
   protected IntT() {}
 
+  @Override public boolean equals (Object o) { return o instanceof IntT; }
+
   @Override public String toString () { return "int"; }
 
   @Override public void print() { System.out.println(toString()); }

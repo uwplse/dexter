@@ -1,19 +1,59 @@
-int_terms_gen (x: int, y: int) : int ->
+// Term gen for 1D assign statements
+generator int_terms_1d (x: int) : int ->
   choose(
-    select(@in_vars(buffer(int,2)), offset_gen(stride_gen(x), dilate_gen(rad_gen())), offset_gen(stride_gen(y), dilate_gen(rad_gen())))
+    select(@in_vars(buffer(int,1)), index(offset(stride(x), dilation(radius())))),
+    select(@in_vars(buffer(int,2)), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius())))),
+    select(@in_vars(buffer(int,3)), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius()))))
   )
 
-stride_gen (val: int) : int ->
+generator float_terms_1d (x: int) : float ->
+  choose(
+    select(@in_vars(buffer(float,1)), index(offset(stride(x), dilation(radius())))),
+    select(@in_vars(buffer(float,2)), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius())))),
+    select(@in_vars(buffer(float,3)), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius()))), index(offset(stride(x), dilation(radius()))))
+  )
+
+// Term gen for 2D assign statements
+generator int_terms_2d (x: int, y: int) : int ->
+  choose(
+    select(@in_vars(buffer(int,1)), index(offset(stride(choose(x, y)), dilation(radius())))),
+    select(@in_vars(buffer(int,2)), index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius())))),
+    select(@in_vars(buffer(int,3)), index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius()))))
+  )
+
+generator float_terms_2d (x: int, y: int) : float ->
+  choose(
+    select(@in_vars(buffer(float,1)), stride(choose(x, y))),//index(offset(stride(choose(x, y)), dilation(radius())))),
+    select(@in_vars(buffer(float,2)), stride(choose(x, y)), stride(choose(x, y))),//index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius())))),
+    select(@in_vars(buffer(float,3)), stride(choose(x, y)), stride(choose(x, y)), stride(choose(x, y)))//index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius()))), index(offset(stride(choose(x, y)), dilation(radius()))))
+  )
+
+// Term gen for 3D assign statements
+generator int_terms_3d (x: int, y: int, c: int) : int ->
+  choose(
+    select(@in_vars(buffer(int,1)), index(offset(stride(choose(x, y, c)), dilation(radius())))),
+    select(@in_vars(buffer(int,2)), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius())))),
+    select(@in_vars(buffer(int,3)), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius()))))
+  )
+
+generator float_terms_3d (x: int, y: int) : float ->
+  choose(
+    select(@in_vars(buffer(float,1)), index(offset(stride(choose(x, y, c)), dilation(radius())))),
+    select(@in_vars(buffer(float,2)), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius())))),
+    select(@in_vars(buffer(float,3)), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius()))), index(offset(stride(choose(x, y, c)), dilation(radius()))))
+  )
+
+generator index (expr: int) : int ->
+  choose(expr, 0, 1, 2, 3)
+
+generator stride (val: int) : int ->
 	choose(val, val*choose(2,3,4), val*@in_vars(int))
 
-rad_gen () : int ->
+generator radius () : int ->
 	choose(1, 2)
 
-dilate_gen (rad: int) : int ->
+generator dilation (rad: int) : int ->
 	choose(rad, rad*@in_vars(int))
 
-offset_gen (val: int, rad: int) : int ->
+generator offset (val: int, rad: int) : int ->
  choose(val, val+rad, val-rad)
-
-width_gen () : int ->
-  @vars(int)

@@ -41,6 +41,7 @@ protected:
   Rewriter &rewriter;
 
   std::set<FuncDecl*> udfs;
+  std::set<FunctionDecl*> udfs_orig;
 
   bool debug = false;
 };

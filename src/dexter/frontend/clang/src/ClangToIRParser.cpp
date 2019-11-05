@@ -166,6 +166,8 @@ Dexter::Expr * Dexter::ClangToIRParser::parse (clang::Expr * e, std::map<NamedDe
           return new FieldExpr(parse(obj, vars), "dim0_extent");
         else if (fn_name == "height")
           return new FieldExpr(parse(obj, vars), "dim1_extent");
+        else if (fn_name == "channels")
+          return new FieldExpr(parse(obj, vars), "dim2_extent");
         else
           Util::error(e, "NYI: Support for Halide Buffer func `" + fn_name + "`:-\n");
       }
@@ -474,13 +476,12 @@ Dexter::FuncDecl * Dexter::ClangToIRParser::parse (clang::FunctionDecl * fnDecl,
     params.push_back(parse(*it));
 
   if (!fnDecl->hasBody()) {
-    llvm::outs() << Util::print(fnDecl) << "\n";
-    Util::error(fnDecl, "Unable to automatically model function: No body found.");
+    Util::error(fnDecl, "Source code unavailable for library function: " + Util::print(fnDecl) + "\n");
   }
 
   Dexter::Expr * body = parseFnBody(fnDecl->getBody(), new Dexter::VarExpr("ret_val_ph", rType));
 
-  return new FuncDecl(fn_name + (outParam != NULL ? "_" + outParam->getNameAsString() : ""), params, rType, body);
+  return new FuncDecl(fn_name + (outParam != NULL ? "_" + outParam->getNameAsString() : ""), params, rType, body, false);
 }
 
 Dexter::FuncDecl * Dexter::ClangToIRParser::parse (std::string cls_name, clang::CXXMethodDecl * mDecl)
@@ -504,7 +505,7 @@ Dexter::FuncDecl * Dexter::ClangToIRParser::parse (std::string cls_name, clang::
 
   Dexter::Expr * body = parseFnBody(mDecl->getBody(), new Dexter::VarExpr("ret_val_ph", rType));
 
-  FuncDecl * fn = new FuncDecl(cls_name + "_" + fn_name, params, rType, body);
+  FuncDecl * fn = new FuncDecl(cls_name + "_" + fn_name, params, rType, body, false);
   return fn;
 }
 
@@ -551,6 +552,9 @@ Dexter::Type Dexter::ClangToIRParser::toIRType (QualType cType)
 
   else if (cType->isPointerType())
   {
+    if (Dexter::Preferences::Mode == 0)
+      Util::error(cType, "Error: Pointer types are not supported within intentional code blocks. Use the Halide::Runtime::Buffer class instead.\n");
+
     QualType elemsT = cast<PointerType>(cType)->getPointeeType();
 
     // Handling typedefs

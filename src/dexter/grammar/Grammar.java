@@ -67,57 +67,117 @@ public class Grammar {
   }
 
   private static void stitchPointsGrammar(Program p, Program grammar, Type bufT, Type termT) {
-    List<FuncDecl> fns = new ArrayList<>();
-
-    // Add generator functions from this grammar
-    fns.addAll(grammar.functions());
-
-    // Create generator function call
-    List<Expr> termGenParams = Arrays.asList(
-        new VarExpr("idx_x", TypesFactory.Int),
-        new VarExpr("idx_y", TypesFactory.Int)
-    );
-
-    Expr stencilExpr = null;
-    Expr termGenCall = null;
-
     Type genT;
     if (bufT instanceof CollectionT)
       genT = ((CollectionT) bufT).elemT();
     else
       throw new RuntimeException("Unexpected outVar type: " + bufT);
 
-    if (termT == TypesFactory.Int)
-      termGenCall = new CallExpr("int_terms_gen", termGenParams);
-    else if (genT == TypesFactory.Float)
-      termGenCall = new CallExpr("float_terms_gen", termGenParams);
-    else
-      throw new RuntimeException("Unexpected point type: " + bufT);
+    List<FuncDecl> fns = new ArrayList<>();
 
-    if (genT == TypesFactory.Int)
-      stencilExpr = new CallExpr("int_expr", Arrays.asList(termGenCall));
-    else if (genT == TypesFactory.Float)
-      stencilExpr = new CallExpr("float_expr", Arrays.asList(termGenCall));
-    else
-      throw new RuntimeException("Unexpected outVar type: " + bufT);
+    // Add generator functions from this grammar
+    fns.addAll(grammar.functions());
 
     // Update stencil expressions with calls to the generator function
-    for (FuncDecl fn : p.functions())
-      if (fn.name().equals("pc") || fn.name().matches("inv[0-9]+"))
+    for (FuncDecl fn : p.functions()) {
+      if (fn.name().matches("buf_asn_1d(i|f)")) {
+        Expr stencilExpr = generatePointGrammarCall(termT, 1);
         fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), stencilExpr)));
-      else if (fn.name().equals("int_expr") || fn.name().equals("float_expr"))
-      {
+      }
+      else if (fn.name().matches("buf_asn_2d(i|f)|buf_asn_row_2d(i|f)")) {
+        Expr stencilExpr = generatePointGrammarCall(termT, 2);
+        fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), stencilExpr)));
+      }
+      //else if (fn.name().equals("pc") || fn.name().matches("inv[0-9]+"))
+        //fns.add((FuncDecl) fn.accept(new StencilExprSetter(p.functions(), stencilExpr)));
+      else if (fn.name().equals("int_expr") || fn.name().equals("float_expr")) {
         VarExpr param = new VarExpr("val", termT);
         fn.params(Arrays.asList(param));
-        if (genT == termT){
+        if (genT == termT) {
           // faster
           fn.body(param);
           fn.isUnInterpreted(false);
-        }
-        else {
+        } else {
           fn.body(null);
           fn.isUnInterpreted(true);
         }
+        fns.add(fn);
+      } else if (!fns.contains(fn))
+        fns.add(fn);
+    }
+
+    p.functions(fns);
+  }
+
+  private static CallExpr generatePointGrammarCall(Type t, int dim) {
+    Expr idx_x = new VarExpr("idx_x", TypesFactory.Int);
+    Expr idx_y = new VarExpr("idx_y", TypesFactory.Int);
+    Expr idx_c = new VarExpr("idx_c", TypesFactory.Int);
+
+    switch (dim) {
+      case 1:
+        if (t == TypesFactory.Int) {
+          Expr termGenCall = new CallExpr("int_terms_1d", Arrays.asList(idx_x));
+          return new CallExpr("int_expr", Arrays.asList(termGenCall));
+        }
+        else if (t == TypesFactory.Float) {
+          Expr termGenCall = new CallExpr("float_terms_1d", Arrays.asList(idx_x));
+          return new CallExpr("float_expr", Arrays.asList(termGenCall));
+        }
+        else
+          throw new RuntimeException("Unexpected term type: " + t);
+
+      case 2:
+        if (t == TypesFactory.Int) {
+          Expr termGenCall = new CallExpr("int_terms_2d", Arrays.asList(idx_x, idx_y));
+          return new CallExpr("int_expr", Arrays.asList(termGenCall));
+        }
+        else if (t == TypesFactory.Float) {
+          Expr termGenCall = new CallExpr("float_terms_2d", Arrays.asList(idx_x, idx_y));
+          return new CallExpr("float_expr", Arrays.asList(termGenCall));
+        }
+        else
+          throw new RuntimeException("Unexpected term type: " + t);
+
+      case 3:
+        if (t == TypesFactory.Int) {
+          Expr termGenCall = new CallExpr("int_terms_3d", Arrays.asList(idx_x, idx_y, idx_c));
+          return new CallExpr("int_expr", Arrays.asList(termGenCall));
+        }
+        else if (t == TypesFactory.Float) {
+          Expr termGenCall = new CallExpr("float_terms_3d", Arrays.asList(idx_x, idx_y, idx_c));
+          return new CallExpr("float_expr", Arrays.asList(termGenCall));
+        }
+        else
+          throw new RuntimeException("Unexpected term type: " + t);
+
+      default:
+        throw new RuntimeException("NYI");
+    }
+  }
+
+  private static void stitchExprGrammar(Program p, List<Expr> opts, Type outVarT) {
+    // Prepare input array to grammar (including any heuristics)
+    CallExpr genCall = generateExprGrammarCall(opts, outVarT);
+
+    List<FuncDecl> fns = new ArrayList<>();
+
+    // Add generator functions from this grammar
+    VarExpr N = new VarExpr("N", TypesFactory.Int);
+    VarExpr terminals = new VarExpr("terminals", genCall.args().get(1).type());
+
+    FuncDecl intGen = new FuncDecl("int_expr_grm", Arrays.asList(N, terminals), TypesFactory.Int, null, false);
+    FuncDecl floatGen = new FuncDecl("float_expr_grm", Arrays.asList(N, terminals), TypesFactory.Float, null, false);
+
+    fns.add(intGen);
+    fns.add(floatGen);
+
+    // Convert ui_exprs in PCs to calls to the generator function
+    for (FuncDecl fn : p.functions())
+      if (fn.name().equals("int_expr") || fn.name().equals("float_expr"))
+      {
+        fn.body(genCall);
+        fn.isUnInterpreted(false);
         fns.add(fn);
       }
       else if (!fns.contains(fn))
@@ -145,35 +205,5 @@ public class Grammar {
       return new CallExpr("float_expr_grm", args);
     else
       throw new RuntimeException("Unexpected outVar elem type: " + bufT);
-  }
-
-  private static void stitchExprGrammar(Program p, List<Expr> opts, Type outVarT) {
-    // Prepare input array to grammar (including any heuristics)
-    CallExpr genCall = generateExprGrammarCall(opts, outVarT);
-
-    List<FuncDecl> fns = new ArrayList<>();
-
-    // Add generator functions from this grammar
-    VarExpr N = new VarExpr("N", TypesFactory.Int);
-    VarExpr terminals = new VarExpr("terminals", genCall.args().get(1).type());
-
-    FuncDecl intGen = new FuncDecl("int_expr_grm", Arrays.asList(N, terminals), TypesFactory.Int, null);
-    FuncDecl floatGen = new FuncDecl("float_expr_grm", Arrays.asList(N, terminals), TypesFactory.Float, null);
-
-    fns.add(intGen);
-    fns.add(floatGen);
-
-    // Convert ui_exprs in PCs to calls to the generator function
-    for (FuncDecl fn : p.functions())
-      if (fn.name().equals("int_expr") || fn.name().equals("float_expr"))
-      {
-        fn.body(genCall);
-        fn.isUnInterpreted(false);
-        fns.add(fn);
-      }
-      else if (!fns.contains(fn))
-        fns.add(fn);
-
-    p.functions(fns);
   }
 }

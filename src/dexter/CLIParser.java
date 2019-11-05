@@ -87,6 +87,15 @@ public class CLIParser
   )
   private File frontend;
 
+  @Option(
+      name="--mode",
+      aliases="-m",
+      required=false,
+      usage="Mode to run the compiler in (Options: legacy and intentional). Legacy mode allows more language features" +
+          "such as pointers but does suffers from a lower success-rate."
+  )
+  private String mode = "intentional";
+
   public boolean log() { return log; }
   public int verbosity() { return verbosity; }
   public boolean use_output_logs() { return use_output_logs; }
@@ -96,6 +105,7 @@ public class CLIParser
   public File dsl() { return dsl; }
   public File source() { return source; }
   public File frontend() { return frontend; }
+  public Preferences.Mode mode() { return (this.mode == "intentional" ? Preferences.Mode.Intentional : Preferences.Mode.Legacy ); }
 
   @SuppressWarnings( "deprecation" )
   public void parseArguments (String[] args) throws IOException {
@@ -132,6 +142,10 @@ public class CLIParser
         throw new CmdLineException(parser,
             "--cpp-frontend-dir is not a directory (" + this.frontend.getAbsolutePath() + ")");
 
+      if ( !this.mode.matches("(intentional|legacy)") )
+        throw new CmdLineException(parser,
+            "--mode must be either `intentional` or `legacy`");
+
     } catch ( CmdLineException e ) {
       parser.printUsage(System.err);
       System.err.println();
@@ -142,6 +156,7 @@ public class CLIParser
     if ( this.verbosity < 1 )
       return;
 
+    System.out.println("--mode set to " + this.mode);
     System.out.println("--verbosity set to " + this.verbosity);
 
     if ( this.log )

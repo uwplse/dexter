@@ -19,7 +19,7 @@ using namespace clang;
 namespace Dexter {
 
 namespace Target {
-  enum TargetLang {Halide};
+  enum TargetLang {Halide, Intelx86};
 }
 
 class NodeExt

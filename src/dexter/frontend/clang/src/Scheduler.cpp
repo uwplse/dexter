@@ -9,24 +9,37 @@
 
 void Dexter::Scheduler::HandleTranslationUnit (ASTContext & ctx)
 {
-  if (Dexter::Preferences::Verbosity > 0)
-    llvm::outs() << "## Scanning for intentional code blocks... \n\n";
+  if (Dexter::Preferences::Verbosity > 0) {
+    if (Dexter::Preferences::Mode == 0)
+      llvm::outs() << "## Scanning for intentional code blocks... \n\n";
+    else
+      llvm::outs() << "## Scanning for legacy code blocks... \n\n";
+  }
+
   rc.TraverseDecl(ctx.getTranslationUnitDecl());
 
   if (Dexter::Preferences::Verbosity > 0)
     llvm::outs() << "\n## Extracting loop bounds... \n\n";
   eb.TraverseDecl(ctx.getTranslationUnitDecl());
 
-  if (Dexter::Preferences::Verbosity > 0)
-    llvm::outs() << "\n## Normalizing intentional code blocks... \n\n";
+  if (Dexter::Preferences::Verbosity > 0) {
+    if (Dexter::Preferences::Mode == 0)
+      llvm::outs() << "\n## Normalizing intentional code blocks... \n\n";
+    else
+      llvm::outs() << "\n## Normalizing legacy code blocks... \n\n";
+  }
   nc.TraverseDecl(ctx.getTranslationUnitDecl());
 
   if (Dexter::Preferences::Verbosity > 0)
     llvm::outs() << "\n## Performing live variable analysis... \n\n";
   vs.TraverseDecl(ctx.getTranslationUnitDecl());
 
-  if (Dexter::Preferences::Verbosity > 0)
-    llvm::outs() << "\n## Parsing intentional code blocks as dags... \n\n";
+  if (Dexter::Preferences::Verbosity > 0) {
+    if (Dexter::Preferences::Mode == 0)
+      llvm::outs() << "\n## Parsing intentional code blocks as dags... \n\n";
+    else
+      llvm::outs() << "\n## Parsing legacy code blocks as dags... \n\n";
+  }
   gd.TraverseDecl(ctx.getTranslationUnitDecl());
 
   if (Dexter::Preferences::Verbosity > 0)
