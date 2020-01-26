@@ -47,7 +47,7 @@ DEXTER_REGISTER_INTENTIONAL_FUNC(normalBlendf, Dexter::Target::Halide)
 void normalBlend8 (Buffer<uint8_t,1> base, Buffer<uint8_t,1> active, Buffer<uint8_t,1> out, uint8_t opacity)
 {
 	for (int pixel=0; pixel<out.width(); pixel++) {
-		out(pixel) = Mul8x8Div255(opacity, active(pixel)) * Mul8x8Div255(255 - opacity, base(pixel));
+		out(pixel) = Mul8x8Div255(opacity, active(pixel)) + Mul8x8Div255(255 - opacity, base(pixel));
 	}
 }
 DEXTER_REGISTER_INTENTIONAL_FUNC(normalBlend8, Dexter::Target::Halide)
