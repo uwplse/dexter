@@ -74,7 +74,7 @@ public class HalidePrinter implements Visitor<String>
   public String visit(FuncDecl n) {
     StringBuffer sb = new StringBuffer();
 
-    Pattern p = Pattern.compile("cast_(int64|uint8|uint16|uint32|int8|int16|int32|float|double)_(int64|double|uint8|uint16|uint32|int8|int16|int32|float)");
+    Pattern p = Pattern.compile("cast_(int64|uint8|uint16|uint32|int8|int16|int32|float|double)_(int64|double|uint8|uint16|uint32|int8|int16|int32|float|rand)");
     Matcher m = p.matcher(n.name());
 
     if (m.matches()) {
@@ -107,10 +107,9 @@ public class HalidePrinter implements Visitor<String>
     //else if (e.name().equals("curr_cn"))
       //return new VarExpr("cn", e.type());
 
-    //else if (e.name().startsWith("Const")) {
+    else if (e.name().startsWith("Const"))
       // return the part without "Const" and replace _ with .
-    //  return e.name().substring(5, e.name().length()).replace("_", ".") + "f";
-    //}
+      return e.name().substring(5, e.name().length()).replace("_", ".") + "f";
 
     return e.name();
   }
@@ -179,7 +178,8 @@ public class HalidePrinter implements Visitor<String>
       String expr = e.array().accept(this) + "(";
 
       for (Expr idx : e.index())
-        expr += "Halide::cast<int32_t>(" + idx.accept(this) + "), ";
+        expr += idx.accept(this) + ", ";
+        //expr += idx.accept(this);
 
       return expr.substring(0, expr.length()-2) + ")";
     }
@@ -208,7 +208,7 @@ public class HalidePrinter implements Visitor<String>
       }
     }
 
-    return e.array().accept(this) + "(Halide::cast<int32_t>(" + e.index().get(0).accept(this) + "))";
+    return e.array().accept(this) + "(" + e.index().get(0).accept(this) + ")";
     //return NYI();
   }
 

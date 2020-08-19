@@ -33,7 +33,7 @@ public class Preferences {
     }
 
     public static class Expr {
-      public static boolean lightverif = true;
+      public static boolean lightverif = false;
       public static boolean minisat = false;
     }
 
@@ -42,11 +42,11 @@ public class Preferences {
     public static boolean minisat = false;
     public static boolean slv_parallel = true;
     public static int verbosity = 6;
-    public static int cores = 5;
+    public static int cores = 14;
     public static int sim_iters = 1500;
     public static int slv_seed = 1;
-    public static int inline_bnd = 5;
-    public static int unrolL_bnd = 4;
+    public static int inline_bnd = 8;
+    public static int unrolL_bnd = 8;
     public static int inbits_bnd = 2;
     public static int cbits_bnd = 1;
     public static int int_range = 60;

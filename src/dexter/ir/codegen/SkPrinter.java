@@ -311,6 +311,7 @@ public class SkPrinter implements Visitor<String>
   {
     StringBuffer sb = new StringBuffer();
 
+    /*
     // reset
     CountCallExprs.reset();
 
@@ -329,10 +330,10 @@ public class SkPrinter implements Visitor<String>
     for (CallExpr c : genCalls.keySet()){
       for (int i=0; i<genCalls.get(c).size(); i++)
         sb.append(toSkType(c.type()) + " " + c.name() + "_" + CountCallExprs.getIds().get(c) + "_" + i + " = " + this.visit(c, genCalls.get(c).get(i)) + ";\n" + indent());
-    }
+    }*/
 
     sb.append("return ");
-    sb.append(new ChooseExpr(newArgs, ch.getId()).accept(this));
+    sb.append(ch.accept(this));
 
     sb.append(";\n");
 

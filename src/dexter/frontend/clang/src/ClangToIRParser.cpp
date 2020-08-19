@@ -430,7 +430,7 @@ Dexter::Expr * Dexter::ClangToIRParser::parse (NamedDecl * decl, std::map<NamedD
 {
   if (isa<ValueDecl>(decl))
   {
-    ValueDecl * v = cast<ValueDecl>(decl);
+    ValueDecl * v = static_cast<ValueDecl*>(decl);
     if (vars.find(v) == vars.end())
     {
       Dexter::VarExpr * varExpr = new Dexter::VarExpr(v->getNameAsString().c_str(), Dexter::ClangToIRParser::toIRType(v->getType()));
@@ -647,6 +647,9 @@ bool Dexter::ClangToIRParser::isShortType (QualType cType)
 {
   const auto *BT = cType->getAs<BuiltinType>();
 
+  if (!BT)
+    return false;
+
   switch (BT->getKind()) {
     case BuiltinType::Short:
     case BuiltinType::UShort:
@@ -729,7 +732,7 @@ std::vector<Dexter::VarExpr *> Dexter::ClangToIRParser::inVars(Stage * s, std::m
   std::vector<Dexter::VarExpr *> irVars;
   std::set<ValueDecl *>::const_iterator it;
   for (it = invars.begin(); it != invars.end(); ++it)
-    irVars.push_back((Dexter::VarExpr *)Dexter::ClangToIRParser::parse(*it, vars));
+    irVars.push_back(static_cast<Dexter::VarExpr *>(Dexter::ClangToIRParser::parse(*it, vars)));
 
   return irVars;
 }
@@ -921,7 +924,7 @@ Dexter::Expr * Dexter::ClangToIRParser::parseFnBody(DeclStmt * s, Dexter::Expr *
     if (d->hasInit())
     {
       std::map<NamedDecl *, Dexter::Expr *> vars;
-      Dexter::VarExpr * v = cast<Dexter::VarExpr>(Dexter::ClangToIRParser::parse(makeDeclRefExpr(d, false), vars));
+      Dexter::VarExpr * v = (Dexter::VarExpr*)(Dexter::ClangToIRParser::parse(makeDeclRefExpr(d, false), vars));
       body = Util::substitute(body, v, Dexter::ClangToIRParser::parse(d->getInit(), vars));
     }
   }

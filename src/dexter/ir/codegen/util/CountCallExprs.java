@@ -3,6 +3,7 @@ package dexter.ir.codegen.util;
 import dexter.ir.Expr;
 import dexter.ir.Transformer;
 import dexter.ir.bool.CallExpr;
+import dexter.ir.bool.ChooseExpr;
 import dexter.ir.bool.FuncDecl;
 import dexter.ir.bool.VarExpr;
 

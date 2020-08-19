@@ -22,7 +22,7 @@ public class VarSetExtractor extends BaseVisitor {
     if (TypesFactory.isBufferT(c.array().type())) {
       BufferT bufT = (BufferT) c.array().type();
       if (bufT.dim() == 1) {
-        vars.add("i");
+        vars.add("x");
       }
       else if (bufT.dim() == 2) {
         vars.add("x");

@@ -92,23 +92,23 @@ bool Dexter::ExtractLoopBounds::forTemplate1 (ForStmt * loop)
 
   if (
     isa<BinaryOperator>(init) &&
-    cast<BinaryOperator>(init)->isAssignmentOp() &&
-    isa<DeclRefExpr>(cast<BinaryOperator>(init)->getLHS()) &&
-    cast<BinaryOperator>(init)->getLHS()->getType()->isIntegerType()
+    static_cast<BinaryOperator*>(init)->isAssignmentOp() &&
+    isa<DeclRefExpr>(static_cast<BinaryOperator*>(init)->getLHS()) &&
+    static_cast<BinaryOperator*>(init)->getLHS()->getType()->isIntegerType()
   )
   {
-    ext->lowerBound(cast<BinaryOperator>(init)->getRHS());
+    ext->lowerBound(static_cast<BinaryOperator*>(init)->getRHS());
   }
 
   else if (
     isa<DeclStmt>(init) &&
-    cast<DeclStmt>(init)->isSingleDecl() &&
-    isa<VarDecl>(cast<DeclStmt>(init)->getSingleDecl()) &&
-    cast<VarDecl>(cast<DeclStmt>(init)->getSingleDecl())->hasInit() &&
-    cast<VarDecl>(cast<DeclStmt>(init)->getSingleDecl())->getInit()->getType()->isIntegerType()
+    static_cast<DeclStmt*>(init)->isSingleDecl() &&
+    isa<VarDecl>(static_cast<DeclStmt*>(init)->getSingleDecl()) &&
+    static_cast<VarDecl*>(static_cast<DeclStmt*>(init)->getSingleDecl())->hasInit() &&
+    static_cast<VarDecl*>(static_cast<DeclStmt*>(init)->getSingleDecl())->getInit()->getType()->isIntegerType()
   )
   {
-    ext->lowerBound(cast<VarDecl>(cast<DeclStmt>(init)->getSingleDecl())->getInit());
+    ext->lowerBound(static_cast<VarDecl*>(static_cast<DeclStmt*>(init)->getSingleDecl())->getInit());
   }
 
   else
@@ -116,21 +116,21 @@ bool Dexter::ExtractLoopBounds::forTemplate1 (ForStmt * loop)
 
   if (
     isa<BinaryOperator>(cond) &&
-    cast<BinaryOperator>(cond)->getOpcode() == BO_LT
+    static_cast<BinaryOperator*>(cond)->getOpcode() == BO_LT
   )
   {
-    BinaryOperator * bop = cast<BinaryOperator>(cond);
+    BinaryOperator * bop = static_cast<BinaryOperator*>(cond);
     clang::Expr * lhs = bop->getLHS();
     clang::Expr * rhs = bop->getRHS();
 
     while (isa<CastExpr>(lhs))
-      lhs = cast<CastExpr>(lhs)->getSubExpr();
+      lhs = static_cast<CastExpr*>(lhs)->getSubExpr();
 
     while (isa<CastExpr>(rhs))
-      rhs = cast<CastExpr>(rhs)->getSubExpr();
+      rhs = static_cast<CastExpr*>(rhs)->getSubExpr();
 
     if (isa<DeclRefExpr>(lhs))
-      ext->upperBound(cast<CastExpr>(cast<BinaryOperator>(cond)->getRHS()));
+      ext->upperBound(static_cast<CastExpr*>(static_cast<BinaryOperator*>(cond)->getRHS()));
     else
       return false;
   }

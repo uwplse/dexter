@@ -1,11 +1,15 @@
-HALIDE_PATH=/home/maaz/Software/Halide
-DEXTER_JAR_PATH=../../../../out/artifacts/dexter_jar/dexter.jar
-INPUT_FILE_PATH=$1
+if [[ -z "${HALIDE_PATH}" ]]; then
+  echo "Please set HALIDE_PATH to your Halide installation directory"
+  exit 1
+fi
+
+DEXTER_JAR_PATH=$1
+INPUT_FILE_PATH=$2
 CORE_DSL_PATH=DSL.ir
-USER_DSL_PATH=$2
-DEXTER_INCLUDE_PATH=$3/include
-VERBOSITY=$4
-MODE=$5
+USER_DSL_PATH=$3
+DEXTER_INCLUDE_PATH=$4/include
+VERBOSITY=$5
+MODE=$6
 
 export LD_LIBRARY_PATH=/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
 
@@ -31,3 +35,5 @@ else
 		-mode $MODE \
 		$INPUT_FILE_PATH
 fi
+
+exit 0

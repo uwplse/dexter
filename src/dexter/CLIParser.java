@@ -150,6 +150,7 @@ public class CLIParser
       parser.printUsage(System.err);
       System.err.println();
       System.err.println(e.getMessage());
+      System.exit(1);
       return;
     }
 

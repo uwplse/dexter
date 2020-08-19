@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
  * This will generate an output file metalift_skParse.txt that records the value
  * for each choice variable.
  */
+
 @CodeGenerator
 public class OutputParser extends FEReplacer
 {

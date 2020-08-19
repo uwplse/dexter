@@ -3,6 +3,7 @@ package dexter.frontend;
 import dexter.Files;
 import dexter.Preferences;
 import dexter.dag.Pipeline;
+import dexter.synthesis.Synthesizer;
 
 import javax.json.Json;
 import java.io.File;
@@ -19,6 +20,7 @@ public class CppFrontend {
     try {
       ProcessBuilder pb = new ProcessBuilder(
           "./run.sh",
+          CppFrontend.class.getProtectionDomain().getCodeSource().getLocation().getPath(),
           Files.cppFilePath(),
           Files.userDslFilePath(),
           Files.cppFrontendDirPath(),

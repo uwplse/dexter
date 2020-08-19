@@ -9,9 +9,11 @@ import dexter.ir.array.SelectExpr;
 import dexter.ir.bool.*;
 import dexter.ir.integer.ForallExpr;
 import dexter.ir.integer.IntLitExpr;
+import dexter.ir.type.BufferT;
 import dexter.ir.type.Type;
 import dexter.ir.type.TypesFactory;
 
+import java.nio.Buffer;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,8 +37,6 @@ public class CodeGen {
     String schedule = extractSchedule(pipeline);
 
     code.append(
-      "#include \"Halide.h\"\n" +
-      "\n" +
       "class Gen_$FUNC_NAME$ : public Halide::Generator<Gen_$FUNC_NAME$> {\n" +
       "public:\n" +
       "  $INP_DECLS$" +
@@ -51,7 +51,7 @@ public class CodeGen {
       "    $SCHEDULE$\n" +
       "  }\n" +
       "};\n" +
-      "HALIDE_REGISTER_GENERATOR(Gen_$FUNC_NAME$, $FUNC_NAME$)\n"
+      "HALIDE_REGISTER_GENERATOR(Gen_$FUNC_NAME$, $FUNC_NAME$)"
     );
 
     return code.toString()
@@ -167,8 +167,10 @@ public class CodeGen {
       if (stage.isEmpty())
         continue;
 
-      FuncDecl pc = null;
+      if (!stage.containsLoop())
+        continue;
 
+      FuncDecl pc = null;
       for (FuncDecl fnDecl : stage.summary().functions()) {
         if (fnDecl.name().matches("int_expr_.*")) {
           ExtractLiveFunctionSet efs = new ExtractLiveFunctionSet(stage.summary().functions());
@@ -250,37 +252,103 @@ public class CodeGen {
     return localDecls.toString();
   }
 
-  private static String extractStatements(Pipeline pipeline) {
+  private static String extractStatements(Pipeline pipeline) throws Exception {
     StringBuffer statements = new StringBuffer();
-    for (Stage stage : pipeline.stages()) {
-      if (stage.isEmpty())
-        continue;
 
-      FuncDecl pc = null;
+    Stage curr_stage;
+    curr_stage = pipeline.stage(1);
 
-      for (FuncDecl fnDecl : stage.summary().functions()) {
-        if (fnDecl.name().equals("pc"))
-          pc = fnDecl;
+    while (true) {
+      if (!curr_stage.isEmpty()) {
+        if (curr_stage.containsLoop()) {
+          FuncDecl pc = null;
+
+          for (FuncDecl fnDecl : curr_stage.summary().functions()) {
+            if (fnDecl.name().equals("pc"))
+              pc = fnDecl;
+          }
+
+          if (pc == null)
+            throw new RuntimeException("Postcondition function not found");
+
+          List<Expr> stmts = getStatements(pc);
+
+          for (Expr stmt : stmts) {
+            CallExpr c = (CallExpr) stmt;
+
+            if (c.name().matches(".*_buf_asn_1d(i|f)(_[0-9]+)?$")) {
+              statements.append(gen1DFuncAssign(c, curr_stage.summary().functions()) + "\n    ");
+            }
+            else if (c.name().matches(".*_buf_asn_2d(i|f)(_[0-9]+)?$")) {
+              statements.append(gen2DFuncAssign(c, curr_stage.summary().functions()) + "\n    ");
+            }
+            else {
+              NYI();
+            }
+          }
+        }
+
+        //if (curr_stage.forks()) {
+          //Stage cons_stage = pipeline.stage(curr_stage.consStageId());
+          //Stage altr_stage = pipeline.stage(curr_stage.altrStageId());
+          //statements.append(genSelectAssign(curr_stage.cond(),cons_stage.getOutputArrVars(),altr_stage.getOutputArrVars()));
+        //}
       }
 
-      if (pc == null)
-        throw new RuntimeException("Postcondition function not found");
-
-      List<Expr> stmts = getStatements(pc);
-
-      for (Expr stmt : stmts) {
-        CallExpr c = (CallExpr) stmt;
-
-        if (c.name().matches(".*_buf_asn_2d(_[0-9]+)?$")) {
-          statements.append(gen2DFuncAssign(c, stage.summary().functions()) + "\n    ");
-        }
-        else {
-          NYI();
-        }
+      if (curr_stage.nextStageId() == -1)
+        break;
+      else {
+        curr_stage = pipeline.stage(curr_stage.nextStageId());
       }
     }
 
     return statements.toString();
+  }
+
+  private static String genSelectAssign(Expr out_var, Expr cond, List<VarExpr> cons, String altr) {
+    String lhs = "";
+    String rhs = "";
+    if (TypesFactory.isBufferT(out_var.type())) {
+      BufferT bufT = (BufferT) out_var.type();
+      if (bufT.dim() == 1)
+         lhs = out_var.accept(new HalidePrinter()) + "(x)";
+      else if (bufT.dim() == 2)
+        lhs = out_var.accept(new HalidePrinter()) + "(x, y)";
+      else
+        NYI();
+
+      rhs = "select(" + cond.accept(new HalidePrinter()) + ", " + cons + ", " + altr + ");";
+    }
+
+    return lhs + " = " + rhs + ";";
+  }
+
+  private static String gen1DFuncAssign(CallExpr c, List<FuncDecl> functions) {
+    String ret = "";
+
+    VarExpr out_var = (VarExpr) c.args().get(2);
+    VarExpr out_var_init = (VarExpr) c.args().get(3);
+
+    FuncDecl fnDecl = null;
+    for (FuncDecl fn : functions)
+      if (fn.name().equals(c.name()))
+        fnDecl = fn;
+
+    // Discard the for-loops
+    Expr e = ((ForallExpr) fnDecl.body()).body();
+
+    Expr rhs_e = ((BinaryExpr) e).right();
+
+    CallExpr v1 = new CallExpr(
+            out_var_init.name(),
+            Arrays.asList(new VarExpr("x", TypesFactory.Int))
+    );
+
+    String lhs = out_var.accept(new HalidePrinter()) + "(x)";
+    String rhs = genStencilExpr(rhs_e, v1, functions);
+
+    ret += lhs + " = " + rhs + ";";
+    return ret;
   }
 
   private static String gen2DFuncAssign(CallExpr c, List<FuncDecl> functions) {
@@ -302,7 +370,6 @@ public class CodeGen {
     Expr e = ((ForallExpr) fnDecl.body()).body();
     e = ((ForallExpr) e).body();
 
-    Expr lhs_e = ((BinaryExpr) e).left();
     Expr rhs_e = ((BinaryExpr) e).right();
 
     CallExpr v1 = new CallExpr(
@@ -459,7 +526,7 @@ public class CodeGen {
 
     for (Expr stmt : stmts) {
       CallExpr c = (CallExpr) stmt;
-      if (c.name().matches(".*_buf_asn_2d(_[0-9]+)?$")) {
+      if (c.name().matches(".*_buf_asn_2d(i|f)(_[0-9]+)?$")) {
         // Find Decl
         FuncDecl fnDecl = null;
         for (FuncDecl fn :stage.summary().functions())
@@ -482,6 +549,43 @@ public class CodeGen {
         CallExpr v1 = new CallExpr(
             ((VarExpr) c.args().get(4)).name(),
             Arrays.asList(new VarExpr("x", TypesFactory.Int), new VarExpr("y", TypesFactory.Int))
+        );
+
+        Map<VarExpr,Expr> termMapping = new HashMap<>();
+        termMapping.put(exprFnDecl.params().get(0), v1);
+        for (int i=1; i<exprFnDecl.params().size(); i++) {
+          VarExpr param = exprFnDecl.params().get(i);
+          Expr arg = rhs.args().get(i);
+          termMapping.put(param, arg);
+        }
+
+        ExtractLiveVars elv = new ExtractLiveVars(termMapping);
+        exprFnDecl.body().accept(elv);
+        if (elv.contains(v))
+          return true;
+      }
+      else if (c.name().matches(".*_buf_asn_1d(i|f)(_[0-9]+)?$")) {
+        // Find Decl
+        FuncDecl fnDecl = null;
+        for (FuncDecl fn :stage.summary().functions())
+          if (fn.name().equals(c.name()))
+            fnDecl = fn;
+
+        // Discard the for-loop
+        Expr e = ((ForallExpr) fnDecl.body()).body();
+
+        // Get expr
+        CallExpr rhs = (CallExpr) ((BinaryExpr) e).right();
+        FuncDecl exprFnDecl = null;
+        for (FuncDecl fn : stage.summary().functions())
+          if (fn.name().equals(rhs.name()))
+            exprFnDecl = fn;
+
+        assert exprFnDecl != null;
+
+        CallExpr v1 = new CallExpr(
+                ((VarExpr) c.args().get(2)).name(),
+                Arrays.asList(new VarExpr("x", TypesFactory.Int))
         );
 
         Map<VarExpr,Expr> termMapping = new HashMap<>();

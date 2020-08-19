@@ -3,6 +3,7 @@ package dexter;
 import dexter.analysis.ExtractLiveFunctionSet;
 import dexter.analysis.ExtractStencilExpr;
 import dexter.analysis.VCAnalyzer;
+import dexter.codegen.halide.CodeGen;
 import dexter.dag.Pipeline;
 import dexter.dag.Stage;
 import dexter.frontend.CodeAnalysis;
@@ -10,6 +11,7 @@ import dexter.frontend.CodeBlock;
 import dexter.frontend.CppFrontend;
 import dexter.grammar.Grammar;
 import dexter.ir.Expr;
+import dexter.ir.Printer;
 import dexter.ir.array.DecrPtrExpr;
 import dexter.ir.array.IncrPtrExpr;
 import dexter.ir.array.SelectExpr;
@@ -31,6 +33,7 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -103,9 +106,6 @@ public class Compiler {
             // Stage 3: Synthesize stencil expression
             Program roi_points_expr = synthesizeStencilExpr(cb, stage, buffer, roi_points, termsMapping);
 
-            // Stage 4: Verify synthesized clause
-            // TODO
-
             clauses.add(roi_points_expr);
           }
 
@@ -114,27 +114,33 @@ public class Compiler {
         }
 
         // Stitch clauses together to generate stage summary
+        if (Preferences.Global.verbosity > 0) {
+          System.out.println("\nPreparing a semantic summary of the code block...");
+        }
         Program summary = generateSummary(clauses);
         checkSemantics(summary);
         stage.summary(summary);
+
+        // Use synthesized summary to generate Halide Code
+        if (Preferences.Global.verbosity > 0) {
+          System.out.println("Compiling the summary to Halide...");
+        }
+
+        String halideFunc = CodeGen.asHalideGenerator(cb);
+        String origFunc = new Scanner(Files.origFuncFile(cb.name())).useDelimiter("\\A").next();
+
+        if (Preferences.Global.verbosity > 1)
+          System.out.println("\n\n" + halideFunc);
+
+        origCode = origCode.replaceAll("#include\\s+?\\\"Dexter\\.h\\\"", "#include \"Dexter.h\"\n#include \"Halide.h\"");
+        origCode = origCode.replaceAll(Pattern.quote(origFunc), halideFunc);
+        origCode = origCode.replaceAll("DEXTER_REGISTER_INTENTIONAL_FUNC\\s*?\\(\\s*?"+cb.name()+"\\s*?,\\s*?Dexter::Target::Halide\\s*?\\)", "");
+
+        Files.writeFile(Files.outputFilePath(), origCode);
       }
-
-      // Use synthesized summary to generate Halide Code
-      /*String halideFunc = CodeGen.asHalideGenerator(cb);
-
-      String origFunc = new Scanner(Files.origFuncFile(cb.name())).useDelimiter("\\A").next();
-
-      if (Preferences.Global.verbosity > 0)
-        System.out.println("\n\n" + halideFunc);
-
-      Files.writeFile(Files.outputFile().getParent() + "/halide_" + cb.name() + ".cpp", halideFunc);
-
-      origCode = origCode.replaceAll(Pattern.quote(origFunc), "#include \"" + cb.name() + ".h\"").replaceAll("DEXTER_REGISTER_INTENTIONAL_FUNC\\(" + cb.name() + ",.*", "");*/
     }
 
-    //Files.writeFile(Files.outputFilePath(), origCode);
-
-    if (!Preferences.Global.log)
+    if (!Preferences.Global.log && !Preferences.Global.generate_intermediate_files)
       if (Files.tempDir().exists())
         FileUtils.deleteDirectory(Files.tempDir());
   }
@@ -276,8 +282,6 @@ public class Compiler {
 
       // Check semantics
       checkSemantics(tm);
-
-      tm.print();
 
       // Run synthesizer
       if (Preferences.Global.verbosity > 0)

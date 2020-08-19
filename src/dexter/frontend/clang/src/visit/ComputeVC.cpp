@@ -14,6 +14,7 @@ bool Dexter::ComputeVC::VisitFunctionDecl (FunctionDecl* f)
     return true;
 
   Pipeline* pipeline = Dexter::DeclExt::Get(f)->DAG();
+
   std::set<Stage*> stages = pipeline->getAllStages();
 
   std::set<Stage*>::iterator stage;
@@ -447,7 +448,7 @@ void Dexter::ComputeVC::vc (DeclStmt * s, Dexter::VCGenerator * vcGen)
     VarDecl * d = (VarDecl *)*it;
     if (d->hasInit())
     {
-      Dexter::VarExpr * v = cast<Dexter::VarExpr>(Dexter::ClangToIRParser::parse(makeDeclRefExpr(d, false), vars));
+      Dexter::VarExpr * v = (Dexter::VarExpr*) (Dexter::ClangToIRParser::parse(makeDeclRefExpr(d, false), vars));
       std::string v_init_n = v->name();
       v_init_n = v_init_n + "_init";
       Dexter::VarExpr * v_init = new Dexter::VarExpr(v_init_n.c_str(), *v->type());
