@@ -25,7 +25,7 @@ $ java -jar build/artifacts/dexter.jar
                                           (default: false)
  --mode (-m) VAL                        : Mode to run the compiler in (Options:
                                           legacy and intentional). Legacy mode
-                                          allows more language featuressuch as
+                                          allows more language features such as
                                           pointers but does suffers from a
                                           lower success-rate. (default:
                                           intentional)
