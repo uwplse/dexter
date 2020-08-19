@@ -5,8 +5,7 @@ build/production/**
 src/dexter/frontend/clang/obj/**
 test/basic/convolve.cpp
 test/optimized/**
-test/pipelines/**
+test/pipeline/**
 test/legacy/**
-.idea/*
 src/META-INF/**
 out/**

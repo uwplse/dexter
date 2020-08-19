@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="dexter:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3aaca120-7835-4538-9d62-16df7e83cb2b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1WxEMldhSgyt7rtaCa2vWAvssJG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="true" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="build" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/sketch-1.7.2-noarch.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="WindowStateProjectService">
+    <state x="733" y="586" width="332" height="292" key="#Other_File_Types" timestamp="1597706637243">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="733" y="586" width="332" height="292" key="#Other_File_Types/59.27.3381.1413@59.27.3381.1413" timestamp="1597706637243" />
+    <state x="1732" y="283" width="1024" height="845" key="#Project_Structure" timestamp="1597822615386">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1732" y="283" width="1024" height="845" key="#Project_Structure/59.27.3381.1413@59.27.3381.1413" timestamp="1597822615386" />
+    <state x="1207" y="390" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597817819445">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1207" y="390" key="#com.intellij.execution.impl.EditConfigurationsDialog/59.27.3381.1413@59.27.3381.1413" timestamp="1597817819445" />
+    <state x="1472" y="525" width="525" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597822155154">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1472" y="525" width="525" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog/59.27.3381.1413@59.27.3381.1413" timestamp="1597822155154" />
+    <state x="1453" y="402" width="575" height="661" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1597817468126">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1453" y="402" width="575" height="661" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/59.27.3381.1413@59.27.3381.1413" timestamp="1597817468126" />
+    <state x="1494" y="623" width="489" height="221" key="DetectedRootsChooserDialog" timestamp="1597822450467">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1494" y="623" width="489" height="221" key="DetectedRootsChooserDialog/59.27.3381.1413@59.27.3381.1413" timestamp="1597822450467" />
+    <state x="1333" y="449" width="814" height="567" key="FileChooserDialogImpl" timestamp="1597822457144">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="1333" y="449" width="814" height="567" key="FileChooserDialogImpl/59.27.3381.1413@59.27.3381.1413" timestamp="1597822457144" />
+    <state x="387" y="310" width="1024" height="845" key="SettingsEditor" timestamp="1597822574432">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="387" y="310" width="1024" height="845" key="SettingsEditor/59.27.3381.1413@59.27.3381.1413" timestamp="1597822574432" />
+    <state x="595" y="341" width="618" height="783" key="find.popup" timestamp="1597719004610">
+      <screen x="59" y="27" width="3381" height="1413" />
+    </state>
+    <state x="595" y="341" width="618" height="783" key="find.popup/59.27.3381.1413@59.27.3381.1413" timestamp="1597719004610" />
+  </component>
+</project>
