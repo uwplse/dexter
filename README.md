@@ -1,3 +1,5 @@
+### Note: This project is somewhat bit-rotted and no longer actively maintained by the authors. If you're interested in exploring the techniques behind Dexter or in building your own Verified Lifting compiler, check out [Metalift](https://github.com/metalift/metalift)!
+
 # Dexter: A Compiler for Lifting C++ Code to Halide
 Dexter is a proof-of-concept compiler prototype designed to rejuvenate legacy image and array processing C++ code by re-writing it to the [Halide DSL](https://halide-lang.org/), thus enabling cross-platform optimization and portability. Given an operation implemented in C++, Dexter uses Verified Lifting, a combination of program synthesis and verification, to discover the algorithm hidden in the low-level code. Once discovered, the algorithm is then compiled to new hardware using Halide, avoiding manual reimplementation.
 
